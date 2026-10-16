@@ -114,6 +114,62 @@ html_content = '''<!DOCTYPE html>
         print-color-adjust: exact !important;
       }
     }
+
+    /* Split workspace: keep editor and artwork visible together while editing */
+    @media (min-width: 768px) {
+      .studio-workspace {
+        height: calc(100dvh - 5.5rem);
+        min-height: 420px;
+        overflow: hidden;
+        align-items: stretch;
+      }
+      .studio-controls {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-gutter: stable;
+        padding-right: .5rem;
+      }
+      .studio-preview {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        align-self: stretch;
+        padding-bottom: .5rem;
+      }
+      #packaging-stage-wrapper {
+        min-height: 0 !important;
+        height: clamp(260px, calc(100dvh - 340px), 560px);
+        flex: 0 0 auto;
+        padding: clamp(.75rem, 1.5vw, 2rem);
+      }
+      #tin-dabba-shell {
+        max-width: min(480px, calc(100dvh - 370px));
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .studio-workspace { gap: .75rem; padding: .75rem; }
+      .studio-preview > .w-full.flex.items-center.justify-between {
+        flex-wrap: wrap;
+        gap: .5rem;
+      }
+    }
+    @media (max-width: 767px) {
+      .studio-preview {
+        scroll-margin-top: 5rem;
+      }
+      #packaging-stage-wrapper {
+        min-height: 0;
+        height: min(88vw, 440px);
+        padding: .75rem;
+      }
+      #tin-dabba-shell {
+        max-width: min(100%, 400px);
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-slate-950 text-slate-100 select-none">
@@ -158,20 +214,20 @@ html_content = '''<!DOCTYPE html>
   </header>
 
   <!-- MAIN STUDIO LAYOUT: SIDEBAR (CANVA CONTROLS) + CENTER (STAGE CANVAS) -->
-  <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+  <main class="studio-workspace flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 items-start">
     
     <!-- LEFT SIDEBAR: CANVA LAYERS & CONTROLS (Col span 5 on desktop) -->
-    <div class="lg:col-span-5 space-y-4">
+    <div class="studio-controls md:col-span-5 space-y-4">
       
-      <section class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg" aria-label="How to use the sticker designer">
-      <h2 class="text-sm sm:text-base font-extrabold text-white">Sticker 3 steps mein banayein</h2>
-      <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm">
-        <div class="rounded-xl bg-slate-950/80 p-3"><span class="font-extrabold text-amber-300">1.</span> Rang/design chunein</div>
-        <div class="rounded-xl bg-slate-950/80 p-3"><span class="font-extrabold text-amber-300">2.</span> Product naam aur zaroori text badlein</div>
-        <div class="rounded-xl bg-slate-950/80 p-3"><span class="font-extrabold text-amber-300">3.</span> Download karein ya A4 par print karein</div>
-      </div>
-      <p class="mt-2 text-xs leading-5 text-slate-400">Koi section samajh na aaye to uska naam kholkar sirf zaroori field badlein. Baaki settings jaise ki hain waise rehne dein.</p>
-    </section>
+      <section class="rounded-xl border border-slate-700/80 bg-slate-900/80 px-3.5 py-3 shadow-lg" aria-label="Quick start">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <h2 class="text-sm font-extrabold text-white">Apna sticker banayein</h2>
+            <p class="mt-1 text-xs leading-5 text-slate-300">① Rang chunein <span class="text-slate-500">→</span> ② Naam badlein <span class="text-slate-500">→</span> ③ Download karein</p>
+          </div>
+          <span class="shrink-0 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-bold text-emerald-300">LIVE PREVIEW ↗</span>
+        </div>
+      </section>
 
     <!-- 1-CLICK MASTER THEMES (Exact Matches to User Images) -->
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
@@ -612,7 +668,7 @@ html_content = '''<!DOCTYPE html>
     </div>
 
     <!-- RIGHT MAIN CANVAS STAGE (Col span 7 on desktop) -->
-    <div class="lg:col-span-7 flex flex-col items-center space-y-4">
+    <div class="studio-preview md:col-span-7 flex flex-col items-center space-y-4">
       
       <!-- VIEW MODE SWITCHER & STAGE TOOLBAR -->
       <div class="w-full flex items-center justify-between bg-slate-900/90 border border-slate-800 px-4 py-2.5 rounded-2xl shadow-xl">
