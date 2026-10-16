@@ -279,10 +279,16 @@
           </button>
 
           <div id="layer-cookies-content" class="p-3.5 space-y-3">
-            <!-- Text Input -->
-            <div>
-              <label class="text-[11px] font-semibold text-slate-300 block mb-1">Product Title Text:</label>
-              <input type="text" id="input-title" value="Assorted Cookies" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+            <!-- Separate, editable product name lines -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div>
+                <label for="input-title" class="text-[11px] font-semibold text-slate-300 block mb-1">Upper line — name</label>
+                <input type="text" id="input-title" value="Assorted" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
+              </div>
+              <div>
+                <label for="input-title-line2" class="text-[11px] font-semibold text-slate-300 block mb-1">Lower line — name</label>
+                <input type="text" id="input-title-line2" value="Cookies" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
+              </div>
             </div>
 
             <!-- Mota Bold Fonts Switcher (User specifically asked for bade mote fonts!) -->
@@ -311,11 +317,19 @@
               <span id="title-size-val" class="text-xs font-mono font-bold text-amber-400 w-12 text-right">105 px</span>
             </div>
 
-            <!-- Vertical Position (Y) Slider -->
-            <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-slate-300 font-medium">Position Y (Up/Down):</span>
-              <input type="range" id="slider-title-y" min="620" max="820" value="690" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="title-y-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">Y: 690</span>
+            <!-- Each word has its own up/down position control -->
+            <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-title-y" class="text-xs font-semibold text-slate-200">Upper line: move up / down</label>
+                <span id="title-y-val" class="w-12 shrink-0 text-right text-xs font-mono font-bold text-teal-400">Y: 620</span>
+              </div>
+              <input type="range" id="slider-title-y" min="500" max="760" value="620" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Upper product name vertical position">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-title2-y" class="text-xs font-semibold text-slate-200">Lower line: move up / down</label>
+                <span id="title2-y-val" class="w-12 shrink-0 text-right text-xs font-mono font-bold text-amber-400">Y: 735</span>
+              </div>
+              <input type="range" id="slider-title2-y" min="600" max="870" value="735" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Lower product name vertical position">
+              <p class="text-[11px] leading-5 text-slate-400">Dono lines ko alag-alag adjust karein, ya preview mein jis line ko badalna hai use drag karein.</p>
             </div>
 
             <!-- Text Color Picker -->
@@ -794,10 +808,12 @@
       bgOuter: '#97D8C4',
 
       // Product Title ("Assorted Cookies")
-      title: 'Assorted Cookies',
+      titleLine1: 'Assorted',
+      titleLine2: 'Cookies',
       titleFont: 'cinzel-dec', // 'cinzel-dec', 'playfair-black', 'montserrat-black', 'alex-brush'
       titleSize: 105,
-      titleY: 690,
+      titleLine1Y: 620,
+      titleLine2Y: 735,
       titleColorMode: 'gold', // 'gold', 'emerald', 'white', 'custom'
       titleCustomColor: '#D4AF37',
 
@@ -860,7 +876,8 @@
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
-        titleY: 690,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
         brandY: 405,
         ribbonY: 795,
         plaqueY: 895,
@@ -884,7 +901,8 @@
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
-        titleY: 690,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
         brandY: 405,
         ribbonY: 795,
         plaqueY: 895,
@@ -908,7 +926,8 @@
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
-        titleY: 690,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
         brandY: 405,
         ribbonY: 795,
         plaqueY: 895,
@@ -932,7 +951,8 @@
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
-        titleY: 690,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
         brandY: 405,
         ribbonY: 795,
         plaqueY: 895,
@@ -956,7 +976,8 @@
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
-        titleY: 690,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
         brandY: 405,
         ribbonY: 795,
         plaqueY: 895,
@@ -980,7 +1001,8 @@
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
-        titleY: 690,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
         brandY: 405,
         ribbonY: 795,
         plaqueY: 895,
@@ -1021,7 +1043,8 @@
     }
 
     function resetPositions() {
-      state.titleY = 690;
+      state.titleLine1Y = 620;
+      state.titleLine2Y = 735;
       state.brandY = 405;
       state.ribbonY = 795;
       state.plaqueY = 895;
@@ -1166,7 +1189,9 @@
     // ==========================================
     function updateLabel() {
       const titleInput = document.getElementById('input-title');
-      if (titleInput) state.title = titleInput.value || 'Assorted Cookies';
+      if (titleInput) state.titleLine1 = titleInput.value || 'Assorted';
+      const titleLine2Input = document.getElementById('input-title-line2');
+      if (titleLine2Input) state.titleLine2 = titleLine2Input.value || 'Cookies';
 
       const brandInput = document.getElementById('input-brand');
       if (brandInput) state.brand = brandInput.value || 'DIAMOND';
@@ -1203,9 +1228,15 @@
 
       const titleYS = document.getElementById('slider-title-y');
       if (titleYS) {
-        state.titleY = parseInt(titleYS.value) || 690;
+        state.titleLine1Y = parseInt(titleYS.value) || 620;
         const v = document.getElementById('title-y-val');
-        if (v) v.textContent = `Y: ${state.titleY}`;
+        if (v) v.textContent = `Y: ${state.titleLine1Y}`;
+      }
+      const title2YS = document.getElementById('slider-title2-y');
+      if (title2YS) {
+        state.titleLine2Y = parseInt(title2YS.value) || 735;
+        const v = document.getElementById('title2-y-val');
+        if (v) v.textContent = `Y: ${state.titleLine2Y}`;
       }
 
       const brandSizeS = document.getElementById('slider-brand-size');
@@ -1310,11 +1341,14 @@
       const setV = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
       const setT = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
 
-      setV('input-title', state.title);
+      setV('input-title', state.titleLine1);
+      setV('input-title-line2', state.titleLine2);
       setV('slider-title-size', state.titleSize);
       setT('title-size-val', `${state.titleSize} px`);
-      setV('slider-title-y', state.titleY);
-      setT('title-y-val', `Y: ${state.titleY}`);
+      setV('slider-title-y', state.titleLine1Y);
+      setT('title-y-val', `Y: ${state.titleLine1Y}`);
+      setV('slider-title2-y', state.titleLine2Y);
+      setT('title2-y-val', `Y: ${state.titleLine2Y}`);
 
       setV('input-brand', state.brand);
       const brandTextToggle = document.getElementById('check-logo-has-name');
@@ -1457,12 +1491,13 @@
       activeDragLayer = layerName;
       dragStartY = evt.clientY || (evt.touches && evt.touches[0].clientY);
 
-      if (layerName === 'cookies') layerStartVal = state.titleY;
+      if (layerName === 'cookies1') layerStartVal = state.titleLine1Y;
+      if (layerName === 'cookies2') layerStartVal = state.titleLine2Y;
       if (layerName === 'brand') layerStartVal = state.brandY;
       if (layerName === 'ribbon') layerStartVal = state.ribbonY;
       if (layerName === 'plaque') layerStartVal = state.plaqueY;
 
-      openLayerAccordion(layerName);
+      openLayerAccordion(layerName.startsWith('cookies') ? 'cookies' : layerName);
     }
 
     window.addEventListener('mousemove', (evt) => {
@@ -1474,12 +1509,18 @@
       const scale = 1200 / stageH;
       const deltaY = (clientY - dragStartY) * scale;
 
-      if (activeDragLayer === 'cookies') {
-        state.titleY = Math.round(Math.max(550, Math.min(850, layerStartVal + deltaY)));
+      if (activeDragLayer === 'cookies1') {
+        state.titleLine1Y = Math.round(Math.max(500, Math.min(760, layerStartVal + deltaY)));
         const slider = document.getElementById('slider-title-y');
-        if (slider) slider.value = state.titleY;
+        if (slider) slider.value = state.titleLine1Y;
         const v = document.getElementById('title-y-val');
-        if (v) v.textContent = `Y: ${state.titleY}`;
+        if (v) v.textContent = `Y: ${state.titleLine1Y}`;
+      } else if (activeDragLayer === 'cookies2') {
+        state.titleLine2Y = Math.round(Math.max(600, Math.min(870, layerStartVal + deltaY)));
+        const slider = document.getElementById('slider-title2-y');
+        if (slider) slider.value = state.titleLine2Y;
+        const v = document.getElementById('title2-y-val');
+        if (v) v.textContent = `Y: ${state.titleLine2Y}`;
       } else if (activeDragLayer === 'brand') {
         state.brandY = Math.round(Math.max(300, Math.min(550, layerStartVal + deltaY)));
         const slider = document.getElementById('slider-brand-y');
@@ -1693,11 +1734,12 @@
              filter="url(#shadowFilter)" />
     </g>
 
-    <!-- 7. PRODUCT TITLE: "Assorted Cookies" (MOTA BOLD FONTS) -->
-    <g transform="translate(600, ${state.titleY})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'cookies')">
-      <text x="0" y="0" text-anchor="middle" font-family="${titleFontFamily}" font-weight="${titleFontWeight}" font-size="${state.titleSize}px" letter-spacing="${titleLetterSpacing}" fill="${titleFill}" stroke="${titleStroke}" stroke-width="${titleStrokeWidth}" filter="url(#titleShadow)">
-        ${state.title}
-      </text>
+    <!-- 7. PRODUCT NAME — two separate, independently draggable lines -->
+    <g transform="translate(600, ${state.titleLine1Y})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'cookies1')">
+      <text x="0" y="0" text-anchor="middle" font-family="${titleFontFamily}" font-weight="${titleFontWeight}" font-size="${state.titleSize}px" letter-spacing="${titleLetterSpacing}" fill="${titleFill}" stroke="${titleStroke}" stroke-width="${titleStrokeWidth}" filter="url(#titleShadow)">${state.titleLine1}</text>
+    </g>
+    <g transform="translate(600, ${state.titleLine2Y})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'cookies2')">
+      <text x="0" y="0" text-anchor="middle" font-family="${titleFontFamily}" font-weight="${titleFontWeight}" font-size="${state.titleSize}px" letter-spacing="${titleLetterSpacing}" fill="${titleFill}" stroke="${titleStroke}" stroke-width="${titleStrokeWidth}" filter="url(#titleShadow)">${state.titleLine2}</text>
     </g>
 
     <!-- 8. TAGLINE CAPSULE RIBBON -->
@@ -1815,27 +1857,120 @@
       }, 250);
     }
 
-    function downloadA4PNG() {
+    function blobToDataURL(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('Image conversion failed.'));
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    // Clone the responsive preview into a fixed 1200×1200 SVG and embed linked artwork.
+    async function prepareSvgForExport(svgElement) {
+      const clone = svgElement.cloneNode(true);
+      clone.setAttribute('width', '1200');
+      clone.setAttribute('height', '1200');
+      clone.setAttribute('viewBox', '0 0 1200 1200');
+      const images = Array.from(clone.querySelectorAll('image'));
+      await Promise.all(images.map(async (image) => {
+        const href = image.getAttribute('href') || image.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
+        if (!href || href.startsWith('data:')) return;
+        const response = await fetch(href, { mode: 'cors', credentials: 'same-origin' });
+        if (!response.ok) throw new Error('Logo image could not be loaded for export.');
+        const dataUrl = await blobToDataURL(await response.blob());
+        image.setAttribute('href', dataUrl);
+        image.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+      }));
+      return new XMLSerializer().serializeToString(clone);
+    }
+
+    async function loadExportImage(svgElement) {
+      const svgStr = await prepareSvgForExport(svgElement);
+      const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+      const objectUrl = URL.createObjectURL(blob);
+      try {
+        const image = new Image();
+        image.decoding = 'async';
+        await new Promise((resolve, reject) => {
+          image.onload = resolve;
+          image.onerror = () => reject(new Error('Sticker preview could not be prepared as an image.'));
+          image.src = objectUrl;
+        });
+        return { image, objectUrl, svgStr };
+      } catch (error) {
+        URL.revokeObjectURL(objectUrl);
+        throw error;
+      }
+    }
+
+    function crc32(bytes) {
+      let crc = 0xFFFFFFFF;
+      for (let i = 0; i < bytes.length; i++) {
+        crc ^= bytes[i];
+        for (let bit = 0; bit < 8; bit++) crc = (crc & 1) ? (crc >>> 1) ^ 0xEDB88320 : (crc >>> 1);
+      }
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+
+    function makePngChunk(type, data) {
+      const chunk = new Uint8Array(12 + data.length);
+      const view = new DataView(chunk.buffer);
+      view.setUint32(0, data.length);
+      for (let i = 0; i < 4; i++) chunk[4 + i] = type.charCodeAt(i);
+      chunk.set(data, 8);
+      view.setUint32(8 + data.length, crc32(chunk.subarray(4, 8 + data.length)));
+      return chunk;
+    }
+
+    // Add physical DPI metadata in pixels per metre.
+    async function addPngDpiMetadata(blob, dpi) {
+      const input = new Uint8Array(await blob.arrayBuffer());
+      if (input.length < 33 || input[0] !== 137 || input[1] !== 80 || input[2] !== 78 || input[3] !== 71) {
+        throw new Error('Browser did not create a valid PNG.');
+      }
+      const view = new DataView(input.buffer, input.byteOffset, input.byteLength);
+      const firstChunkEnd = 8 + 12 + view.getUint32(8);
+      const ppm = Math.round(dpi / 0.0254);
+      const data = new Uint8Array(9);
+      const dataView = new DataView(data.buffer);
+      dataView.setUint32(0, ppm);
+      dataView.setUint32(4, ppm);
+      data[8] = 1;
+      const phys = makePngChunk('pHYs', data);
+      const output = new Uint8Array(input.length + phys.length);
+      output.set(input.subarray(0, firstChunkEnd), 0);
+      output.set(phys, firstChunkEnd);
+      output.set(input.subarray(firstChunkEnd), firstChunkEnd + phys.length);
+      return new Blob([output], { type: 'image/png' });
+    }
+
+    function saveBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    async function downloadA4PNG() {
       const svg = document.getElementById('final-label-svg');
       if (!svg) return;
-
-      const serializer = new XMLSerializer();
-      const svgStr = serializer.serializeToString(svg);
-      const img = new Image();
-      const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-
-      img.onload = () => {
+      let objectUrl = null;
+      try {
+        const loaded = await loadExportImage(svg);
+        const img = loaded.image;
+        objectUrl = loaded.objectUrl;
         const canvas = document.createElement('canvas');
-        canvas.width = 2480; // A4 at 300 DPI (210mm)
-        canvas.height = 3508; // 297mm
+        canvas.width = 2480;
+        canvas.height = 3508;
         const ctx = canvas.getContext('2d');
-
-        // White paper background
+        if (!ctx) throw new Error('Canvas is not available.');
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Header text
         ctx.fillStyle = '#0F172A';
         ctx.font = 'bold 36px monospace';
         ctx.fillText('DIAMOND BAKERY • 6-INCH ROUND TIN MASTER • A4 PRINT SHEET', 100, 120);
@@ -1845,29 +1980,19 @@
 
         const count = state.a4Layout || 1;
         if (count === 1) {
-          const diam = 1800;
-          const x = (2480 - diam) / 2;
-          const y = (3508 - diam) / 2;
+          const diam = 1800, x = (2480 - diam) / 2, y = (3508 - diam) / 2;
           ctx.drawImage(img, x, y, diam, diam);
-
-          // Crop Marks
-          ctx.strokeStyle = '#000000';
-          ctx.lineWidth = 4;
-          // Top Left
+          ctx.strokeStyle = '#000000'; ctx.lineWidth = 4;
           ctx.beginPath(); ctx.moveTo(x - 30, y); ctx.lineTo(x - 5, y); ctx.stroke();
           ctx.beginPath(); ctx.moveTo(x, y - 30); ctx.lineTo(x, y - 5); ctx.stroke();
-          // Top Right
           ctx.beginPath(); ctx.moveTo(x + diam + 5, y); ctx.lineTo(x + diam + 30, y); ctx.stroke();
           ctx.beginPath(); ctx.moveTo(x + diam, y - 30); ctx.lineTo(x + diam, y - 5); ctx.stroke();
-          // Bottom Left
           ctx.beginPath(); ctx.moveTo(x - 30, y + diam); ctx.lineTo(x - 5, y + diam); ctx.stroke();
           ctx.beginPath(); ctx.moveTo(x, y + diam + 5); ctx.lineTo(x, y + diam + 30); ctx.stroke();
-          // Bottom Right
           ctx.beginPath(); ctx.moveTo(x + diam + 5, y + diam); ctx.lineTo(x + diam + 30, y + diam); ctx.stroke();
           ctx.beginPath(); ctx.moveTo(x + diam, y + diam + 5); ctx.lineTo(x + diam, y + diam + 30); ctx.stroke();
         } else if (count === 2) {
-          const diam = 1450;
-          const x = (2480 - diam) / 2;
+          const diam = 1450, x = (2480 - diam) / 2;
           ctx.drawImage(img, x, 250, diam, diam);
           ctx.drawImage(img, x, 250 + diam + 100, diam, diam);
         } else if (count === 4) {
@@ -1884,79 +2009,58 @@
             }
           }
         }
-
-        // CMYK color bars at bottom
         const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#000000', '#D4AF37'];
-        colors.forEach((c, idx) => {
-          ctx.fillStyle = c;
-          ctx.fillRect(100 + idx * 80, 3420, 60, 30);
+        colors.forEach((color, index) => {
+          ctx.fillStyle = color;
+          ctx.fillRect(100 + index * 80, 3420, 60, 30);
         });
         ctx.fillStyle = '#64748B';
         ctx.font = '22px monospace';
         ctx.fillText('Cut along circular guides • Diamond Bakery All Rights Reserved', 560, 3442);
-
-        // Download PNG
-        const a = document.createElement('a');
-        a.href = canvas.toDataURL('image/png');
-        a.download = `diamond_cookies_A4_print_sheet_${count}up.png`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      };
-      img.src = url;
+        const png = await new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('PNG could not be created.')), 'image/png'));
+        saveBlob(await addPngDpiMetadata(png, 300), `diamond_cookies_A4_print_sheet_${count}up_300dpi.png`);
+      } catch (error) {
+        console.error('A4 PNG export failed:', error);
+        alert('A4 PNG download nahi ho paya. Page refresh karke dobara try karein. Details: ' + error.message);
+      } finally {
+        if (objectUrl) URL.revokeObjectURL(objectUrl);
+      }
     }
 
-    // ==========================================
-    // ULTRA HD 600 DPI PNG & VECTOR SVG EXPORT
-    // ==========================================
-    function downloadPNG600DPI() {
+    async function downloadPNG600DPI() {
       const svg = document.getElementById('final-label-svg');
       if (!svg) return;
-
-      const serializer = new XMLSerializer();
-      const svgStr = serializer.serializeToString(svg);
-      const img = new Image();
-      const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-
-      img.onload = () => {
+      let objectUrl = null;
+      try {
+        const loaded = await loadExportImage(svg);
+        objectUrl = loaded.objectUrl;
         const canvas = document.createElement('canvas');
-        canvas.width = 3600; // 6 inches x 600 DPI = 3600px!
+        canvas.width = 3600;
         canvas.height = 3600;
         const ctx = canvas.getContext('2d');
-
-        ctx.drawImage(img, 0, 0, 3600, 3600);
-
-        canvas.toBlob((b) => {
-          const dlUrl = URL.createObjectURL(b);
-          const a = document.createElement('a');
-          a.href = dlUrl;
-          a.download = `diamond_bakery_6inch_round_cookies_${state.preset}_600dpi.png`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(dlUrl);
-          URL.revokeObjectURL(url);
-        }, 'image/png');
-      };
-      img.src = url;
+        if (!ctx) throw new Error('Canvas is not available.');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(loaded.image, 0, 0, 3600, 3600);
+        const png = await new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('PNG could not be created.')), 'image/png'));
+        saveBlob(await addPngDpiMetadata(png, 600), `diamond_bakery_6inch_round_cookies_${state.preset}_600dpi.png`);
+      } catch (error) {
+        console.error('Sticker PNG export failed:', error);
+        alert('PNG download nahi ho paya. Page refresh karke dobara try karein. Details: ' + error.message);
+      } finally {
+        if (objectUrl) URL.revokeObjectURL(objectUrl);
+      }
     }
 
-    function downloadVectorSVG() {
+        async function downloadVectorSVG() {
       const svg = document.getElementById('final-label-svg');
       if (!svg) return;
-      const serializer = new XMLSerializer();
-      const svgStr = serializer.serializeToString(svg);
-      const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `diamond_bakery_6inch_round_cookies_${state.preset}.svg`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      try {
+        const svgStr = await prepareSvgForExport(svg);
+        saveBlob(new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' }), `diamond_bakery_6inch_round_cookies_${state.preset}.svg`);
+      } catch (error) {
+        console.error('SVG export failed:', error);
+        alert('SVG download nahi ho paya. Details: ' + error.message);
+      }
     }
 
     // ==========================================
