@@ -384,8 +384,8 @@ html_content = '''<!DOCTYPE html>
             <div class="flex items-center gap-2">
               <span class="text-base">💎</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">2. Diamond logo</span>
-                <span class="text-[10px] text-slate-400 block font-normal">Original logo aur naam ek saath</span>
+                <span class="text-xs font-bold text-amber-300">2. Logo, name & emblem</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Name, font, colours and emblem alag edit karein</span>
               </div>
             </div>
             <span class="text-xs text-slate-400 font-mono" id="layer-brand-arrow">►</span>
@@ -653,9 +653,19 @@ html_content = '''<!DOCTYPE html>
               <span id="tagline-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 795</span><input type="number" id="number-tagline-y" min="680" max="900" step="1" value="795" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact tagline-y-val position">
             </div>
 
-            <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800">
-              <span class="text-[11px] text-slate-300 font-medium">Ribbon Background:</span>
-              <input type="color" id="picker-ribbon-bg" value="#0B3B24" onchange="setRibbonBgColor(this.value)" class="w-7 h-7 rounded border border-slate-700 bg-transparent cursor-pointer">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-800">
+              <div>
+                <label for="picker-ribbon-bg" class="text-[11px] text-slate-300 block mb-1">Ribbon fill</label>
+                <input type="color" id="picker-ribbon-bg" value="#0B3B24" oninput="setRibbonBgColor(this.value)" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              </div>
+              <div>
+                <label for="picker-ribbon-text-color" class="text-[11px] text-slate-300 block mb-1">Ribbon text</label>
+                <input type="color" id="picker-ribbon-text-color" value="#FFFDF0" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              </div>
+              <div>
+                <label for="picker-ribbon-border" class="text-[11px] text-slate-300 block mb-1">Ribbon border</label>
+                <input type="color" id="picker-ribbon-border" value="#D4AF37" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              </div>
             </div>
           </div>
         </div>
@@ -674,16 +684,31 @@ html_content = '''<!DOCTYPE html>
           </button>
 
           <div id="layer-plaque-content" class="p-3.5 space-y-3 hidden">
-            <div class="grid grid-cols-2 gap-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
                 <label class="text-[11px] font-semibold text-slate-300 block mb-1">Net Weight Text:</label>
-                <input type="text" id="input-weight" value="500g ℮" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+                <input type="text" id="input-weight" value="500g ℮" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
               </div>
-              <div class="flex items-center pt-5">
+              <div class="flex items-center sm:pt-5">
                 <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
                   <input type="checkbox" id="check-veg-logo" checked onchange="updateLabel()" class="accent-emerald-500 rounded">
                   <span>🟢 FSSAI Green Veg Logo</span>
                 </label>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-800">
+              <div>
+                <label for="picker-plaque-bg" class="text-[11px] text-slate-300 block mb-1">Plaque fill</label>
+                <input type="color" id="picker-plaque-bg" value="#FFFFFF" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              </div>
+              <div>
+                <label for="picker-plaque-border" class="text-[11px] text-slate-300 block mb-1">Plaque border</label>
+                <input type="color" id="picker-plaque-border" value="#D4AF37" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              </div>
+              <div>
+                <label for="picker-plaque-text-color" class="text-[11px] text-slate-300 block mb-1">Plaque text</label>
+                <input type="color" id="picker-plaque-text-color" value="#0B3B24" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
               </div>
             </div>
 
@@ -772,6 +797,14 @@ html_content = '''<!DOCTYPE html>
                 <div class="flex items-center gap-2">
                   <input type="color" id="picker-bg-outer" value="#97D8C4" onchange="setBgOuterColor(this.value)" class="w-8 h-8 rounded border border-slate-700 bg-transparent cursor-pointer">
                   <span id="bg-outer-hex" class="text-xs font-mono text-slate-400">#97D8C4</span>
+                </div>
+              </div>
+
+              <div>
+                <label for="picker-foil-color" class="text-[11px] font-semibold text-slate-300 block mb-1">Foil / gold details</label>
+                <div class="flex items-center gap-2">
+                  <input type="color" id="picker-foil-color" value="#D4AF37" oninput="updateLabel()" class="w-8 h-8 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                  <span class="text-xs text-slate-400">Rims, ornament, gold text</span>
                 </div>
               </div>
             </div>
@@ -972,6 +1005,7 @@ html_content = '''<!DOCTYPE html>
       // Background & Rims
       bgCenter: '#C5ECE1',
       bgOuter: '#97D8C4',
+      foilColor: '#D4AF37',
 
       // Product Title ("Assorted Cookies")
       titleLine1: 'Assorted',
@@ -1506,9 +1540,21 @@ html_content = '''<!DOCTYPE html>
 
       const tagInput = document.getElementById('input-butter-tagline');
       if (tagInput) state.ribbonText = tagInput.value;
+      const ribbonTextColorInput = document.getElementById('picker-ribbon-text-color');
+      if (ribbonTextColorInput) state.ribbonTextColor = ribbonTextColorInput.value;
+      const ribbonBorderInput = document.getElementById('picker-ribbon-border');
+      if (ribbonBorderInput) state.ribbonBorder = ribbonBorderInput.value;
+      const foilColorInput = document.getElementById('picker-foil-color');
+      if (foilColorInput) state.foilColor = foilColorInput.value;
 
       const wtInput = document.getElementById('input-weight');
       if (wtInput) state.weight = wtInput.value;
+      const plaqueBgInput = document.getElementById('picker-plaque-bg');
+      if (plaqueBgInput) state.plaqueBg = plaqueBgInput.value;
+      const plaqueBorderInput = document.getElementById('picker-plaque-border');
+      if (plaqueBorderInput) state.plaqueBorder = plaqueBorderInput.value;
+      const plaqueTextColorInput = document.getElementById('picker-plaque-text-color');
+      if (plaqueTextColorInput) state.plaqueTextColor = plaqueTextColorInput.value;
 
       const vegCheck = document.getElementById('check-veg-logo');
       if (vegCheck) state.showVeg = vegCheck.checked;
@@ -1688,8 +1734,14 @@ html_content = '''<!DOCTYPE html>
       setV('slider-tagline-y', state.ribbonY);
       setT('tagline-y-val', `Y: ${state.ribbonY}`);
       setV('picker-ribbon-bg', state.ribbonBg);
+      setV('picker-ribbon-text-color', state.ribbonTextColor);
+      setV('picker-ribbon-border', state.ribbonBorder);
+      setV('picker-foil-color', state.foilColor);
 
       setV('input-weight', state.weight);
+      setV('picker-plaque-bg', state.plaqueBg);
+      setV('picker-plaque-border', state.plaqueBorder);
+      setV('picker-plaque-text-color', state.plaqueTextColor);
       setV('slider-plaque-y', state.plaqueY);
       setT('plaque-y-val', `Y: ${state.plaqueY}`);
 
@@ -1969,6 +2021,16 @@ html_content = '''<!DOCTYPE html>
       const emblemHex = /^#[0-9a-f]{6}$/i.test(state.emblemColor || '') ? state.emblemColor : '#D4AF37';
       const emblemRgb = [1, 3, 5].map(index => parseInt(emblemHex.slice(index, index + 2), 16) / 255);
       const emblemTintMatrix = '0 0 0 0 ' + emblemRgb[0] + ' 0 0 0 0 ' + emblemRgb[1] + ' 0 0 0 0 ' + emblemRgb[2] + ' 0 0 0 1 0';
+      const foilBase = /^#[0-9a-f]{6}$/i.test(state.foilColor || '') ? state.foilColor : '#D4AF37';
+      const mixFoil = (target, amount) => '#' + [1, 3, 5].map(index => {
+        const baseChannel = parseInt(foilBase.slice(index, index + 2), 16);
+        const targetChannel = parseInt(target.slice(index, index + 2), 16);
+        return Math.round(baseChannel * (1 - amount) + targetChannel * amount).toString(16).padStart(2, '0');
+      }).join('');
+      const foilHighlight = mixFoil('#FFFDF0', 0.82);
+      const foilLight = mixFoil('#FDE047', 0.50);
+      const foilBright = mixFoil('#FFFFFF', 0.32);
+      const foilDeep = mixFoil('#000000', 0.58);
 
       // Assemble Full Master Label SVG
       const svgCode = `
@@ -1983,12 +2045,12 @@ html_content = '''<!DOCTYPE html>
 
     <!-- Specular 24K Liquid Gold Foil Gradient -->
     <linearGradient id="foilGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFDF0"/>
-      <stop offset="15%" stop-color="#FDE047"/>
-      <stop offset="35%" stop-color="#EAB308"/>
-      <stop offset="65%" stop-color="#CA8A04"/>
-      <stop offset="85%" stop-color="#FACC15"/>
-      <stop offset="100%" stop-color="#854D0E"/>
+      <stop offset="0%" stop-color="${foilHighlight}"/>
+      <stop offset="15%" stop-color="${foilLight}"/>
+      <stop offset="35%" stop-color="${foilBright}"/>
+      <stop offset="65%" stop-color="${foilBase}"/>
+      <stop offset="85%" stop-color="${foilLight}"/>
+      <stop offset="100%" stop-color="${foilDeep}"/>
     </linearGradient>
 
     <!-- Soft Drop Shadows for Readability -->
