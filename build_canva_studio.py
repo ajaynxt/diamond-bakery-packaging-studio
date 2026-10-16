@@ -344,22 +344,22 @@ html_content = '''<!DOCTYPE html>
             <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-title-x" class="text-xs font-semibold text-slate-200">Upper line — X (left / right)</label>
-                <span id="title-x-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-title-x" min="250" max="950" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title-x-val position">
+                <span id="title-x-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-title-x" min="250" max="950" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title-x-val position">
               </div>
               <input type="range" id="slider-title-x" min="250" max="950" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Upper product name horizontal position">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-title-y" class="text-xs font-semibold text-slate-200">Upper line — Y (up / down)</label>
-                <span id="title-y-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-teal-400">Y: 620</span><input type="number" id="number-title-y" min="500" max="760" step="1" value="620" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title-y-val position">
+                <span id="title-y-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-teal-400">Y: 620</span><input type="number" id="number-title-y" min="500" max="760" step="1" value="620" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title-y-val position">
               </div>
               <input type="range" id="slider-title-y" min="500" max="760" value="620" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Upper product name vertical position">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-title2-x" class="text-xs font-semibold text-slate-200">Lower line — X (left / right)</label>
-                <span id="title2-x-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-amber-400">X: 600</span><input type="number" id="number-title2-x" min="250" max="950" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title2-x-val position">
+                <span id="title2-x-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-amber-400">X: 600</span><input type="number" id="number-title2-x" min="250" max="950" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title2-x-val position">
               </div>
               <input type="range" id="slider-title2-x" min="250" max="950" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Lower product name horizontal position">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-title2-y" class="text-xs font-semibold text-slate-200">Lower line — Y (up / down)</label>
-                <span id="title2-y-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-amber-400">Y: 735</span><input type="number" id="number-title2-y" min="600" max="870" step="1" value="735" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title2-y-val position">
+                <span id="title2-y-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-amber-400">Y: 735</span><input type="number" id="number-title2-y" min="600" max="870" step="1" value="735" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact title2-y-val position">
               </div>
               <input type="range" id="slider-title2-y" min="600" max="870" value="735" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Lower product name vertical position">
               <p class="text-[11px] leading-5 text-slate-400">X se left/right aur Y se upar/neeche set karein. Preview par drag karke bhi move karein.</p>
@@ -431,12 +431,12 @@ html_content = '''<!DOCTYPE html>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-brand-x" class="text-xs text-slate-300">Name X (left / right)</label>
                 <input type="range" id="slider-brand-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-brand-x" min="200" max="1000" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-x-val position">
+                <span id="brand-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-brand-x" min="200" max="1000" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-x-val position">
               </div>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-brand-y" class="text-xs text-slate-300">Name Y (up / down)</label>
                 <input type="range" id="slider-brand-y" min="250" max="650" value="500" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 500</span><input type="number" id="number-brand-y" min="250" max="650" step="1" value="500" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-y-val position">
+                <span id="brand-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 500</span><input type="number" id="number-brand-y" min="250" max="650" step="1" value="500" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-y-val position">
               </div>
             </div>
             <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
@@ -457,12 +457,12 @@ html_content = '''<!DOCTYPE html>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-brand-sub-x" class="text-xs text-slate-300">Subtitle X</label>
                 <input type="range" id="slider-brand-sub-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-sub-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-brand-sub-x" min="200" max="1000" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-sub-x-val position">
+                <span id="brand-sub-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-brand-sub-x" min="200" max="1000" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-sub-x-val position">
               </div>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-brand-sub-y" class="text-xs text-slate-300">Subtitle Y</label>
                 <input type="range" id="slider-brand-sub-y" min="250" max="680" value="530" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-sub-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 530</span><input type="number" id="number-brand-sub-y" min="250" max="680" step="1" value="530" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-sub-y-val position">
+                <span id="brand-sub-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 530</span><input type="number" id="number-brand-sub-y" min="250" max="680" step="1" value="530" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-sub-y-val position">
               </div>
             </div>
             <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
@@ -486,12 +486,12 @@ html_content = '''<!DOCTYPE html>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-crest-x" class="text-xs text-slate-300">Emblem X</label>
                 <input type="range" id="slider-crest-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="crest-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-crest-x" min="200" max="1000" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact crest-x-val position">
+                <span id="crest-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-crest-x" min="200" max="1000" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact crest-x-val position">
               </div>
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-crest-y" class="text-xs text-slate-300">Emblem Y</label>
                 <input type="range" id="slider-crest-y" min="150" max="550" value="370" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="crest-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 370</span><input type="number" id="number-crest-y" min="150" max="550" step="1" value="370" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact crest-y-val position">
+                <span id="crest-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 370</span><input type="number" id="number-crest-y" min="150" max="550" step="1" value="370" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact crest-y-val position">
               </div>
             </div>
           </div>
@@ -538,12 +538,12 @@ html_content = '''<!DOCTYPE html>
             <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-top-arc-x" class="text-xs text-slate-300">Top arc X (left / right)</label>
-                <span id="top-arc-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-top-arc-x" min="350" max="850" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact top-arc-x-val position">
+                <span id="top-arc-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-top-arc-x" min="350" max="850" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact top-arc-x-val position">
               </div>
               <input type="range" id="slider-top-arc-x" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-top-arc-y" class="text-xs text-slate-300">Top arc Y (up / down)</label>
-                <span id="top-arc-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span><input type="number" id="number-top-arc-y" min="350" max="850" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact top-arc-y-val position">
+                <span id="top-arc-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span><input type="number" id="number-top-arc-y" min="350" max="850" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact top-arc-y-val position">
               </div>
               <input type="range" id="slider-top-arc-y" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
             </div>
@@ -595,12 +595,12 @@ html_content = '''<!DOCTYPE html>
             <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-bot-arc-x" class="text-xs text-slate-300">Bottom arc X (left / right)</label>
-                <span id="bot-arc-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-bot-arc-x" min="350" max="850" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact bot-arc-x-val position">
+                <span id="bot-arc-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-bot-arc-x" min="350" max="850" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact bot-arc-x-val position">
               </div>
               <input type="range" id="slider-bot-arc-x" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-bot-arc-y" class="text-xs text-slate-300">Bottom arc Y (up / down)</label>
-                <span id="bot-arc-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span><input type="number" id="number-bot-arc-y" min="350" max="850" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact bot-arc-y-val position">
+                <span id="bot-arc-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span><input type="number" id="number-bot-arc-y" min="350" max="850" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact bot-arc-y-val position">
               </div>
               <input type="range" id="slider-bot-arc-y" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
             </div>
@@ -645,12 +645,12 @@ html_content = '''<!DOCTYPE html>
             <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-[11px] text-slate-300 font-medium">Position X (left / right):</span>
               <input type="range" id="slider-tagline-x" min="250" max="950" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="tagline-x-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">X: 600</span><input type="number" id="number-tagline-x" min="250" max="950" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact tagline-x-val position">
+              <span id="tagline-x-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">X: 600</span><input type="number" id="number-tagline-x" min="250" max="950" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact tagline-x-val position">
             </div>
             <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-[11px] text-slate-300 font-medium">Position Y (up / down):</span>
               <input type="range" id="slider-tagline-y" min="680" max="900" value="795" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="tagline-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 795</span><input type="number" id="number-tagline-y" min="680" max="900" step="1" value="795" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact tagline-y-val position">
+              <span id="tagline-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 795</span><input type="number" id="number-tagline-y" min="680" max="900" step="1" value="795" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact tagline-y-val position">
             </div>
 
             <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800">
@@ -690,12 +690,12 @@ html_content = '''<!DOCTYPE html>
             <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-[11px] text-slate-300 font-medium">Position X (left / right):</span>
               <input type="range" id="slider-plaque-x" min="300" max="900" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="plaque-x-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">X: 600</span><input type="number" id="number-plaque-x" min="300" max="900" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact plaque-x-val position">
+              <span id="plaque-x-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">X: 600</span><input type="number" id="number-plaque-x" min="300" max="900" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact plaque-x-val position">
             </div>
             <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-[11px] text-slate-300 font-medium">Position Y (up / down):</span>
               <input type="range" id="slider-plaque-y" min="780" max="1000" value="895" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="plaque-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 895</span><input type="number" id="number-plaque-y" min="780" max="1000" step="1" value="895" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact plaque-y-val position">
+              <span id="plaque-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 895</span><input type="number" id="number-plaque-y" min="780" max="1000" step="1" value="895" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact plaque-y-val position">
             </div>
           </div>
         </div>
@@ -732,12 +732,12 @@ html_content = '''<!DOCTYPE html>
             <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-mandala-x" class="text-xs text-slate-300">Mandala X (left / right)</label>
-                <span id="mandala-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-mandala-x" min="100" max="1100" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact mandala-x-val position">
+                <span id="mandala-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-mandala-x" min="100" max="1100" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact mandala-x-val position">
               </div>
               <input type="range" id="slider-mandala-x" min="100" max="1100" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <label for="slider-mandala-y" class="text-xs text-slate-300">Mandala Y (up / down)</label>
-                <span id="mandala-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span><input type="number" id="number-mandala-y" min="100" max="1100" step="1" value="600" oninput="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact mandala-y-val position">
+                <span id="mandala-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span><input type="number" id="number-mandala-y" min="100" max="1100" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact mandala-y-val position">
               </div>
               <input type="range" id="slider-mandala-y" min="100" max="1100" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
             </div>
