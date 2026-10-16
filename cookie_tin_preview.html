@@ -317,19 +317,29 @@
               <span id="title-size-val" class="text-xs font-mono font-bold text-amber-400 w-12 text-right">105 px</span>
             </div>
 
-            <!-- Each word has its own up/down position control -->
+            <!-- Canva-style X/Y controls for both independently editable product-name lines -->
             <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
               <div class="flex items-center justify-between gap-3">
-                <label for="slider-title-y" class="text-xs font-semibold text-slate-200">Upper line: move up / down</label>
-                <span id="title-y-val" class="w-12 shrink-0 text-right text-xs font-mono font-bold text-teal-400">Y: 620</span>
+                <label for="slider-title-x" class="text-xs font-semibold text-slate-200">Upper line — X (left / right)</label>
+                <span id="title-x-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-teal-400">X: 600</span>
+              </div>
+              <input type="range" id="slider-title-x" min="250" max="950" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Upper product name horizontal position">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-title-y" class="text-xs font-semibold text-slate-200">Upper line — Y (up / down)</label>
+                <span id="title-y-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-teal-400">Y: 620</span>
               </div>
               <input type="range" id="slider-title-y" min="500" max="760" value="620" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Upper product name vertical position">
               <div class="flex items-center justify-between gap-3">
-                <label for="slider-title2-y" class="text-xs font-semibold text-slate-200">Lower line: move up / down</label>
-                <span id="title2-y-val" class="w-12 shrink-0 text-right text-xs font-mono font-bold text-amber-400">Y: 735</span>
+                <label for="slider-title2-x" class="text-xs font-semibold text-slate-200">Lower line — X (left / right)</label>
+                <span id="title2-x-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-amber-400">X: 600</span>
+              </div>
+              <input type="range" id="slider-title2-x" min="250" max="950" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Lower product name horizontal position">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-title2-y" class="text-xs font-semibold text-slate-200">Lower line — Y (up / down)</label>
+                <span id="title2-y-val" class="w-16 shrink-0 text-right text-xs font-mono font-bold text-amber-400">Y: 735</span>
               </div>
               <input type="range" id="slider-title2-y" min="600" max="870" value="735" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer" aria-label="Lower product name vertical position">
-              <p class="text-[11px] leading-5 text-slate-400">Dono lines ko alag-alag adjust karein, ya preview mein jis line ko badalna hai use drag karein.</p>
+              <p class="text-[11px] leading-5 text-slate-400">X se left/right aur Y se upar/neeche set karein. Preview par drag karke bhi move karein.</p>
             </div>
 
             <!-- Text Color Picker -->
@@ -369,11 +379,16 @@
               <span id="crest-scale-val" class="w-12 text-right text-xs font-mono font-bold text-teal-400">100%</span>
             </div>
             <div class="flex items-center justify-between gap-3">
-              <label for="slider-brand-y" class="text-xs text-slate-300">Logo position</label>
-              <input type="range" id="slider-brand-y" min="330" max="500" value="405" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="brand-y-val" class="w-12 text-right text-xs font-mono font-bold text-teal-400">Y: 405</span>
+              <label for="slider-brand-x" class="text-xs text-slate-300">Logo X (left / right)</label>
+              <input type="range" id="slider-brand-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="brand-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span>
             </div>
-            <p class="text-[11px] leading-5 text-slate-400">Position slider se logo upar-neeche karein. Naam logo ke saath hi move karega.</p>
+            <div class="flex items-center justify-between gap-3">
+              <label for="slider-brand-y" class="text-xs text-slate-300">Logo Y (up / down)</label>
+              <input type="range" id="slider-brand-y" min="250" max="650" value="405" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="brand-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 405</span>
+            </div>
+            <p class="text-[11px] leading-5 text-slate-400">X/Y ya preview par direct drag se logo aur wordmark ko saath move karein.</p>
           </div>
         </div>
 
@@ -415,6 +430,18 @@
               <span id="top-arc-size-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">14.5 px</span>
             </div>
 
+            <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-top-arc-x" class="text-xs text-slate-300">Top arc X (left / right)</label>
+                <span id="top-arc-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span>
+              </div>
+              <input type="range" id="slider-top-arc-x" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-top-arc-y" class="text-xs text-slate-300">Top arc Y (up / down)</label>
+                <span id="top-arc-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span>
+              </div>
+              <input type="range" id="slider-top-arc-y" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+            </div>
             <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800">
               <span class="text-[11px] text-slate-300 font-medium">Arc Text Color:</span>
               <input type="color" id="picker-top-arc-color" value="#0F4C2A" onchange="setTopArcColor(this.value)" class="w-7 h-7 rounded border border-slate-700 bg-transparent cursor-pointer">
@@ -460,6 +487,18 @@
               <span id="bottom-arc-size-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">14.5 px</span>
             </div>
 
+            <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-bot-arc-x" class="text-xs text-slate-300">Bottom arc X (left / right)</label>
+                <span id="bot-arc-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span>
+              </div>
+              <input type="range" id="slider-bot-arc-x" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-bot-arc-y" class="text-xs text-slate-300">Bottom arc Y (up / down)</label>
+                <span id="bot-arc-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span>
+              </div>
+              <input type="range" id="slider-bot-arc-y" min="350" max="850" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+            </div>
             <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800">
               <span class="text-[11px] text-slate-300 font-medium">Arc Text Color:</span>
               <input type="color" id="picker-bot-arc-color" value="#0F4C2A" onchange="setBotArcColor(this.value)" class="w-7 h-7 rounded border border-slate-700 bg-transparent cursor-pointer">
@@ -499,9 +538,14 @@
             </div>
 
             <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-slate-300 font-medium">Position Y:</span>
-              <input type="range" id="slider-tagline-y" min="720" max="880" value="795" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="tagline-y-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">Y: 795</span>
+              <span class="text-[11px] text-slate-300 font-medium">Position X (left / right):</span>
+              <input type="range" id="slider-tagline-x" min="250" max="950" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="tagline-x-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">X: 600</span>
+            </div>
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-[11px] text-slate-300 font-medium">Position Y (up / down):</span>
+              <input type="range" id="slider-tagline-y" min="680" max="900" value="795" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="tagline-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 795</span>
             </div>
 
             <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800">
@@ -539,9 +583,14 @@
             </div>
 
             <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-slate-300 font-medium">Position Y:</span>
-              <input type="range" id="slider-plaque-y" min="820" max="980" value="895" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="plaque-y-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">Y: 895</span>
+              <span class="text-[11px] text-slate-300 font-medium">Position X (left / right):</span>
+              <input type="range" id="slider-plaque-x" min="300" max="900" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="plaque-x-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">X: 600</span>
+            </div>
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-[11px] text-slate-300 font-medium">Position Y (up / down):</span>
+              <input type="range" id="slider-plaque-y" min="780" max="1000" value="895" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="plaque-y-val" class="text-xs font-mono font-bold text-teal-400 w-16 text-right">Y: 895</span>
             </div>
           </div>
         </div>
@@ -574,6 +623,18 @@
               <span class="text-[11px] text-slate-300 font-medium">Mandala Scale:</span>
               <input type="range" id="slider-mandala-scale" min="50" max="140" value="100" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
               <span id="mandala-scale-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">100%</span>
+            </div>
+            <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-mandala-x" class="text-xs text-slate-300">Mandala X (left / right)</label>
+                <span id="mandala-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span>
+              </div>
+              <input type="range" id="slider-mandala-x" min="100" max="1100" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-mandala-y" class="text-xs text-slate-300">Mandala Y (up / down)</label>
+                <span id="mandala-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 600</span>
+              </div>
+              <input type="range" id="slider-mandala-y" min="100" max="1100" value="600" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
             </div>
           </div>
         </div>
@@ -812,7 +873,9 @@
       titleLine2: 'Cookies',
       titleFont: 'cinzel-dec', // 'cinzel-dec', 'playfair-black', 'montserrat-black', 'alex-brush'
       titleSize: 105,
+      titleLine1X: 600,
       titleLine1Y: 620,
+      titleLine2X: 600,
       titleLine2Y: 735,
       titleColorMode: 'gold', // 'gold', 'emerald', 'white', 'custom'
       titleCustomColor: '#D4AF37',
@@ -822,6 +885,7 @@
       brandSub: 'BAKERY • RESTAURANT • SWEETS',
       monogram: 'D',
       brandSize: 48,
+      brandX: 600,
       brandY: 405,
       crestScale: 1.0,
       brandColorMode: 'red', // 'red', 'gold', 'white', 'custom'
@@ -830,12 +894,16 @@
       // Top Arc
       topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
       topArcRadius: 530,
+      topArcX: 600,
+      topArcY: 600,
       topArcSize: 14.5,
       topArcColor: '#0F4C2A',
 
       // Bottom Arc
       bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
       bottomArcRadius: 530,
+      bottomArcX: 600,
+      bottomArcY: 600,
       bottomArcSize: 14.5,
       bottomArcColor: '#0F4C2A',
 
@@ -843,6 +911,7 @@
       ribbonText: '★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★',
       ribbonWidth: 750,
       ribbonSize: 16.5,
+      ribbonX: 600,
       ribbonY: 795,
       ribbonBg: '#0B3B24',
       ribbonBorder: '#D4AF37',
@@ -851,6 +920,7 @@
       // Plaque
       weight: '500g ℮',
       showVeg: true,
+      plaqueX: 600,
       plaqueY: 895,
       plaqueBg: '#FFFFFF',
       plaqueBorder: '#D4AF37',
@@ -860,6 +930,8 @@
       mandalaType: 'authentic_user',
       mandalaOpacity: 0.38,
       mandalaScale: 1.0,
+      mandalaX: 600,
+      mandalaY: 600,
 
       // A4 Engine
       a4Layout: 1
@@ -1026,6 +1098,17 @@
       if (!p) return;
       state.preset = presetKey;
       Object.assign(state, p);
+      state.titleLine1X = 600;
+      state.titleLine2X = 600;
+      state.brandX = 600;
+      state.topArcX = 600;
+      state.topArcY = 600;
+      state.bottomArcX = 600;
+      state.bottomArcY = 600;
+      state.ribbonX = 600;
+      state.plaqueX = 600;
+      state.mandalaX = 600;
+      state.mandalaY = 600;
 
       ['mint', 'maroon'].forEach(k => {
         const btn = document.getElementById(`btn-preset-${k}`);
@@ -1043,11 +1126,14 @@
     }
 
     function resetPositions() {
-      state.titleLine1Y = 620;
-      state.titleLine2Y = 735;
-      state.brandY = 405;
-      state.ribbonY = 795;
-      state.plaqueY = 895;
+      state.titleLine1X = 600; state.titleLine1Y = 620;
+      state.titleLine2X = 600; state.titleLine2Y = 735;
+      state.brandX = 600; state.brandY = 405;
+      state.topArcX = 600; state.topArcY = 600;
+      state.bottomArcX = 600; state.bottomArcY = 600;
+      state.ribbonX = 600; state.ribbonY = 795;
+      state.plaqueX = 600; state.plaqueY = 895;
+      state.mandalaX = 600; state.mandalaY = 600;
       syncUIFromState();
       renderSVG();
     }
@@ -1182,6 +1268,43 @@
       const el = document.getElementById('bg-outer-hex');
       if (el) el.textContent = val.toUpperCase();
       renderSVG();
+    }
+
+    // Shared position controls keep the sliders, labels, presets, and drag actions in sync.
+    const POSITION_CONTROLS = [
+      { key: 'titleLine1X', slider: 'slider-title-x', label: 'title-x-val', axis: 'X' },
+      { key: 'titleLine1Y', slider: 'slider-title-y', label: 'title-y-val', axis: 'Y' },
+      { key: 'titleLine2X', slider: 'slider-title2-x', label: 'title2-x-val', axis: 'X' },
+      { key: 'titleLine2Y', slider: 'slider-title2-y', label: 'title2-y-val', axis: 'Y' },
+      { key: 'brandX', slider: 'slider-brand-x', label: 'brand-x-val', axis: 'X' },
+      { key: 'brandY', slider: 'slider-brand-y', label: 'brand-y-val', axis: 'Y' },
+      { key: 'topArcX', slider: 'slider-top-arc-x', label: 'top-arc-x-val', axis: 'X' },
+      { key: 'topArcY', slider: 'slider-top-arc-y', label: 'top-arc-y-val', axis: 'Y' },
+      { key: 'bottomArcX', slider: 'slider-bot-arc-x', label: 'bot-arc-x-val', axis: 'X' },
+      { key: 'bottomArcY', slider: 'slider-bot-arc-y', label: 'bot-arc-y-val', axis: 'Y' },
+      { key: 'ribbonX', slider: 'slider-tagline-x', label: 'tagline-x-val', axis: 'X' },
+      { key: 'ribbonY', slider: 'slider-tagline-y', label: 'tagline-y-val', axis: 'Y' },
+      { key: 'plaqueX', slider: 'slider-plaque-x', label: 'plaque-x-val', axis: 'X' },
+      { key: 'plaqueY', slider: 'slider-plaque-y', label: 'plaque-y-val', axis: 'Y' },
+      { key: 'mandalaX', slider: 'slider-mandala-x', label: 'mandala-x-val', axis: 'X' },
+      { key: 'mandalaY', slider: 'slider-mandala-y', label: 'mandala-y-val', axis: 'Y' }
+    ];
+    function syncPositionStateFromUI() {
+      POSITION_CONTROLS.forEach(item => {
+        const slider = document.getElementById(item.slider);
+        if (!slider) return;
+        state[item.key] = parseInt(slider.value, 10);
+        const label = document.getElementById(item.label);
+        if (label) label.textContent = item.axis + ': ' + state[item.key];
+      });
+    }
+    function syncPositionControlsToUI() {
+      POSITION_CONTROLS.forEach(item => {
+        const slider = document.getElementById(item.slider);
+        if (slider) slider.value = state[item.key];
+        const label = document.getElementById(item.label);
+        if (label) label.textContent = item.axis + ': ' + state[item.key];
+      });
     }
 
     // ==========================================
@@ -1334,6 +1457,7 @@
         if (v) v.textContent = `${Math.round(state.mandalaScale * 100)}%`;
       }
 
+      syncPositionStateFromUI();
       renderSVG();
     }
 
@@ -1399,6 +1523,7 @@
       setV('picker-bg-outer', state.bgOuter);
       setT('bg-outer-hex', state.bgOuter.toUpperCase());
 
+      syncPositionControlsToUI();
       setTitleFont(state.titleFont);
     }
 
@@ -1481,72 +1606,58 @@
     // ==========================================
     // DIRECT MOUSE / TOUCH DRAG ON SVG CANVAS
     // ==========================================
+    // Canva-style two-dimensional direct canvas movement for every foreground layer.
+    const DRAG_POSITION_CONFIG = {
+      cookies1: { xKey: 'titleLine1X', yKey: 'titleLine1Y', minX: 250, maxX: 950, minY: 500, maxY: 760, sliderX: 'slider-title-x', sliderY: 'slider-title-y', labelX: 'title-x-val', labelY: 'title-y-val', accordion: 'cookies' },
+      cookies2: { xKey: 'titleLine2X', yKey: 'titleLine2Y', minX: 250, maxX: 950, minY: 600, maxY: 870, sliderX: 'slider-title2-x', sliderY: 'slider-title2-y', labelX: 'title2-x-val', labelY: 'title2-y-val', accordion: 'cookies' },
+      brand: { xKey: 'brandX', yKey: 'brandY', minX: 200, maxX: 1000, minY: 250, maxY: 650, sliderX: 'slider-brand-x', sliderY: 'slider-brand-y', labelX: 'brand-x-val', labelY: 'brand-y-val', accordion: 'brand' },
+      'top-arc': { xKey: 'topArcX', yKey: 'topArcY', minX: 350, maxX: 850, minY: 350, maxY: 850, sliderX: 'slider-top-arc-x', sliderY: 'slider-top-arc-y', labelX: 'top-arc-x-val', labelY: 'top-arc-y-val', accordion: 'top-arc' },
+      'bot-arc': { xKey: 'bottomArcX', yKey: 'bottomArcY', minX: 350, maxX: 850, minY: 350, maxY: 850, sliderX: 'slider-bot-arc-x', sliderY: 'slider-bot-arc-y', labelX: 'bot-arc-x-val', labelY: 'bot-arc-y-val', accordion: 'bot-arc' },
+      ribbon: { xKey: 'ribbonX', yKey: 'ribbonY', minX: 250, maxX: 950, minY: 680, maxY: 900, sliderX: 'slider-tagline-x', sliderY: 'slider-tagline-y', labelX: 'tagline-x-val', labelY: 'tagline-y-val', accordion: 'ribbon' },
+      plaque: { xKey: 'plaqueX', yKey: 'plaqueY', minX: 300, maxX: 900, minY: 780, maxY: 1000, sliderX: 'slider-plaque-x', sliderY: 'slider-plaque-y', labelX: 'plaque-x-val', labelY: 'plaque-y-val', accordion: 'plaque' },
+      mandala: { xKey: 'mandalaX', yKey: 'mandalaY', minX: 100, maxX: 1100, minY: 100, maxY: 1100, sliderX: 'slider-mandala-x', sliderY: 'slider-mandala-y', labelX: 'mandala-x-val', labelY: 'mandala-y-val', accordion: 'mandala' }
+    };
     let activeDragLayer = null;
+    let dragStartX = 0;
     let dragStartY = 0;
-    let layerStartVal = 0;
+    let layerStartX = 600;
+    let layerStartY = 600;
 
     function startCanvasDrag(evt, layerName) {
+      const config = DRAG_POSITION_CONFIG[layerName];
+      if (!config) return;
       evt.preventDefault();
       evt.stopPropagation();
       activeDragLayer = layerName;
-      dragStartY = evt.clientY || (evt.touches && evt.touches[0].clientY);
-
-      if (layerName === 'cookies1') layerStartVal = state.titleLine1Y;
-      if (layerName === 'cookies2') layerStartVal = state.titleLine2Y;
-      if (layerName === 'brand') layerStartVal = state.brandY;
-      if (layerName === 'ribbon') layerStartVal = state.ribbonY;
-      if (layerName === 'plaque') layerStartVal = state.plaqueY;
-
-      openLayerAccordion(layerName.startsWith('cookies') ? 'cookies' : layerName);
+      dragStartX = evt.clientX;
+      dragStartY = evt.clientY;
+      layerStartX = state[config.xKey];
+      layerStartY = state[config.yKey];
+      openLayerAccordion(config.accordion);
     }
 
-    window.addEventListener('mousemove', (evt) => {
+    window.addEventListener('pointermove', (evt) => {
       if (!activeDragLayer) return;
-      const clientY = evt.clientY || (evt.touches && evt.touches[0].clientY);
-      const stage = document.getElementById('packaging-stage-wrapper');
-      if (!stage) return;
-      const stageH = stage.clientHeight || 500;
-      const scale = 1200 / stageH;
-      const deltaY = (clientY - dragStartY) * scale;
-
-      if (activeDragLayer === 'cookies1') {
-        state.titleLine1Y = Math.round(Math.max(500, Math.min(760, layerStartVal + deltaY)));
-        const slider = document.getElementById('slider-title-y');
-        if (slider) slider.value = state.titleLine1Y;
-        const v = document.getElementById('title-y-val');
-        if (v) v.textContent = `Y: ${state.titleLine1Y}`;
-      } else if (activeDragLayer === 'cookies2') {
-        state.titleLine2Y = Math.round(Math.max(600, Math.min(870, layerStartVal + deltaY)));
-        const slider = document.getElementById('slider-title2-y');
-        if (slider) slider.value = state.titleLine2Y;
-        const v = document.getElementById('title2-y-val');
-        if (v) v.textContent = `Y: ${state.titleLine2Y}`;
-      } else if (activeDragLayer === 'brand') {
-        state.brandY = Math.round(Math.max(300, Math.min(550, layerStartVal + deltaY)));
-        const slider = document.getElementById('slider-brand-y');
-        if (slider) slider.value = state.brandY;
-        const v = document.getElementById('brand-y-val');
-        if (v) v.textContent = `Y: ${state.brandY}`;
-      } else if (activeDragLayer === 'ribbon') {
-        state.ribbonY = Math.round(Math.max(680, Math.min(900, layerStartVal + deltaY)));
-        const slider = document.getElementById('slider-tagline-y');
-        if (slider) slider.value = state.ribbonY;
-        const v = document.getElementById('tagline-y-val');
-        if (v) v.textContent = `Y: ${state.ribbonY}`;
-      } else if (activeDragLayer === 'plaque') {
-        state.plaqueY = Math.round(Math.max(780, Math.min(1000, layerStartVal + deltaY)));
-        const slider = document.getElementById('slider-plaque-y');
-        if (slider) slider.value = state.plaqueY;
-        const v = document.getElementById('plaque-y-val');
-        if (v) v.textContent = `Y: ${state.plaqueY}`;
-      }
-
+      const config = DRAG_POSITION_CONFIG[activeDragLayer];
+      const svg = document.getElementById('final-label-svg');
+      if (!config || !svg) return;
+      const rect = svg.getBoundingClientRect();
+      const dx = (evt.clientX - dragStartX) * (1200 / (rect.width || 500));
+      const dy = (evt.clientY - dragStartY) * (1200 / (rect.height || 500));
+      state[config.xKey] = Math.max(config.minX, Math.min(config.maxX, Math.round(layerStartX + dx)));
+      state[config.yKey] = Math.max(config.minY, Math.min(config.maxY, Math.round(layerStartY + dy)));
+      const sx = document.getElementById(config.sliderX);
+      const sy = document.getElementById(config.sliderY);
+      const lx = document.getElementById(config.labelX);
+      const ly = document.getElementById(config.labelY);
+      if (sx) sx.value = state[config.xKey];
+      if (sy) sy.value = state[config.yKey];
+      if (lx) lx.textContent = 'X: ' + state[config.xKey];
+      if (ly) ly.textContent = 'Y: ' + state[config.yKey];
       renderSVG();
     });
-
-    window.addEventListener('mouseup', () => {
-      activeDragLayer = null;
-    });
+    window.addEventListener('pointerup', () => { activeDragLayer = null; });
+    window.addEventListener('pointercancel', () => { activeDragLayer = null; });
 
     // ==========================================
     // SVG RENDERING ENGINE (FLAWLESS 6-INCH MASTER)
@@ -1560,17 +1671,17 @@
       const botR = state.bottomArcRadius || 530;
 
       // Symmetric Top Arc (Bows Upward, clockwise)
-      const topX1 = 600 - topR * 0.866;
-      const topY1 = 600 - topR * 0.5;
-      const topX2 = 600 + topR * 0.866;
-      const topY2 = 600 - topR * 0.5;
+      const topX1 = -topR * 0.866;
+      const topY1 = -topR * 0.5;
+      const topX2 = topR * 0.866;
+      const topY2 = -topR * 0.5;
       const topArcPathD = `M ${topX1},${topY1} A ${topR},${topR} 0 0,1 ${topX2},${topY2}`;
 
       // Symmetric Bottom Arc (Bows Downward)
-      const botX1 = 600 - botR * 0.866;
-      const botY1 = 600 + botR * 0.5;
-      const botX2 = 600 + botR * 0.866;
-      const botY2 = 600 + botR * 0.5;
+      const botX1 = -botR * 0.866;
+      const botY1 = botR * 0.5;
+      const botX2 = botR * 0.866;
+      const botY2 = botR * 0.5;
       const botArcPathD = `M ${botX1},${botY1} A ${botR},${botR} 0 0,0 ${botX2},${botY2}`;
 
       // Font Family Mapping for Assorted Cookies
@@ -1707,26 +1818,26 @@
     <circle cx="600" cy="600" r="570" fill="none" stroke="url(#foilGoldGrad)" stroke-width="0.8" opacity="0.6"/>
 
     <!-- 3. MANDALA IN EXACT DEAD CENTER (cx=600, cy=600) -->
-    <g opacity="${state.mandalaOpacity}" transform="translate(600, 600)" class="canva-draggable" onclick="openLayerAccordion('mandala')">
+    <g opacity="${state.mandalaOpacity}" transform="translate(${state.mandalaX}, ${state.mandalaY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'mandala')">
       ${mandalaMarkup}
     </g>
 
     <!-- 4. TOP RIM CURVED HEADER TEXT -->
-    <text fill="${state.topArcColor}" font-family="'Cinzel', serif" font-weight="800" font-size="${state.topArcSize}px" letter-spacing="0.26em" class="canva-draggable" onclick="openLayerAccordion('top-arc')">
+    <text transform="translate(${state.topArcX}, ${state.topArcY})" fill="${state.topArcColor}" font-family="'Cinzel', serif" font-weight="800" font-size="${state.topArcSize}px" letter-spacing="0.26em" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'top-arc')">
       <textPath href="#topArcPath" startOffset="50%" text-anchor="middle">
         ${state.topArc}
       </textPath>
     </text>
 
     <!-- 5. BOTTOM RIM CURVED FOOTER TEXT -->
-    <text fill="${state.bottomArcColor}" font-family="'Cinzel', serif" font-weight="800" font-size="${state.bottomArcSize}px" letter-spacing="0.22em" class="canva-draggable" onclick="openLayerAccordion('bot-arc')">
+    <text transform="translate(${state.bottomArcX}, ${state.bottomArcY})" fill="${state.bottomArcColor}" font-family="'Cinzel', serif" font-weight="800" font-size="${state.bottomArcSize}px" letter-spacing="0.22em" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'bot-arc')">
       <textPath href="#botArcPath" startOffset="50%" text-anchor="middle">
         ${state.bottomArc}
       </textPath>
     </text>
 
     <!-- 6. AUTHENTIC DIAMOND LOGO + WORDMARK: one artwork image, no duplicate text -->
-    <g transform="translate(600, ${state.brandY})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'brand')">
+    <g transform="translate(${state.brandX}, ${state.brandY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'brand')">
       <image href="https://ajaynxt.github.io/diamond-bakery-packaging-studio/diamond_full_user.png"
              x="${-180 * state.crestScale}" y="${-118 * state.crestScale}"
              width="${360 * state.crestScale}" height="${236 * state.crestScale}"
@@ -1735,15 +1846,15 @@
     </g>
 
     <!-- 7. PRODUCT NAME — two separate, independently draggable lines -->
-    <g transform="translate(600, ${state.titleLine1Y})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'cookies1')">
+    <g transform="translate(${state.titleLine1X}, ${state.titleLine1Y})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'cookies1')">
       <text x="0" y="0" text-anchor="middle" font-family="${titleFontFamily}" font-weight="${titleFontWeight}" font-size="${state.titleSize}px" letter-spacing="${titleLetterSpacing}" fill="${titleFill}" stroke="${titleStroke}" stroke-width="${titleStrokeWidth}" filter="url(#titleShadow)">${state.titleLine1}</text>
     </g>
-    <g transform="translate(600, ${state.titleLine2Y})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'cookies2')">
+    <g transform="translate(${state.titleLine2X}, ${state.titleLine2Y})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'cookies2')">
       <text x="0" y="0" text-anchor="middle" font-family="${titleFontFamily}" font-weight="${titleFontWeight}" font-size="${state.titleSize}px" letter-spacing="${titleLetterSpacing}" fill="${titleFill}" stroke="${titleStroke}" stroke-width="${titleStrokeWidth}" filter="url(#titleShadow)">${state.titleLine2}</text>
     </g>
 
     <!-- 8. TAGLINE CAPSULE RIBBON -->
-    <g transform="translate(600, ${state.ribbonY})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'ribbon')">
+    <g transform="translate(${state.ribbonX}, ${state.ribbonY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'ribbon')">
       <!-- Capsule Bar -->
       <rect x="${-state.ribbonWidth / 2}" y="-19" width="${state.ribbonWidth}" height="38" rx="19" fill="${state.ribbonBg}" stroke="${state.ribbonBorder}" stroke-width="1.8" filter="url(#shadowFilter)"/>
       <line x1="${-state.ribbonWidth / 2 + 12}" y1="-14" x2="${state.ribbonWidth / 2 - 12}" y2="-14" stroke="${state.ribbonBorder}" stroke-width="0.6" opacity="0.6"/>
@@ -1755,7 +1866,7 @@
     </g>
 
     <!-- 9. BALANCED NET WEIGHT & FSSAI PLAQUE -->
-    <g transform="translate(600, ${state.plaqueY})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'plaque')">
+    <g transform="translate(${state.plaqueX}, ${state.plaqueY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'plaque')">
       <!-- Ornate Gold Cartouche Frame -->
       <path d="M -145,-19 L 145,-19 A 6,6 0 0,0 155,-9 L 155,9 A 6,6 0 0,0 145,19 L -145,19 A 6,6 0 0,0 -155,9 L -155,-9 A 6,6 0 0,0 -145,-19 Z" 
             fill="${state.plaqueBg}" stroke="${state.plaqueBorder}" stroke-width="2.2" filter="url(#shadowFilter)"/>
