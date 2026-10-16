@@ -109,9 +109,9 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="font-extrabold text-white text-base sm:text-lg tracking-tight">Diamond Bakery</h1>
-            <span class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-500/30 uppercase">Canva Layer Studio</span>
+            <span class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-500/30 uppercase">Sticker Designer</span>
           </div>
-          <p class="text-[11px] text-slate-400">6-Inch Round Packaging (Radius 3" • 152.4 mm) • Har layer aur text editable hai</p>
+          <p class="text-[11px] text-slate-400">6-inch gol sticker banayein • Rang, text aur layout badlein</p>
         </div>
       </div>
 
@@ -119,17 +119,17 @@
       <div class="flex items-center gap-2">
         <button onclick="downloadPNG600DPI()" class="px-3.5 py-2 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/25 flex items-center gap-1.5 transition-all transform active:scale-95" title="Download Print-Ready 3600x3600px 600 DPI PNG">
           <span>✨</span>
-          <span>Download 600 DPI (3600px)</span>
+          <span>Download Sticker PNG</span>
         </button>
 
         <button onclick="downloadVectorSVG()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-teal-300 border border-teal-500/30 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
           <span>📐</span>
-          <span>Vector SVG</span>
+          <span>Editable Design File</span>
         </button>
 
         <button onclick="setViewMode('a4'); setTimeout(() => window.print(), 200);" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
           <span>🖨️</span>
-          <span>Print A4</span>
+          <span>Print Sticker Sheet</span>
         </button>
       </div>
 
@@ -142,14 +142,24 @@
     <!-- LEFT SIDEBAR: CANVA LAYERS & CONTROLS (Col span 5 on desktop) -->
     <div class="lg:col-span-5 space-y-4">
       
-      <!-- 1-CLICK MASTER THEMES (Exact Matches to User Images) -->
+      <section class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg" aria-label="How to use the sticker designer">
+      <h2 class="text-sm sm:text-base font-extrabold text-white">Sticker 3 steps mein banayein</h2>
+      <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm">
+        <div class="rounded-xl bg-slate-950/80 p-3"><span class="font-extrabold text-amber-300">1.</span> Rang/design chunein</div>
+        <div class="rounded-xl bg-slate-950/80 p-3"><span class="font-extrabold text-amber-300">2.</span> Product naam aur zaroori text badlein</div>
+        <div class="rounded-xl bg-slate-950/80 p-3"><span class="font-extrabold text-amber-300">3.</span> Download karein ya A4 par print karein</div>
+      </div>
+      <p class="mt-2 text-xs leading-5 text-slate-400">Koi section samajh na aaye to uska naam kholkar sirf zaroori field badlein. Baaki settings jaise ki hain waise rehne dein.</p>
+    </section>
+
+    <!-- 1-CLICK MASTER THEMES (Exact Matches to User Images) -->
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
-            <span class="text-amber-400 font-bold text-sm">⭐ 1-Click Master Designs:</span>
-            <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">Originals</span>
+            <span class="text-amber-400 font-bold text-sm">Ready-made Designs</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Choose a colour</span>
           </div>
-          <span class="text-[10px] text-teal-400 font-bold">100% Match</span>
+          <span class="text-[10px] text-teal-300 font-bold">One click to apply</span>
         </div>
 
         <div class="grid grid-cols-2 gap-2.5">
@@ -158,11 +168,11 @@
             <div class="flex items-center justify-between">
               <span class="text-xs font-black text-emerald-300 flex items-center gap-1.5">
                 <span class="w-3 h-3 rounded-full bg-[#AEE6D2] border border-emerald-400 inline-block"></span>
-                1. Pastel Mint
+                1. Mint Green
               </span>
-              <span class="text-[9px] bg-emerald-500/30 text-emerald-200 px-1 rounded font-bold">Photo 1</span>
+              <span class="text-[9px] bg-emerald-500/30 text-emerald-200 px-1 rounded font-bold">Mint</span>
             </div>
-            <p class="text-[10px] text-slate-300 mt-1">Tiffany Mint • Emerald & 24K Gold • Red Diamond</p>
+            <p class="text-[10px] text-slate-300 mt-1">Mint green background with gold details</p>
           </button>
 
           <!-- Preset 2: Royal Maroon -->
@@ -170,17 +180,17 @@
             <div class="flex items-center justify-between">
               <span class="text-xs font-black text-amber-200 flex items-center gap-1.5">
                 <span class="w-3 h-3 rounded-full bg-[#3B0A12] border border-amber-400 inline-block"></span>
-                2. Royal Maroon
+                2. Maroon
               </span>
-              <span class="text-[9px] bg-amber-500/30 text-amber-200 px-1 rounded font-bold">Photo 2</span>
+              <span class="text-[9px] bg-amber-500/30 text-amber-200 px-1 rounded font-bold">Maroon</span>
             </div>
-            <p class="text-[10px] text-slate-400 mt-1">Velvet Maroon • 24K Liquid Gold • Shahi Style</p>
+            <p class="text-[10px] text-slate-400 mt-1">Maroon background with gold details</p>
           </button>
         </div>
 
         <!-- More Quick Swatches -->
         <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between">
-          <span class="text-[11px] text-slate-400">Other Styles:</span>
+          <span class="text-[11px] text-slate-400">More colours:</span>
           <div class="flex items-center gap-1.5">
             <button onclick="applyPreset('black')" title="Obsidian Black & Gold" class="w-6 h-6 rounded-full bg-zinc-900 border border-amber-500/60 hover:scale-125 transition-all"></button>
             <button onclick="applyPreset('cream')" title="Ivory Cream & Gold" class="w-6 h-6 rounded-full bg-[#FFFDF7] border border-amber-600/60 hover:scale-125 transition-all"></button>
@@ -194,9 +204,9 @@
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="text-white font-extrabold text-sm">📁 Canva Layers (Click to Edit):</span>
+            <span class="text-white font-extrabold text-sm">Sticker mein kya badalna hai?</span>
           </div>
-          <span class="text-[10px] text-amber-400 font-mono">Live Sliders & Colors</span>
+          <span class="text-[10px] text-amber-400 font-mono">Section kholkar edit karein</span>
         </div>
 
         <!-- LAYER 1: COOKIES TITLE (MOTA BOLD FONTS) -->
@@ -205,8 +215,8 @@
             <div class="flex items-center gap-2">
               <span class="text-base">🍪</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">1. Product Title ("Assorted Cookies")</span>
-                <span class="text-[10px] text-slate-400 block font-normal">Bade mote font & size sliders</span>
+                <span class="text-xs font-bold text-amber-300">1. Product ka naam</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Sticker par likha hua naam badlein</span>
               </div>
             </div>
             <span class="text-xs text-slate-400 font-mono" id="layer-cookies-arrow">▼</span>
@@ -271,59 +281,53 @@
             <div class="flex items-center gap-2">
               <span class="text-base">💎</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">2. Brand Name & Monogram Crest</span>
-                <span class="text-[10px] text-slate-400 block font-normal">DIAMOND wordmark, "D" monogram, crest</span>
+                <span class="text-xs font-bold text-amber-300">2. Diamond logo</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Logo ek hi baar dikhega • size aur jagah badlein</span>
               </div>
             </div>
             <span class="text-xs text-slate-400 font-mono" id="layer-brand-arrow">►</span>
           </button>
 
           <div id="layer-brand-content" class="p-3.5 space-y-3 hidden">
-            <!-- Brand & Subtitle Text -->
-            <div class="grid grid-cols-2 gap-2">
+            <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-3">
+              <p class="text-sm font-bold text-emerald-200">Original logo — ek hi baar</p>
+              <p class="mt-1 text-xs leading-5 text-slate-300">Agar logo image mein pehle se “DIAMOND” likha hai, neeche naam dobara add na karein. Duplicate text band rakhne ke liye checkbox selected rehne dein.</p>
+            </div>
+
+            <label class="flex items-start gap-2 rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-xs leading-5 text-slate-200">
+              <input type="checkbox" id="check-logo-has-name" checked onchange="updateLabel()" class="mt-0.5 accent-emerald-500">
+              <span>Original logo mein “DIAMOND” naam pehle se hai</span>
+            </label>
+
+            <div id="brand-extra-text-controls" class="hidden space-y-3 rounded-xl border border-slate-800 p-3">
+              <p class="text-xs text-amber-200">Sirf tab use karein jab logo image mein naam nahi hai.</p>
               <div>
-                <label class="text-[11px] font-semibold text-slate-300 block mb-1">Brand Wordmark:</label>
-                <input type="text" id="input-brand" value="DIAMOND" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white focus:border-amber-500 focus:outline-none">
+                <label class="mb-1 block text-xs font-semibold text-slate-300">Naam</label>
+                <input type="text" id="input-brand" value="DIAMOND" oninput="updateLabel()" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
               </div>
-              <div>
-                <label class="text-[11px] font-semibold text-slate-300 block mb-1">Center Letter:</label>
-                <input type="text" id="input-monogram" value="D" maxlength="2" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white text-center font-bold focus:border-amber-500 focus:outline-none">
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-brand-size" class="text-xs text-slate-300">Naam ka size</label>
+                <input type="range" id="slider-brand-size" min="30" max="75" value="48" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+                <span id="brand-size-val" class="w-12 text-right text-xs font-mono font-bold text-amber-400">48 px</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 border-t border-slate-800 pt-2">
+                <span class="mr-1 text-xs text-slate-300">Naam ka rang:</span>
+                <button onclick="setBrandColorMode('red')" id="btn-brand-col-red" class="rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">Red</button>
+                <button onclick="setBrandColorMode('gold')" id="btn-brand-col-gold" class="rounded bg-slate-800 px-2 py-1 text-xs font-bold text-slate-300">Gold</button>
+                <button onclick="setBrandColorMode('white')" id="btn-brand-col-white" class="rounded bg-slate-800 px-2 py-1 text-xs font-bold text-slate-300">White</button>
+                <input type="color" id="picker-brand-color" value="#C81D25" aria-label="Naam ka custom rang" onchange="setBrandColorCustom(this.value)" class="h-7 w-7 cursor-pointer rounded border border-slate-700 bg-transparent">
               </div>
             </div>
 
-            <div>
-              <label class="text-[11px] font-semibold text-slate-300 block mb-1">Brand Sub-Title:</label>
-              <input type="text" id="input-brand-sub" value="BAKERY • RESTAURANT • SWEETS" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1 text-xs text-white focus:border-amber-500 focus:outline-none">
-            </div>
-
-            <!-- Brand Size & Crest Scale Sliders -->
-            <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-slate-300 font-medium">Brand Font Size:</span>
-              <input type="range" id="slider-brand-size" min="30" max="75" value="48" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="brand-size-val" class="text-xs font-mono font-bold text-amber-400 w-12 text-right">48 px</span>
-            </div>
-
-            <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-slate-300 font-medium">Crest Flourish Scale:</span>
+            <div class="flex items-center justify-between gap-3 border-t border-slate-800 pt-3">
+              <label for="slider-crest-scale" class="text-xs text-slate-300">Logo size</label>
               <input type="range" id="slider-crest-scale" min="60" max="150" value="100" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="crest-scale-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">100%</span>
+              <span id="crest-scale-val" class="w-12 text-right text-xs font-mono font-bold text-teal-400">100%</span>
             </div>
-
             <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-slate-300 font-medium">Position Y:</span>
+              <label for="slider-brand-y" class="text-xs text-slate-300">Logo ki jagah (upar/neeche)</label>
               <input type="range" id="slider-brand-y" min="320" max="500" value="405" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="brand-y-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">Y: 405</span>
-            </div>
-
-            <!-- Brand Color -->
-            <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800">
-              <span class="text-[11px] text-slate-300 font-medium">Wordmark Color:</span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="setBrandColorMode('red')" id="btn-brand-col-red" class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white">Red (Original)</button>
-                <button onclick="setBrandColorMode('gold')" id="btn-brand-col-gold" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-300">24K Gold</button>
-                <button onclick="setBrandColorMode('white')" id="btn-brand-col-white" class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-300">White</button>
-                <input type="color" id="picker-brand-color" value="#C81D25" onchange="setBrandColorCustom(this.value)" class="w-6 h-6 rounded border border-slate-700 bg-transparent cursor-pointer">
-              </div>
+              <span id="brand-y-val" class="w-12 text-right text-xs font-mono font-bold text-teal-400">Y: 405</span>
             </div>
           </div>
         </div>
@@ -334,8 +338,8 @@
             <div class="flex items-center gap-2">
               <span class="text-base">⭕</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">3. Top Outer Curved Arc</span>
-                <span class="text-[10px] text-slate-400 block font-normal">Upper rim curved header text</span>
+                <span class="text-xs font-bold text-amber-300">3. Upar ki gol line</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Sticker ke upar likha text</span>
               </div>
             </div>
             <span class="text-xs text-slate-400 font-mono" id="layer-top-arc-arrow">►</span>
@@ -379,8 +383,8 @@
             <div class="flex items-center gap-2">
               <span class="text-base">⭕</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">4. Bottom Outer Curved Arc</span>
-                <span class="text-[10px] text-slate-400 block font-normal">Lower rim curved footer text</span>
+                <span class="text-xs font-bold text-amber-300">4. Neeche ki gol line</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Sticker ke neeche likha text</span>
               </div>
             </div>
             <span class="text-xs text-slate-400 font-mono" id="layer-bot-arc-arrow">►</span>
@@ -424,7 +428,7 @@
             <div class="flex items-center gap-2">
               <span class="text-base">🎀</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">5. Tagline Capsule Ribbon</span>
+                <span class="text-xs font-bold text-amber-300">5. Beech ki ribbon</span>
                 <span class="text-[10px] text-slate-400 block font-normal">Pure Butter & Zero Palm Oil banner</span>
               </div>
             </div>
@@ -468,7 +472,7 @@
             <div class="flex items-center gap-2">
               <span class="text-base">⚖️</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">6. Net Weight & Veg Plaque</span>
+                <span class="text-xs font-bold text-amber-300">6. Weight aur veg mark</span>
                 <span class="text-[10px] text-slate-400 block font-normal">FSSAI green logo & weight plaque</span>
               </div>
             </div>
@@ -503,7 +507,7 @@
             <div class="flex items-center gap-2">
               <span class="text-base">🌸</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">7. Center Floral Mandala</span>
+                <span class="text-xs font-bold text-amber-300">7. Background pattern</span>
                 <span class="text-[10px] text-slate-400 block font-normal">Authentic gold artwork watermark</span>
               </div>
             </div>
@@ -535,7 +539,7 @@
             <div class="flex items-center gap-2">
               <span class="text-base">🎨</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">8. Color Palette & Background</span>
+                <span class="text-xs font-bold text-amber-300">8. Sticker ke rang</span>
                 <span class="text-[10px] text-slate-400 block font-normal">Custom tin background & rim colors</span>
               </div>
             </div>
@@ -569,7 +573,7 @@
             <div class="flex items-center gap-2">
               <span class="text-base">📄</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">9. A4 White Page Print Setup</span>
+                <span class="text-xs font-bold text-amber-300">9. Print settings (A4 page)</span>
                 <span class="text-[10px] text-slate-400 block font-normal">Standard A4 paper sheets • 1, 2, 4 or 6 labels</span>
               </div>
             </div>
@@ -618,24 +622,24 @@
       <div class="w-full flex items-center justify-between bg-slate-900/90 border border-slate-800 px-4 py-2.5 rounded-2xl shadow-xl">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-xs font-black uppercase tracking-wider text-white">Canvas Live View</span>
+          <span class="text-xs font-black uppercase tracking-wider text-white">Sticker Preview</span>
           <span class="text-[10px] text-amber-300 bg-amber-500/15 px-2 py-0.5 rounded border border-amber-500/30">
-            🖱️ Drag layers on canvas to reposition
+            Preview mein item ko drag karke jagah badlein
           </span>
         </div>
 
         <div class="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold">
           <button onclick="resetPositions()" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all text-xs" title="Reset all layers to default symmetrical center">
-            🎯 Reset
+            Reset Layout
           </button>
           <button onclick="setViewMode('3d')" id="btn-view-3d" class="px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-black transition-all">
-            🥫 3D Dabba
+            Tin Preview
           </button>
           <button onclick="setViewMode('flat')" id="btn-view-flat" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">
-            🎯 Flat 6" Round
+            Flat Sticker
           </button>
           <button onclick="setViewMode('a4')" id="btn-view-a4" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">
-            📄 A4 Sheet
+            Print Page
           </button>
         </div>
       </div>
@@ -724,19 +728,19 @@
       <!-- BOTTOM SPECIFICATION SUMMARY BADGES -->
       <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
         <div class="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800">
-          <span class="text-slate-500 block text-[9px] uppercase font-bold">Physical Size</span>
+          <span class="text-slate-500 block text-[9px] uppercase font-bold">Sticker Size</span>
           <span class="text-amber-300 font-bold text-xs">6" Diameter (3" Radius)</span>
         </div>
         <div class="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800">
-          <span class="text-slate-500 block text-[9px] uppercase font-bold">Top Rim Arc</span>
+          <span class="text-slate-500 block text-[9px] uppercase font-bold">Upar ka text</span>
           <span class="text-teal-400 font-bold text-xs" id="hud-top-arc-val">Radius 530px</span>
         </div>
         <div class="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800">
-          <span class="text-slate-500 block text-[9px] uppercase font-bold">Bottom Rim Arc</span>
+          <span class="text-slate-500 block text-[9px] uppercase font-bold">Neeche ka text</span>
           <span class="text-teal-400 font-bold text-xs" id="hud-bot-arc-val">Radius 530px</span>
         </div>
         <div class="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800">
-          <span class="text-slate-500 block text-[9px] uppercase font-bold">Resolution</span>
+          <span class="text-slate-500 block text-[9px] uppercase font-bold">Print Quality</span>
           <span class="text-emerald-400 font-bold text-xs">600 DPI (3600×3600px)</span>
         </div>
       </div>
@@ -770,6 +774,7 @@
       brand: 'DIAMOND',
       brandSub: 'BAKERY • RESTAURANT • SWEETS',
       monogram: 'D',
+      showBrandText: false,
       brandSize: 48,
       brandY: 405,
       crestScale: 1.0,
@@ -1139,8 +1144,10 @@
       const monoInput = document.getElementById('input-monogram');
       if (monoInput) state.monogram = monoInput.value || 'D';
 
-      const brandSubInput = document.getElementById('input-brand-sub');
-      if (brandSubInput) state.brandSub = brandSubInput.value || 'BAKERY • RESTAURANT • SWEETS';
+      const brandTextToggle = document.getElementById('check-logo-has-name');
+      if (brandTextToggle) state.showBrandText = !brandTextToggle.checked;
+      const extraBrandControls = document.getElementById('brand-extra-text-controls');
+      if (extraBrandControls) extraBrandControls.classList.toggle('hidden', !state.showBrandText);
 
       const topArcInput = document.getElementById('input-top-arc');
       if (topArcInput) state.topArc = topArcInput.value;
@@ -1280,8 +1287,10 @@
       setT('title-y-val', `Y: ${state.titleY}`);
 
       setV('input-brand', state.brand);
-      setV('input-monogram', state.monogram);
-      setV('input-brand-sub', state.brandSub);
+      const brandTextToggle = document.getElementById('check-logo-has-name');
+      if (brandTextToggle) brandTextToggle.checked = !state.showBrandText;
+      const extraBrandControls = document.getElementById('brand-extra-text-controls');
+      if (extraBrandControls) extraBrandControls.classList.toggle('hidden', !state.showBrandText);
       setV('slider-brand-size', state.brandSize);
       setT('brand-size-val', `${state.brandSize} px`);
       setV('slider-brand-y', state.brandY);
@@ -1645,27 +1654,12 @@
       </textPath>
     </text>
 
-    <!-- 6. BRAND CREST, MONOGRAM & WORDMARK GROUP -->
+    <!-- 6. ORIGINAL DIAMOND LOGO: render the artwork once; optional text only when the artwork has no wordmark -->
     <g transform="translate(600, ${state.brandY})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'brand')">
-      <!-- Flourish Crest -->
       <g filter="url(#shadowFilter)">
         ${crestMarkup}
       </g>
-
-      <!-- Center Monogram Letter 'D' -->
-      <text x="0" y="8" text-anchor="middle" font-family="'Cinzel Decorative', 'Cinzel', serif" font-weight="900" font-size="78" fill="${monoFill}" filter="url(#shadowFilter)">
-        ${state.monogram}
-      </text>
-
-      <!-- Brand Wordmark "DIAMOND" -->
-      <text x="0" y="102" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="${state.brandSize}px" letter-spacing="0.28em" fill="${brandFill}" filter="url(#shadowFilter)">
-        ${state.brand}
-      </text>
-
-      <!-- Subtitle "BAKERY • RESTAURANT • SWEETS" -->
-      <text x="0" y="126" text-anchor="middle" font-family="'Cinzel', serif" font-weight="700" font-size="14.5px" letter-spacing="0.22em" fill="${brandFill}" opacity="0.92">
-        ${state.brandSub}
-      </text>
+      ${state.showBrandText ? `<text x="0" y="102" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="${state.brandSize}px" letter-spacing="0.12em" fill="${brandFill}" filter="url(#shadowFilter)">${state.brand}</text>` : ''}
     </g>
 
     <!-- 7. PRODUCT TITLE: "Assorted Cookies" (MOTA BOLD FONTS) -->
