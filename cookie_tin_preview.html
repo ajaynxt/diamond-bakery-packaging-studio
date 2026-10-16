@@ -282,7 +282,7 @@
               <span class="text-base">💎</span>
               <div>
                 <span class="text-xs font-bold text-amber-300">2. Diamond logo</span>
-                <span class="text-[10px] text-slate-400 block font-normal">Logo ek hi baar dikhega • size aur jagah badlein</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Original logo aur naam ek saath</span>
               </div>
             </div>
             <span class="text-xs text-slate-400 font-mono" id="layer-brand-arrow">►</span>
@@ -290,45 +290,20 @@
 
           <div id="layer-brand-content" class="p-3.5 space-y-3 hidden">
             <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-3">
-              <p class="text-sm font-bold text-emerald-200">Original logo — ek hi baar</p>
-              <p class="mt-1 text-xs leading-5 text-slate-300">Agar logo image mein pehle se “DIAMOND” likha hai, neeche naam dobara add na karein. Duplicate text band rakhne ke liye checkbox selected rehne dein.</p>
+              <p class="text-sm font-bold text-emerald-200">Diamond ka original logo</p>
+              <p class="mt-1 text-xs leading-5 text-slate-300">Logo aur DIAMOND naam ek hi image mein hain. Naam dobara type ya add nahi karna padega.</p>
             </div>
-
-            <label class="flex items-start gap-2 rounded-xl border border-slate-800 bg-slate-950/60 p-3 text-xs leading-5 text-slate-200">
-              <input type="checkbox" id="check-logo-has-name" checked onchange="updateLabel()" class="mt-0.5 accent-emerald-500">
-              <span>Original logo mein “DIAMOND” naam pehle se hai</span>
-            </label>
-
-            <div id="brand-extra-text-controls" class="hidden space-y-3 rounded-xl border border-slate-800 p-3">
-              <p class="text-xs text-amber-200">Sirf tab use karein jab logo image mein naam nahi hai.</p>
-              <div>
-                <label class="mb-1 block text-xs font-semibold text-slate-300">Naam</label>
-                <input type="text" id="input-brand" value="DIAMOND" oninput="updateLabel()" class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
-              </div>
-              <div class="flex items-center justify-between gap-3">
-                <label for="slider-brand-size" class="text-xs text-slate-300">Naam ka size</label>
-                <input type="range" id="slider-brand-size" min="30" max="75" value="48" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-size-val" class="w-12 text-right text-xs font-mono font-bold text-amber-400">48 px</span>
-              </div>
-              <div class="flex flex-wrap items-center gap-2 border-t border-slate-800 pt-2">
-                <span class="mr-1 text-xs text-slate-300">Naam ka rang:</span>
-                <button onclick="setBrandColorMode('red')" id="btn-brand-col-red" class="rounded bg-red-600 px-2 py-1 text-xs font-bold text-white">Red</button>
-                <button onclick="setBrandColorMode('gold')" id="btn-brand-col-gold" class="rounded bg-slate-800 px-2 py-1 text-xs font-bold text-slate-300">Gold</button>
-                <button onclick="setBrandColorMode('white')" id="btn-brand-col-white" class="rounded bg-slate-800 px-2 py-1 text-xs font-bold text-slate-300">White</button>
-                <input type="color" id="picker-brand-color" value="#C81D25" aria-label="Naam ka custom rang" onchange="setBrandColorCustom(this.value)" class="h-7 w-7 cursor-pointer rounded border border-slate-700 bg-transparent">
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between gap-3 border-t border-slate-800 pt-3">
+            <div class="flex items-center justify-between gap-3">
               <label for="slider-crest-scale" class="text-xs text-slate-300">Logo size</label>
-              <input type="range" id="slider-crest-scale" min="60" max="150" value="100" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <input type="range" id="slider-crest-scale" min="65" max="130" value="100" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
               <span id="crest-scale-val" class="w-12 text-right text-xs font-mono font-bold text-teal-400">100%</span>
             </div>
             <div class="flex items-center justify-between gap-3">
-              <label for="slider-brand-y" class="text-xs text-slate-300">Logo ki jagah (upar/neeche)</label>
-              <input type="range" id="slider-brand-y" min="320" max="500" value="405" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <label for="slider-brand-y" class="text-xs text-slate-300">Logo position</label>
+              <input type="range" id="slider-brand-y" min="330" max="500" value="405" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
               <span id="brand-y-val" class="w-12 text-right text-xs font-mono font-bold text-teal-400">Y: 405</span>
             </div>
+            <p class="text-[11px] leading-5 text-slate-400">Position slider se logo upar-neeche karein. Naam logo ke saath hi move karega.</p>
           </div>
         </div>
 
@@ -774,7 +749,6 @@
       brand: 'DIAMOND',
       brandSub: 'BAKERY • RESTAURANT • SWEETS',
       monogram: 'D',
-      showBrandText: false,
       brandSize: 48,
       brandY: 405,
       crestScale: 1.0,
@@ -1654,12 +1628,12 @@
       </textPath>
     </text>
 
-    <!-- 6. ORIGINAL DIAMOND LOGO: render the artwork once; optional text only when the artwork has no wordmark -->
+    <!-- 6. AUTHENTIC DIAMOND LOGO + WORDMARK: one artwork image, no duplicate text -->
     <g transform="translate(600, ${state.brandY})" class="canva-draggable" onmousedown="startCanvasDrag(event, 'brand')">
-      <g filter="url(#shadowFilter)">
-        ${crestMarkup}
-      </g>
-      ${state.showBrandText ? `<text x="0" y="102" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="${state.brandSize}px" letter-spacing="0.12em" fill="${brandFill}" filter="url(#shadowFilter)">${state.brand}</text>` : ''}
+      <image href="https://ajaynxt.github.io/diamond-bakery-packaging-studio/diamond_full_user.png"
+             x="-180" y="-118" width="360" height="236"
+             preserveAspectRatio="xMidYMid meet"
+             filter="url(#shadowFilter)" />
     </g>
 
     <!-- 7. PRODUCT TITLE: "Assorted Cookies" (MOTA BOLD FONTS) -->
