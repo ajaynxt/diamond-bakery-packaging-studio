@@ -449,8 +449,20 @@
             <!-- Size Slider -->
             <div class="flex items-center justify-between gap-3 pt-1">
               <span class="text-[11px] text-slate-300 font-medium">Font Size:</span>
-              <input type="range" id="slider-title-size" min="50" max="160" value="135" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <input type="range" id="slider-title-size" min="50" max="250" value="135" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
               <span id="title-size-val" class="text-xs font-mono font-bold text-amber-400 w-12 text-right">135 px</span>
+            </div>
+
+            <!-- Quick Size Preset Buttons -->
+            <div class="space-y-1.5 pt-1">
+              <span class="text-[10px] text-slate-400 font-medium block">Quick Size Presets:</span>
+              <div class="grid grid-cols-5 gap-1.5">
+                <button type="button" id="btn-title-size-120" onclick="setTitleSize(120)" class="px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">120px<br><span class="text-[8px] font-normal text-slate-400">Normal</span></button>
+                <button type="button" id="btn-title-size-135" onclick="setTitleSize(135)" class="px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300">135px<br><span class="text-[8px] font-normal text-amber-400/80">Photo</span></button>
+                <button type="button" id="btn-title-size-160" onclick="setTitleSize(160)" class="px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">160px<br><span class="text-[8px] font-normal text-slate-400">Bada</span></button>
+                <button type="button" id="btn-title-size-190" onclick="setTitleSize(190)" class="px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">190px<br><span class="text-[8px] font-normal text-slate-400">Ex-Bada</span></button>
+                <button type="button" id="btn-title-size-220" onclick="setTitleSize(220)" class="px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">220px<br><span class="text-[8px] font-normal text-slate-400">Jumbo</span></button>
+              </div>
             </div>
 
             <!-- Canva-style X/Y controls for both independently editable product-name lines -->
@@ -513,54 +525,81 @@
               <div class="flex items-center gap-2">
                 <span class="text-base">🔒</span>
                 <div>
-                  <p class="text-xs font-bold text-amber-200">Logo aur Name Locked Hain</p>
-                  <p class="text-[10px] text-slate-300">Logo upar aur DIAMOND name neeche perfectly centered rehte hain.</p>
+                  <p class="text-xs font-bold text-amber-200">Unified Logo + Brand Lockup</p>
+                  <p class="text-[10px] text-slate-300">Master slider se poora logo unit ek sath scale karein; colors alag alag choose karein!</p>
                 </div>
               </div>
               <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-500/30">Auto-Center</span>
             </div>
 
+            <!-- MASTER LOGO SCALE SLIDER (ONE SLIDER TO SCALE EVERYTHING) -->
+            <div class="rounded-xl border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/15 via-slate-950 to-slate-950 p-3.5 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <label for="slider-master-brand-scale" class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                    <span>👑</span> Master Logo Scale (Ek Sath Sabki Size)
+                  </label>
+                  <span class="text-[10px] text-slate-300 block">Crest, DIAMOND aur Subtitle sab ek sath proportionally scale honge</span>
+                </div>
+                <span id="master-brand-scale-val" class="text-xs font-mono font-bold text-amber-300 bg-amber-950/90 px-2 py-0.5 rounded border border-amber-500/40">100%</span>
+              </div>
+              <input type="range" id="slider-master-brand-scale" min="50" max="180" value="100" oninput="onMasterBrandScaleInput(this.value)" class="w-full accent-amber-500 cursor-pointer">
+              <!-- Quick master size buttons -->
+              <div class="flex items-center justify-between gap-1 pt-1">
+                <button type="button" id="btn-master-scale-75" onclick="setMasterBrandScale(75)" class="flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-500">75%<br><span class="text-[8px] font-normal text-slate-400">Chota</span></button>
+                <button type="button" id="btn-master-scale-100" onclick="setMasterBrandScale(100)" class="flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300">100%<br><span class="text-[8px] font-normal text-amber-400/80">Default</span></button>
+                <button type="button" id="btn-master-scale-125" onclick="setMasterBrandScale(125)" class="flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-500">125%<br><span class="text-[8px] font-normal text-slate-400">Bada</span></button>
+                <button type="button" id="btn-master-scale-150" onclick="setMasterBrandScale(150)" class="flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-500">150%<br><span class="text-[8px] font-normal text-slate-400">Ex-Bada</span></button>
+                <button type="button" id="btn-master-scale-175" onclick="setMasterBrandScale(175)" class="flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-500">175%<br><span class="text-[8px] font-normal text-slate-400">Jumbo</span></button>
+              </div>
+            </div>
+
             <!-- Master Position (Y - Upar / Neeche) -->
             <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2">
               <div class="flex items-center justify-between">
-                <label for="slider-brand-block-y" class="text-xs font-bold text-amber-300">Logo + Name Position (Upar / Neeche)</label>
+                <label for="slider-brand-block-y" class="text-xs font-bold text-slate-200">Logo + Name Position (Upar / Neeche)</label>
                 <span id="brand-block-y-val" class="text-xs font-mono font-bold text-teal-400">Y: 420</span>
               </div>
               <input type="range" id="slider-brand-block-y" min="200" max="650" value="420" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
               <p class="text-[10px] text-slate-400">Yeh slider logo aur brand name dono ko ek sath upar/neeche move karta hai.</p>
             </div>
 
-            <!-- Emblem / Crest Size & Tint -->
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-3">
+            <!-- COLOR SECTION 1: CREST / EMBLEM COLOR -->
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2.5">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-200">👑 Logo / Emblem (Upar wala hissa)</span>
+                <span class="text-xs font-bold text-slate-200">👑 1. Emblem / Crest Tint (Top Logo)</span>
                 <span id="crest-scale-val" class="text-xs font-mono font-bold text-teal-400">95%</span>
               </div>
-              <div class="flex items-center justify-between gap-3">
-                <label for="slider-crest-scale" class="text-[11px] text-slate-300">Logo Size:</label>
-                <input type="range" id="slider-crest-scale" min="50" max="140" value="95" oninput="updateLabel()" class="w-40 accent-amber-500 cursor-pointer">
-              </div>
-
-              <!-- Spacing between Emblem and Name -->
-              <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800/80">
-                <label for="slider-brand-spacing" class="text-[11px] text-slate-300">Logo & Name Gap:</label>
-                <input type="range" id="slider-brand-spacing" min="0" max="40" value="16" oninput="updateLabel()" class="w-40 accent-amber-500 cursor-pointer">
-                <span id="brand-spacing-val" class="text-xs font-mono font-bold text-amber-400 w-10 text-right">16 px</span>
-              </div>
-
-              <!-- Emblem Tint Option -->
-              <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+              
+              <!-- Emblem Color Controls -->
+              <div class="flex items-center justify-between gap-2 pt-1">
                 <label class="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer">
                   <input type="checkbox" id="check-emblem-tint" onchange="updateLabel()" class="accent-amber-500 rounded">
                   <span>Custom Gold Tint</span>
                 </label>
-                <input type="color" id="picker-emblem-color" value="#D4AF37" oninput="updateLabel()" class="w-7 h-7 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                <div class="flex items-center gap-1.5">
+                  <button type="button" onclick="setCrestTint(false)" class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] text-slate-300 hover:border-amber-500">Original</button>
+                  <button type="button" onclick="setCrestTint(true, '#D4AF37')" class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] text-amber-300 hover:border-amber-500">24K Gold</button>
+                  <input type="color" id="picker-emblem-color" value="#D4AF37" oninput="setCrestTint(true, this.value)" class="w-7 h-7 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                </div>
+              </div>
+
+              <!-- Individual fine-tuning details -->
+              <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <label for="slider-crest-scale" class="text-[11px] text-slate-400">Fine Scale:</label>
+                <input type="range" id="slider-crest-scale" min="50" max="180" value="95" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+                <label for="slider-brand-spacing" class="text-[11px] text-slate-400">Gap:</label>
+                <input type="range" id="slider-brand-spacing" min="0" max="50" value="16" oninput="updateLabel()" class="w-24 accent-amber-500 cursor-pointer">
+                <span id="brand-spacing-val" class="text-xs font-mono text-amber-400 w-8 text-right">16px</span>
               </div>
             </div>
 
-            <!-- Brand Name ("DIAMOND") -->
+            <!-- COLOR SECTION 2: BRAND NAME ("DIAMOND") -->
             <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-3">
-              <span class="text-xs font-bold text-slate-200 block">💎 Brand Name (Neeche wala text)</span>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-200">💎 2. Brand Name ("DIAMOND")</span>
+                <span id="brand-size-val" class="text-xs font-mono font-bold text-teal-400">48 px</span>
+              </div>
               <div>
                 <label for="input-brand" class="text-[11px] text-slate-300 block mb-1">Brand Name Text:</label>
                 <input type="text" id="input-brand" value="DIAMOND" oninput="updateLabel()" maxlength="40" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
@@ -592,43 +631,46 @@
                   </select>
                 </div>
                 <div>
-                  <label class="text-[11px] text-slate-300 block mb-1">Font Size:</label>
-                  <div class="flex items-center gap-2">
-                    <input type="range" id="slider-brand-size" min="28" max="75" value="48" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
-                    <span id="brand-size-val" class="text-xs font-mono font-bold text-teal-400 w-10 text-right">48 px</span>
-                  </div>
+                  <label class="text-[11px] text-slate-300 block mb-1">Fine Size:</label>
+                  <input type="range" id="slider-brand-size" min="24" max="90" value="48" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
                 </div>
               </div>
 
-              <!-- Brand Name Color -->
-              <div>
-                <label class="text-[11px] text-slate-300 block mb-1">Name Colour:</label>
+              <!-- Brand Name Independent Color -->
+              <div class="pt-2 border-t border-slate-800/80">
+                <label class="text-[11px] text-slate-300 font-semibold block mb-1.5">DIAMOND Colour (Independent):</label>
                 <div class="flex items-center justify-between">
                   <div class="flex flex-wrap gap-1.5">
-                    <button onclick="setBrandColorMode('red')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-red-400">Ruby Red</button>
-                    <button onclick="setBrandColorMode('gold')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-amber-300">24K Gold</button>
-                    <button onclick="setBrandColorMode('white')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-white">White</button>
+                    <button type="button" onclick="setBrandColorMode('red')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-red-400 hover:border-red-500">Ruby Red</button>
+                    <button type="button" onclick="setBrandColorMode('gold')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-amber-300 hover:border-amber-500">24K Gold</button>
+                    <button type="button" onclick="setBrandColorMode('white')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-white hover:border-slate-500">White</button>
+                    <button type="button" onclick="setBrandColorMode('emerald')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-emerald-400 hover:border-emerald-500">Emerald</button>
                   </div>
-                  <input type="color" id="picker-brand-name-color" value="#C81D25" oninput="updateLabel()" class="w-7 h-7 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                  <input type="color" id="picker-brand-name-color" value="#C81D25" oninput="setBrandColorCustom(this.value)" class="w-7 h-7 rounded border border-slate-700 bg-slate-900 cursor-pointer">
                 </div>
               </div>
             </div>
 
-            <!-- Subtitle ("BAKERY • RESTAURANT • SWEETS") -->
+            <!-- COLOR SECTION 3: SUBTITLE ("BAKERY • RESTAURANT • SWEETS") -->
             <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2.5">
-              <span class="text-xs font-bold text-slate-200 block">✨ Subtitle / Tagline</span>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-200">✨ 3. Subtitle / Tagline</span>
+                <span id="brand-sub-size-val" class="text-xs font-mono font-bold text-teal-400">13 px</span>
+              </div>
               <div>
                 <input type="text" id="input-brand-sub" value="BAKERY • RESTAURANT • SWEETS" oninput="updateLabel()" maxlength="70" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-amber-500 focus:outline-none">
               </div>
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-2">
-                  <label class="text-[11px] text-slate-300">Colour:</label>
-                  <input type="color" id="picker-brand-sub-color" value="#1F2937" oninput="updateLabel()" class="w-6 h-6 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] text-slate-300 font-semibold">Colour:</span>
+                  <button type="button" onclick="setBrandSubColor('#0B3B24')" class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] text-emerald-400 hover:border-emerald-500">Green</button>
+                  <button type="button" onclick="setBrandSubColor('#D4AF37')" class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] text-amber-300 hover:border-amber-500">Gold</button>
+                  <button type="button" onclick="setBrandSubColor('#FFFFFF')" class="px-2 py-0.5 rounded border border-slate-700 bg-slate-900 text-[10px] text-white hover:border-slate-500">White</button>
+                  <input type="color" id="picker-brand-sub-color" value="#0B3B24" oninput="setBrandSubColor(this.value)" class="w-6 h-6 rounded border border-slate-700 bg-slate-900 cursor-pointer">
                 </div>
                 <div class="flex items-center gap-2">
-                  <label class="text-[11px] text-slate-300">Size:</label>
-                  <input type="range" id="slider-brand-sub-size" min="9" max="24" value="13" oninput="updateLabel()" class="w-24 accent-amber-500 cursor-pointer">
-                  <span id="brand-sub-size-val" class="text-[10px] font-mono text-teal-400">13 px</span>
+                  <label for="slider-brand-sub-size" class="text-[11px] text-slate-400">Fine Size:</label>
+                  <input type="range" id="slider-brand-sub-size" min="9" max="28" value="13" oninput="updateLabel()" class="w-20 accent-amber-500 cursor-pointer">
                 </div>
               </div>
             </div>
@@ -1210,6 +1252,7 @@
       brand: 'DIAMOND',
       brandSub: 'BAKERY • RESTAURANT • SWEETS',
       monogram: 'D',
+      masterBrandScale: 100,
       brandSize: 48,
       brandBlockX: 600,
       brandBlockY: 410,
@@ -1697,9 +1740,97 @@
       renderSVG();
     }
 
+    function setTitleSize(sz) {
+      sz = parseInt(sz, 10) || 135;
+      state.titleSize = sz;
+      const s = document.getElementById('slider-title-size');
+      if (s) s.value = sz;
+      const v = document.getElementById('title-size-val');
+      if (v) v.textContent = `${sz} px`;
+
+      document.querySelectorAll('[id^="btn-title-size-"]').forEach(b => {
+        b.className = "px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700";
+      });
+      const activeBtn = document.getElementById(`btn-title-size-${sz}`);
+      if (activeBtn) {
+        activeBtn.className = "px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300";
+      }
+
+      renderSVG();
+    }
+
+    function setMasterBrandScale(percent) {
+      percent = parseInt(percent, 10) || 100;
+      state.masterBrandScale = percent;
+      const factor = percent / 100;
+
+      state.crestScale = Math.round(0.95 * factor * 100) / 100;
+      state.brandSize = Math.max(20, Math.round(48 * factor));
+      state.brandSubSize = Math.max(8, Math.round(13 * factor));
+      state.brandSpacing = Math.round(16 * factor);
+
+      const masterS = document.getElementById('slider-master-brand-scale');
+      if (masterS) masterS.value = percent;
+      const masterV = document.getElementById('master-brand-scale-val');
+      if (masterV) masterV.textContent = `${percent}%`;
+
+      const crestS = document.getElementById('slider-crest-scale');
+      if (crestS) crestS.value = Math.round(state.crestScale * 100);
+      const crestV = document.getElementById('crest-scale-val');
+      if (crestV) crestV.textContent = `${Math.round(state.crestScale * 100)}%`;
+
+      const brandS = document.getElementById('slider-brand-size');
+      if (brandS) brandS.value = state.brandSize;
+      const brandV = document.getElementById('brand-size-val');
+      if (brandV) brandV.textContent = `${state.brandSize} px`;
+
+      const subS = document.getElementById('slider-brand-sub-size');
+      if (subS) subS.value = state.brandSubSize;
+      const subV = document.getElementById('brand-sub-size-val');
+      if (subV) subV.textContent = `${state.brandSubSize} px`;
+
+      const spaceS = document.getElementById('slider-brand-spacing');
+      if (spaceS) spaceS.value = state.brandSpacing;
+      const spaceV = document.getElementById('brand-spacing-val');
+      if (spaceV) spaceV.textContent = `${state.brandSpacing} px`;
+
+      document.querySelectorAll('[id^="btn-master-scale-"]').forEach(b => {
+        b.className = "flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-500";
+      });
+      const activeBtn = document.getElementById(`btn-master-scale-${percent}`);
+      if (activeBtn) {
+        activeBtn.className = "flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300";
+      }
+
+      renderSVG();
+    }
+
+    function onMasterBrandScaleInput(val) {
+      setMasterBrandScale(val);
+    }
+
+    function setCrestTint(enable, col) {
+      state.emblemTintEnabled = enable;
+      const check = document.getElementById('check-emblem-tint');
+      if (check) check.checked = enable;
+      if (col) {
+        state.emblemColor = col;
+        const picker = document.getElementById('picker-emblem-color');
+        if (picker) picker.value = col;
+      }
+      renderSVG();
+    }
+
+    function setBrandSubColor(col) {
+      state.brandSubColor = col;
+      const picker = document.getElementById('picker-brand-sub-color');
+      if (picker) picker.value = col;
+      renderSVG();
+    }
+
     function setBrandColorMode(mode) {
       state.brandColorMode = mode;
-      const colors = { red: '#C81D25', gold: '#D4AF37', white: '#FFFFFF', green: '#166534' };
+      const colors = { red: '#C81D25', gold: '#D4AF37', white: '#FFFFFF', emerald: '#0B3B24', green: '#166534' };
       state.brandNameColor = colors[mode] || state.brandNameColor || '#C81D25';
       state.brandCustomColor = state.brandNameColor;
       const picker = document.getElementById('picker-brand-name-color');
@@ -1902,9 +2033,17 @@
 
       const titleSizeS = document.getElementById('slider-title-size');
       if (titleSizeS) {
-        state.titleSize = parseInt(titleSizeS.value) || 105;
+        state.titleSize = parseInt(titleSizeS.value) || 135;
         const v = document.getElementById('title-size-val');
         if (v) v.textContent = `${state.titleSize} px`;
+
+        document.querySelectorAll('[id^="btn-title-size-"]').forEach(b => {
+          if (b.id === `btn-title-size-${state.titleSize}`) {
+            b.className = "px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300";
+          } else {
+            b.className = "px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700";
+          }
+        });
       }
 
       const titleYS = document.getElementById('slider-title-y');
@@ -1918,20 +2057,6 @@
         state.titleLine2Y = parseInt(title2YS.value) || 735;
         const v = document.getElementById('title2-y-val');
         if (v) v.textContent = `Y: ${state.titleLine2Y}`;
-      }
-
-      const brandSizeS = document.getElementById('slider-brand-size');
-      if (brandSizeS) {
-        state.brandSize = parseInt(brandSizeS.value) || 48;
-        const v = document.getElementById('brand-size-val');
-        if (v) v.textContent = `${state.brandSize} px`;
-      }
-
-      const crestScaleS = document.getElementById('slider-crest-scale');
-      if (crestScaleS) {
-        state.crestScale = (parseInt(crestScaleS.value) || 100) / 100;
-        const v = document.getElementById('crest-scale-val');
-        if (v) v.textContent = `${Math.round(state.crestScale * 100)}%`;
       }
 
       const brandYS = document.getElementById('slider-brand-y');
@@ -2046,10 +2171,28 @@
       setT('brand-size-val', `${state.brandSize || 48} px`);
       setV('slider-crest-scale', Math.round((state.crestScale || 0.95) * 100));
       setT('crest-scale-val', `${Math.round((state.crestScale || 0.95) * 100)}%`);
+      setV('slider-master-brand-scale', state.masterBrandScale || 100);
+      setT('master-brand-scale-val', `${state.masterBrandScale || 100}%`);
       setV('slider-brand-block-y', state.brandBlockY || 420);
       setT('brand-block-y-val', `Y: ${state.brandBlockY || 420}`);
       setV('slider-brand-spacing', state.brandSpacing || 16);
       setT('brand-spacing-val', `${state.brandSpacing || 16} px`);
+
+      document.querySelectorAll('[id^="btn-title-size-"]').forEach(b => {
+        if (b.id === `btn-title-size-${state.titleSize}`) {
+          b.className = "px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300";
+        } else {
+          b.className = "px-1.5 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700";
+        }
+      });
+
+      document.querySelectorAll('[id^="btn-master-scale-"]').forEach(b => {
+        if (b.id === `btn-master-scale-${state.masterBrandScale || 100}`) {
+          b.className = "flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300";
+        } else {
+          b.className = "flex-1 py-1 rounded-lg border text-center text-[10px] font-bold transition-all border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-500";
+        }
+      });
 
       setV('input-top-arc', state.topArc);
       setV('slider-top-arc-radius', state.topArcRadius);
