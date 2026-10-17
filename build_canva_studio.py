@@ -40,6 +40,8 @@ html_content = '''<!DOCTYPE html>
       overflow-x: hidden;
     }
     .font-script { font-family: 'Alex Brush', cursive; }
+    .font-great-vibes { font-family: 'Great Vibes', cursive; }
+    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
     .font-cinzel { font-family: 'Cinzel', serif; }
     .font-cinzel-dec { font-family: 'Cinzel Decorative', serif; }
     .font-playfair { font-family: 'Playfair Display', serif; }
@@ -270,7 +272,7 @@ html_content = '''<!DOCTYPE html>
                 Maroon
               </span>
             </div>
-            <p class="text-[9px] text-slate-400 mt-1">Maroon & 24K Gold</p>
+            <p class="text-[9px] text-amber-300 mt-1 font-semibold">✨ Photo Wala Original</p>
           </button>
 
           <!-- Preset 3: Emerald Green -->
@@ -365,11 +367,14 @@ html_content = '''<!DOCTYPE html>
               </div>
             </div>
 
-            <!-- Mota Bold Fonts Switcher (User specifically asked for bade mote fonts!) -->
+            <!-- Font Style Switcher -->
             <div>
-              <label class="text-[11px] font-semibold text-amber-400 block mb-1">👑 Font Style (Bade Mote Fonts):</label>
+              <label class="text-[11px] font-semibold text-amber-400 block mb-1">👑 Font Style (Photo Wala & Luxury Fonts):</label>
               <div class="grid grid-cols-2 gap-1.5">
-                <button onclick="setTitleFont('cinzel-dec')" id="font-btn-cinzel-dec" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-cinzel-dec font-black border-amber-500 bg-amber-500/15 text-amber-300">
+                <button onclick="setTitleFont('great-vibes')" id="font-btn-great-vibes" class="col-span-2 px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-great-vibes text-sm border-amber-500 bg-amber-500/15 text-amber-300">
+                  ✨ Great Vibes (Photo Wala Script Font)
+                </button>
+                <button onclick="setTitleFont('cinzel-dec')" id="font-btn-cinzel-dec" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-cinzel-dec font-black border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
                   🏛️ Cinzel Bold (Mota)
                 </button>
                 <button onclick="setTitleFont('playfair-black')" id="font-btn-playfair-black" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-playfair font-black border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
@@ -380,6 +385,9 @@ html_content = '''<!DOCTYPE html>
                 </button>
                 <button onclick="setTitleFont('alex-brush')" id="font-btn-alex-brush" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-script border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
                   ✍️ Alex Brush (Script)
+                </button>
+                <button onclick="setTitleFont('cormorant')" id="font-btn-cormorant" class="col-span-2 px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-cormorant font-bold border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
+                  📜 Cormorant Garamond (Royal Serif)
                 </button>
               </div>
             </div>
@@ -691,6 +699,13 @@ html_content = '''<!DOCTYPE html>
             <div>
               <label class="text-[11px] font-semibold text-slate-300 block mb-1">Tagline Text:</label>
               <input type="text" id="input-butter-tagline" value="★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-amber-500 focus:outline-none">
+            </div>
+
+            <!-- Quick Tagline Presets -->
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="setRibbonText('« RELISHING THE RICH BUTTERY BAKES »')" class="px-2 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded text-[10px] font-bold">✨ « RELISHING THE RICH BUTTERY BAKES » (Photo Wala)</button>
+              <button onclick="setRibbonText('★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★')" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 rounded text-[10px] text-slate-300">★ 100% Pure Butter ★</button>
+              <button onclick="setRibbonText('★  FINEST ARTISAN RECIPE  •  HANDCRAFTED  ★')" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 rounded text-[10px] text-slate-300">★ Handcrafted ★</button>
             </div>
 
             <div class="flex items-center justify-between gap-3">
@@ -1180,13 +1195,16 @@ html_content = '''<!DOCTYPE html>
         bgCenter: '#3B0A12',
         bgOuter: '#1A0307',
         brandColorMode: 'gold',
-        titleFont: 'cinzel-dec',
+        titleFont: 'great-vibes',
         titleColorMode: 'gold',
-        titleSize: 105,
+        titleSize: 135,
+        titleLine1: 'Assorted',
+        titleLine2: 'cookies',
         titleLine1Y: 620,
         titleLine2Y: 735,
         brandBlockY: 420,
         brandSpacing: 16,
+        ribbonText: '« RELISHING THE RICH BUTTERY BAKES »',
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1486,7 +1504,9 @@ html_content = '''<!DOCTYPE html>
       state.titleFont = fontKey;
       
       // Auto-adjust default size if appropriate
-      if (fontKey === 'alex-brush') {
+      if (fontKey === 'great-vibes') {
+        state.titleSize = 135;
+      } else if (fontKey === 'alex-brush') {
         state.titleSize = 130;
       } else if (fontKey === 'cinzel-dec') {
         state.titleSize = 105;
@@ -1494,15 +1514,20 @@ html_content = '''<!DOCTYPE html>
         state.titleSize = 98;
       } else if (fontKey === 'playfair-black') {
         state.titleSize = 106;
+      } else if (fontKey === 'cormorant') {
+        state.titleSize = 110;
       }
 
-      ['cinzel-dec', 'playfair-black', 'montserrat-black', 'alex-brush'].forEach(fk => {
+      const fontKeys = ['great-vibes', 'cinzel-dec', 'playfair-black', 'montserrat-black', 'alex-brush', 'cormorant'];
+      fontKeys.forEach(fk => {
         const btn = document.getElementById(`font-btn-${fk}`);
         if (btn) {
+          const isWide = (fk === 'great-vibes' || fk === 'cormorant');
+          const prefix = isWide ? "col-span-2 " : "";
           if (fk === fontKey) {
-            btn.className = "px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-black border-amber-500 bg-amber-500/15 text-amber-300";
+            btn.className = `${prefix}px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-black border-amber-500 bg-amber-500/15 text-amber-300`;
           } else {
-            btn.className = "px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700";
+            btn.className = `${prefix}px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700`;
           }
         }
       });
@@ -1523,6 +1548,13 @@ html_content = '''<!DOCTYPE html>
     function setTitleColorCustom(val) {
       state.titleColorMode = 'custom';
       state.titleCustomColor = val;
+      renderSVG();
+    }
+
+    function setRibbonText(text) {
+      state.ribbonText = text;
+      const inp = document.getElementById('input-butter-tagline');
+      if (inp) inp.value = text;
       renderSVG();
     }
 
@@ -2095,7 +2127,11 @@ html_content = '''<!DOCTYPE html>
       let titleFontWeight = "900";
       let titleLetterSpacing = "0.04em";
 
-      if (state.titleFont === 'playfair-black') {
+      if (state.titleFont === 'great-vibes') {
+        titleFontFamily = "'Great Vibes', cursive";
+        titleFontWeight = "normal";
+        titleLetterSpacing = "0.02em";
+      } else if (state.titleFont === 'playfair-black') {
         titleFontFamily = "'Playfair Display', serif";
         titleFontWeight = "900";
         titleLetterSpacing = "0.02em";
@@ -2107,6 +2143,10 @@ html_content = '''<!DOCTYPE html>
         titleFontFamily = "'Alex Brush', cursive";
         titleFontWeight = "normal";
         titleLetterSpacing = "0.02em";
+      } else if (state.titleFont === 'cormorant') {
+        titleFontFamily = "'Cormorant Garamond', serif";
+        titleFontWeight = "700";
+        titleLetterSpacing = "0.04em";
       }
 
       // Title Color
@@ -2432,7 +2472,7 @@ html_content = '''<!DOCTYPE html>
       }
       const fontStyleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
       fontStyleEl.textContent = (window.EMBEDDED_FONTS_CSS || '') + `
-        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prata&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Great+Vibes&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prata&display=swap');
       `;
       defs.appendChild(fontStyleEl);
 
