@@ -31,6 +31,7 @@ html_content = '''<!DOCTYPE html>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=EB+Garamond:wght@600;700;800&family=Great+Vibes&family=Marcellus&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prata&display=swap" rel="stylesheet">
   <script src="embedded_assets.js"></script>
   <script src="mandalas_library.js"></script>
+  <script src="fonts_base64.js"></script>
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -120,8 +121,8 @@ html_content = '''<!DOCTYPE html>
     /* Split workspace: keep editor and artwork visible together while editing */
     @media (min-width: 768px) {
       .studio-workspace {
-        height: calc(100dvh - 5.5rem);
-        min-height: 420px;
+        height: calc(100dvh - 4.5rem);
+        min-height: 520px;
         overflow: hidden;
         align-items: stretch;
       }
@@ -131,24 +132,32 @@ html_content = '''<!DOCTYPE html>
         overflow-y: auto;
         overscroll-behavior: contain;
         scrollbar-gutter: stable;
-        padding-right: .5rem;
+        padding-right: .75rem;
       }
       .studio-preview {
         height: 100%;
         min-height: 0;
-        overflow-y: auto;
-        overscroll-behavior: contain;
+        overflow: hidden; /* Photo stays fixed in place on laptop/desktop! */
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         align-self: stretch;
-        padding-bottom: .5rem;
       }
       #packaging-stage-wrapper {
         min-height: 0 !important;
-        height: clamp(260px, calc(100dvh - 340px), 560px);
-        flex: 0 0 auto;
-        padding: clamp(.75rem, 1.5vw, 2rem);
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(.5rem, 1vw, 1.25rem);
       }
       #tin-dabba-shell {
-        max-width: min(480px, calc(100dvh - 370px));
+        max-height: 100%;
+        max-width: min(500px, calc(100dvh - 210px));
+        width: 100%;
+        aspect-ratio: 1 / 1;
       }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
@@ -236,41 +245,83 @@ html_content = '''<!DOCTYPE html>
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <span class="text-amber-400 font-bold text-sm">Ready-made Designs</span>
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Choose a colour</span>
+            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">1-Click Apply</span>
           </div>
-          <span class="text-[10px] text-teal-300 font-bold">One click to apply</span>
+          <span class="text-[10px] text-teal-300 font-bold">10 Luxury Colours</span>
         </div>
 
-        <div class="grid grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
           <!-- Preset 1: Mint Luxury -->
-          <button onclick="applyPreset('mint')" id="btn-preset-mint" class="p-3 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <button onclick="applyPreset('mint')" id="btn-preset-mint" class="p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div class="flex items-center justify-between">
               <span class="text-xs font-black text-emerald-300 flex items-center gap-1.5">
                 <span class="w-3 h-3 rounded-full bg-[#AEE6D2] border border-emerald-400 inline-block"></span>
-                1. Mint Green
+                Mint Green
               </span>
-              <span class="text-[9px] bg-emerald-500/30 text-emerald-200 px-1 rounded font-bold">Mint</span>
             </div>
-            <p class="text-[10px] text-slate-300 mt-1">Mint green background with gold details</p>
+            <p class="text-[9px] text-slate-400 mt-1">Mint & Gold details</p>
           </button>
 
           <!-- Preset 2: Royal Maroon -->
-          <button onclick="applyPreset('maroon')" id="btn-preset-maroon" class="p-3 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <button onclick="applyPreset('maroon')" id="btn-preset-maroon" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div class="flex items-center justify-between">
               <span class="text-xs font-black text-amber-200 flex items-center gap-1.5">
                 <span class="w-3 h-3 rounded-full bg-[#3B0A12] border border-amber-400 inline-block"></span>
-                2. Maroon
+                Maroon
               </span>
-              <span class="text-[9px] bg-amber-500/30 text-amber-200 px-1 rounded font-bold">Maroon</span>
             </div>
-            <p class="text-[10px] text-slate-400 mt-1">Maroon background with gold details</p>
+            <p class="text-[9px] text-slate-400 mt-1">Maroon & 24K Gold</p>
+          </button>
+
+          <!-- Preset 3: Emerald Green -->
+          <button onclick="applyPreset('emerald')" id="btn-preset-emerald" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-emerald-400 flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-[#0D3822] border border-emerald-300 inline-block"></span>
+                Emerald
+              </span>
+            </div>
+            <p class="text-[9px] text-slate-400 mt-1">Deep Forest & Gold</p>
+          </button>
+
+          <!-- Preset 4: Rose Gold -->
+          <button onclick="applyPreset('rosegold')" id="btn-preset-rosegold" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-rose-300 flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-[#4A1525] border border-rose-300 inline-block"></span>
+                Rose Gold
+              </span>
+            </div>
+            <p class="text-[9px] text-slate-400 mt-1">Wine & Rose Gold</p>
+          </button>
+
+          <!-- Preset 5: Midnight Purple -->
+          <button onclick="applyPreset('purple')" id="btn-preset-purple" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-purple-300 flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-[#240B36] border border-purple-400 inline-block"></span>
+                Purple
+              </span>
+            </div>
+            <p class="text-[9px] text-slate-400 mt-1">Plum & Champagne</p>
+          </button>
+
+          <!-- Preset 6: Deep 24K Gold -->
+          <button onclick="applyPreset('gold_luxe')" id="btn-preset-gold_luxe" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-amber-300 flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-[#3D2706] border border-amber-300 inline-block"></span>
+                Deep Gold
+              </span>
+            </div>
+            <p class="text-[9px] text-slate-400 mt-1">Antique Bronze & Gold</p>
           </button>
         </div>
 
         <!-- More Quick Swatches -->
         <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between">
-          <span class="text-[11px] text-slate-400">More colours:</span>
-          <div class="flex items-center gap-1.5">
+          <span class="text-[11px] text-slate-400">Classic swatches:</span>
+          <div class="flex items-center gap-2">
             <button onclick="applyPreset('black')" title="Obsidian Black & Gold" class="w-6 h-6 rounded-full bg-zinc-900 border border-amber-500/60 hover:scale-125 transition-all"></button>
             <button onclick="applyPreset('cream')" title="Ivory Cream & Gold" class="w-6 h-6 rounded-full bg-[#FFFDF7] border border-amber-600/60 hover:scale-125 transition-all"></button>
             <button onclick="applyPreset('crimson')" title="Crimson Red & Gold" class="w-6 h-6 rounded-full bg-[#7F1D1D] border border-amber-400/60 hover:scale-125 transition-all"></button>
@@ -378,120 +429,132 @@ html_content = '''<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- LAYER 2: BRAND NAME & MONOGRAM -->
+        <!-- LAYER 2: BRAND LOGO & NAME (LOCKED TOGETHER 🔒) -->
         <div class="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/40" id="card-brand">
           <button onclick="toggleAccordion('layer-brand-content')" class="w-full px-3.5 py-2.5 flex items-center justify-between bg-slate-900 hover:bg-slate-850 transition-all text-left">
             <div class="flex items-center gap-2">
               <span class="text-base">💎</span>
               <div>
-                <span class="text-xs font-bold text-amber-300">2. Logo, name & emblem</span>
-                <span class="text-[10px] text-slate-400 block font-normal">Name, font, colours and emblem alag edit karein</span>
+                <span class="text-xs font-bold text-amber-300">2. Logo & Brand Name (Locked 🔒)</span>
+                <span class="text-[10px] text-slate-400 block font-normal">Logo (upar) aur Name (neeche) ek sath lock hain</span>
               </div>
             </div>
-            <span class="text-xs text-slate-400 font-mono" id="layer-brand-arrow">►</span>
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/30 font-bold">LOCKED 🔒</span>
+              <span class="text-xs text-slate-400 font-mono" id="layer-brand-arrow">►</span>
+            </div>
           </button>
 
-          <div id="layer-brand-content" class="p-3.5 space-y-3 hidden">
-            <div class="rounded-xl border border-sky-500/25 bg-sky-500/10 p-3">
-              <p class="text-sm font-bold text-sky-200">Logo ke parts alag-alag edit karein</p>
-              <p class="mt-1 text-xs leading-5 text-slate-300">Emblem, DIAMOND name aur subtitle separate layers hain. Preview par drag karein ya sliders ke saath exact X/Y value type karein.</p>
+          <div id="layer-brand-content" class="p-3.5 space-y-3.5 hidden">
+            <!-- Lock notification banner -->
+            <div class="rounded-xl border border-amber-500/30 bg-amber-500/10 p-2.5 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🔒</span>
+                <div>
+                  <p class="text-xs font-bold text-amber-200">Logo aur Name Locked Hain</p>
+                  <p class="text-[10px] text-slate-300">Logo upar aur DIAMOND name neeche perfectly centered rehte hain.</p>
+                </div>
+              </div>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded border border-emerald-500/30">Auto-Center</span>
             </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
-              <h3 class="text-xs font-extrabold uppercase tracking-wide text-amber-300">Brand name</h3>
-              <label for="input-brand" class="text-[11px] text-slate-300 block">Logo ka naam / wordmark</label>
-              <input type="text" id="input-brand" value="DIAMOND" oninput="updateLabel()" maxlength="40" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
+
+            <!-- Master Position (Y - Upar / Neeche) -->
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2">
+              <div class="flex items-center justify-between">
+                <label for="slider-brand-block-y" class="text-xs font-bold text-amber-300">Logo + Name Position (Upar / Neeche)</label>
+                <span id="brand-block-y-val" class="text-xs font-mono font-bold text-teal-400">Y: 420</span>
+              </div>
+              <input type="range" id="slider-brand-block-y" min="200" max="650" value="420" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+              <p class="text-[10px] text-slate-400">Yeh slider logo aur brand name dono ko ek sath upar/neeche move karta hai.</p>
+            </div>
+
+            <!-- Emblem / Crest Size & Tint -->
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-200">👑 Logo / Emblem (Upar wala hissa)</span>
+                <span id="crest-scale-val" class="text-xs font-mono font-bold text-teal-400">95%</span>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <label for="slider-crest-scale" class="text-[11px] text-slate-300">Logo Size:</label>
+                <input type="range" id="slider-crest-scale" min="50" max="140" value="95" oninput="updateLabel()" class="w-40 accent-amber-500 cursor-pointer">
+              </div>
+
+              <!-- Spacing between Emblem and Name -->
+              <div class="flex items-center justify-between gap-3 pt-1 border-t border-slate-800/80">
+                <label for="slider-brand-spacing" class="text-[11px] text-slate-300">Logo & Name Gap:</label>
+                <input type="range" id="slider-brand-spacing" min="0" max="40" value="16" oninput="updateLabel()" class="w-40 accent-amber-500 cursor-pointer">
+                <span id="brand-spacing-val" class="text-xs font-mono font-bold text-amber-400 w-10 text-right">16 px</span>
+              </div>
+
+              <!-- Emblem Tint Option -->
+              <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                <label class="flex items-center gap-2 text-[11px] text-slate-300 cursor-pointer">
+                  <input type="checkbox" id="check-emblem-tint" onchange="updateLabel()" class="accent-amber-500 rounded">
+                  <span>Custom Gold Tint</span>
+                </label>
+                <input type="color" id="picker-emblem-color" value="#D4AF37" oninput="updateLabel()" class="w-7 h-7 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Brand Name ("DIAMOND") -->
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-3">
+              <span class="text-xs font-bold text-slate-200 block">💎 Brand Name (Neeche wala text)</span>
+              <div>
+                <label for="input-brand" class="text-[11px] text-slate-300 block mb-1">Brand Name Text:</label>
+                <input type="text" id="input-brand" value="DIAMOND" oninput="updateLabel()" maxlength="40" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
+              </div>
+
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <label for="select-brand-font" class="text-[11px] text-slate-300 block mb-1">Font style</label>
+                  <label for="select-brand-font" class="text-[11px] text-slate-300 block mb-1">Font Style:</label>
                   <select id="select-brand-font" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-xs text-white">
-                    <option value="prata">Prata (elegant)</option>
-                    <option value="cinzel">Cinzel</option>
+                    <option value="prata">Prata (Royal Serif)</option>
+                    <option value="cinzel">Cinzel Bold</option>
                     <option value="cinzel-decorative">Cinzel Decorative</option>
-                    <option value="playfair">Playfair Display</option>
-                    <option value="montserrat">Montserrat Bold</option>
+                    <option value="playfair">Playfair Display 900</option>
+                    <option value="montserrat">Montserrat Heavy</option>
                     <option value="cormorant">Cormorant Garamond</option>
                   </select>
                 </div>
                 <div>
-                  <label for="picker-brand-name-color" class="text-[11px] text-slate-300 block mb-1">Name colour</label>
-                  <input type="color" id="picker-brand-name-color" value="#C81D25" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                  <label class="text-[11px] text-slate-300 block mb-1">Font Size:</label>
+                  <div class="flex items-center gap-2">
+                    <input type="range" id="slider-brand-size" min="28" max="75" value="48" oninput="updateLabel()" class="w-full accent-amber-500 cursor-pointer">
+                    <span id="brand-size-val" class="text-xs font-mono font-bold text-teal-400 w-10 text-right">48 px</span>
+                  </div>
                 </div>
               </div>
-              <div class="flex flex-wrap gap-1.5">
-                <button onclick="setBrandColorMode('red')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] text-slate-200">Ruby red</button>
-                <button onclick="setBrandColorMode('gold')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] text-slate-200">Gold</button>
-                <button onclick="setBrandColorMode('white')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] text-slate-200">White</button>
-                <button onclick="setBrandColorMode('green')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] text-slate-200">Green</button>
+
+              <!-- Brand Name Color -->
+              <div>
+                <label class="text-[11px] text-slate-300 block mb-1">Name Colour:</label>
+                <div class="flex items-center justify-between">
+                  <div class="flex flex-wrap gap-1.5">
+                    <button onclick="setBrandColorMode('red')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-red-400">Ruby Red</button>
+                    <button onclick="setBrandColorMode('gold')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-amber-300">24K Gold</button>
+                    <button onclick="setBrandColorMode('white')" class="px-2 py-1 rounded-lg border border-slate-700 bg-slate-900 text-[10px] font-bold text-white">White</button>
+                  </div>
+                  <input type="color" id="picker-brand-name-color" value="#C81D25" oninput="updateLabel()" class="w-7 h-7 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                </div>
+              </div>
+            </div>
+
+            <!-- Subtitle ("BAKERY • RESTAURANT • SWEETS") -->
+            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-3 space-y-2.5">
+              <span class="text-xs font-bold text-slate-200 block">✨ Subtitle / Tagline</span>
+              <div>
+                <input type="text" id="input-brand-sub" value="BAKERY • RESTAURANT • SWEETS" oninput="updateLabel()" maxlength="70" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-amber-500 focus:outline-none">
               </div>
               <div class="flex items-center justify-between gap-3">
-                <label for="slider-brand-size" class="text-xs text-slate-300">Name size</label>
-                <input type="range" id="slider-brand-size" min="24" max="80" value="48" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-size-val" class="w-14 text-right text-xs font-mono font-bold text-teal-400">48 px</span>
-              </div>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <label for="slider-brand-x" class="text-xs text-slate-300">Name X (left / right)</label>
-                <input type="range" id="slider-brand-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-brand-x" min="200" max="1000" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-x-val position">
-              </div>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <label for="slider-brand-y" class="text-xs text-slate-300">Name Y (up / down)</label>
-                <input type="range" id="slider-brand-y" min="250" max="650" value="500" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 500</span><input type="number" id="number-brand-y" min="250" max="650" step="1" value="500" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-y-val position">
-              </div>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
-              <h3 class="text-xs font-extrabold uppercase tracking-wide text-amber-300">Subtitle / second logo line</h3>
-              <label for="input-brand-sub" class="text-[11px] text-slate-300 block">Subtitle text</label>
-              <input type="text" id="input-brand-sub" value="BAKERY • RESTAURANT • SWEETS" oninput="updateLabel()" maxlength="70" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none">
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <label for="picker-brand-sub-color" class="text-[11px] text-slate-300 block mb-1">Subtitle colour</label>
-                  <input type="color" id="picker-brand-sub-color" value="#1F2937" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <label class="text-[11px] text-slate-300">Colour:</label>
+                  <input type="color" id="picker-brand-sub-color" value="#1F2937" oninput="updateLabel()" class="w-6 h-6 rounded border border-slate-700 bg-slate-900 cursor-pointer">
                 </div>
-                <div class="flex items-center justify-between gap-2">
-                  <label for="slider-brand-sub-size" class="text-[11px] text-slate-300">Text size</label>
-                  <input type="range" id="slider-brand-sub-size" min="8" max="32" value="16" oninput="updateLabel()" class="w-24 accent-amber-500 cursor-pointer">
-                  <span id="brand-sub-size-val" class="text-[10px] font-mono text-teal-400">16 px</span>
+                <div class="flex items-center gap-2">
+                  <label class="text-[11px] text-slate-300">Size:</label>
+                  <input type="range" id="slider-brand-sub-size" min="9" max="24" value="13" oninput="updateLabel()" class="w-24 accent-amber-500 cursor-pointer">
+                  <span id="brand-sub-size-val" class="text-[10px] font-mono text-teal-400">13 px</span>
                 </div>
-              </div>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <label for="slider-brand-sub-x" class="text-xs text-slate-300">Subtitle X</label>
-                <input type="range" id="slider-brand-sub-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-sub-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-brand-sub-x" min="200" max="1000" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-sub-x-val position">
-              </div>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <label for="slider-brand-sub-y" class="text-xs text-slate-300">Subtitle Y</label>
-                <input type="range" id="slider-brand-sub-y" min="250" max="680" value="530" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="brand-sub-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 530</span><input type="number" id="number-brand-sub-y" min="250" max="680" step="1" value="530" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact brand-sub-y-val position">
-              </div>
-            </div>
-            <div class="rounded-xl border border-slate-800 bg-slate-950/50 p-3 space-y-3">
-              <h3 class="text-xs font-extrabold uppercase tracking-wide text-amber-300">Emblem / decorative crest</h3>
-              <p class="text-[11px] leading-5 text-slate-400">Original uploaded emblem artwork use hota hai. Tint checkbox on karke emblem ko custom single colour dein; off hone par original red/gold colours rahenge.</p>
-              <label class="flex items-center gap-2 text-xs text-slate-200">
-                <input type="checkbox" id="check-emblem-tint" onchange="updateLabel()" class="accent-amber-500">
-                Enable one-colour emblem tint
-              </label>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <label for="picker-emblem-color" class="text-[11px] text-slate-300 block mb-1">Emblem colour</label>
-                  <input type="color" id="picker-emblem-color" value="#D4AF37" oninput="updateLabel()" class="w-full h-9 rounded border border-slate-700 bg-slate-900 cursor-pointer">
-                </div>
-                <div class="flex items-center justify-between gap-2">
-                  <label for="slider-crest-scale" class="text-[11px] text-slate-300">Emblem size</label>
-                  <input type="range" id="slider-crest-scale" min="55" max="140" value="100" oninput="updateLabel()" class="w-24 accent-amber-500 cursor-pointer">
-                  <span id="crest-scale-val" class="text-[10px] font-mono font-bold text-teal-400">100%</span>
-                </div>
-              </div>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <label for="slider-crest-x" class="text-xs text-slate-300">Emblem X</label>
-                <input type="range" id="slider-crest-x" min="200" max="1000" value="600" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="crest-x-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">X: 600</span><input type="number" id="number-crest-x" min="200" max="1000" step="1" value="600" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact crest-x-val position">
-              </div>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <label for="slider-crest-y" class="text-xs text-slate-300">Emblem Y</label>
-                <input type="range" id="slider-crest-y" min="150" max="550" value="370" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-                <span id="crest-y-val" class="w-16 text-right text-xs font-mono font-bold text-teal-400">Y: 370</span><input type="number" id="number-crest-y" min="150" max="550" step="1" value="370" onchange="updateLabel()" class="w-12 rounded-lg border border-slate-700 bg-slate-900 px-1 py-1 text-right text-xs font-mono text-white focus:border-amber-500 focus:outline-none" aria-label="Exact crest-y-val position">
               </div>
             </div>
           </div>
@@ -1019,22 +1082,19 @@ html_content = '''<!DOCTYPE html>
       titleColorMode: 'gold', // 'gold', 'emerald', 'white', 'custom'
       titleCustomColor: '#D4AF37',
 
-      // Brand & Monogram
+      // Brand & Monogram (LOCKED TOGETHER 🔒)
       brand: 'DIAMOND',
       brandSub: 'BAKERY • RESTAURANT • SWEETS',
       monogram: 'D',
       brandSize: 48,
-      brandX: 600,
-      brandY: 500,
+      brandBlockX: 600,
+      brandBlockY: 420,
+      brandSpacing: 16,
       brandFont: 'prata',
       brandNameColor: '#C81D25',
       brandSubColor: '#1F2937',
-      brandSubSize: 16,
-      brandSubX: 600,
-      brandSubY: 530,
-      crestX: 600,
-      crestY: 370,
-      crestScale: 1.0,
+      brandSubSize: 13,
+      crestScale: 0.95,
       emblemColor: '#D4AF37',
       emblemTintEnabled: false,
       brandColorMode: 'red', // 'red', 'gold', 'white', 'custom'
@@ -1099,7 +1159,8 @@ html_content = '''<!DOCTYPE html>
         titleSize: 105,
         titleLine1Y: 620,
         titleLine2Y: 735,
-        brandY: 500,
+        brandBlockY: 420,
+        brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1124,7 +1185,8 @@ html_content = '''<!DOCTYPE html>
         titleSize: 105,
         titleLine1Y: 620,
         titleLine2Y: 735,
-        brandY: 500,
+        brandBlockY: 420,
+        brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1140,6 +1202,114 @@ html_content = '''<!DOCTYPE html>
         mandalaType: 'authentic_user',
         mandalaOpacity: 0.48
       },
+      emerald: {
+        bgCenter: '#0D3822',
+        bgOuter: '#051B10',
+        foilColor: '#E5C158',
+        brandColorMode: 'gold',
+        titleFont: 'cinzel-dec',
+        titleColorMode: 'gold',
+        titleSize: 105,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
+        brandBlockY: 420,
+        brandSpacing: 16,
+        ribbonY: 795,
+        plaqueY: 895,
+        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
+        topArcColor: '#E5C158',
+        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
+        bottomArcColor: '#E5C158',
+        ribbonBg: '#082818',
+        ribbonBorder: '#E5C158',
+        ribbonTextColor: '#FFFDF0',
+        plaqueBg: '#082818',
+        plaqueBorder: '#E5C158',
+        plaqueTextColor: '#FFFFFF',
+        mandalaType: 'filigree',
+        mandalaOpacity: 0.42
+      },
+      rosegold: {
+        bgCenter: '#4A1525',
+        bgOuter: '#250711',
+        foilColor: '#E8A598',
+        brandColorMode: 'gold',
+        titleFont: 'playfair-black',
+        titleColorMode: 'gold',
+        titleSize: 105,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
+        brandBlockY: 420,
+        brandSpacing: 16,
+        ribbonY: 795,
+        plaqueY: 895,
+        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
+        topArcColor: '#F5C2B6',
+        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
+        bottomArcColor: '#F5C2B6',
+        ribbonBg: '#300B17',
+        ribbonBorder: '#E8A598',
+        ribbonTextColor: '#FFF0ED',
+        plaqueBg: '#FFFFFF',
+        plaqueBorder: '#E8A598',
+        plaqueTextColor: '#4A1525',
+        mandalaType: 'rose_window',
+        mandalaOpacity: 0.40
+      },
+      purple: {
+        bgCenter: '#240B36',
+        bgOuter: '#11041D',
+        foilColor: '#F3D079',
+        brandColorMode: 'gold',
+        titleFont: 'cinzel-dec',
+        titleColorMode: 'gold',
+        titleSize: 105,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
+        brandBlockY: 420,
+        brandSpacing: 16,
+        ribbonY: 795,
+        plaqueY: 895,
+        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
+        topArcColor: '#F3D079',
+        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
+        bottomArcColor: '#F3D079',
+        ribbonBg: '#1A0626',
+        ribbonBorder: '#F3D079',
+        ribbonTextColor: '#FFFDF0',
+        plaqueBg: '#1A0626',
+        plaqueBorder: '#F3D079',
+        plaqueTextColor: '#FFFFFF',
+        mandalaType: 'imperial_crown',
+        mandalaOpacity: 0.45
+      },
+      gold_luxe: {
+        bgCenter: '#3D2706',
+        bgOuter: '#1C1101',
+        foilColor: '#FFDF73',
+        brandColorMode: 'red',
+        titleFont: 'cinzel-dec',
+        titleColorMode: 'gold',
+        titleSize: 105,
+        titleLine1Y: 620,
+        titleLine2Y: 735,
+        brandBlockY: 420,
+        brandSpacing: 16,
+        ribbonY: 795,
+        plaqueY: 895,
+        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
+        topArcColor: '#FFDF73',
+        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
+        bottomArcColor: '#FFDF73',
+        ribbonBg: '#2A1B04',
+        ribbonBorder: '#FFDF73',
+        ribbonTextColor: '#FFFDF0',
+        plaqueBg: '#FFFFFF',
+        plaqueBorder: '#FFDF73',
+        plaqueTextColor: '#3D2706',
+        mandalaType: 'sunburst_luxe',
+        mandalaOpacity: 0.45
+      },
       black: {
         bgCenter: '#18181B',
         bgOuter: '#09090B',
@@ -1149,7 +1319,8 @@ html_content = '''<!DOCTYPE html>
         titleSize: 105,
         titleLine1Y: 620,
         titleLine2Y: 735,
-        brandY: 500,
+        brandBlockY: 420,
+        brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1174,7 +1345,8 @@ html_content = '''<!DOCTYPE html>
         titleSize: 105,
         titleLine1Y: 620,
         titleLine2Y: 735,
-        brandY: 500,
+        brandBlockY: 420,
+        brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1199,7 +1371,8 @@ html_content = '''<!DOCTYPE html>
         titleSize: 105,
         titleLine1Y: 620,
         titleLine2Y: 735,
-        brandY: 500,
+        brandBlockY: 420,
+        brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1218,13 +1391,15 @@ html_content = '''<!DOCTYPE html>
       sapphire: {
         bgCenter: '#0F2C59',
         bgOuter: '#051329',
+        foilColor: '#D4AF37',
         brandColorMode: 'gold',
         titleFont: 'cinzel-dec',
         titleColorMode: 'gold',
         titleSize: 105,
         titleLine1Y: 620,
         titleLine2Y: 735,
-        brandY: 500,
+        brandBlockY: 420,
+        brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
@@ -1249,12 +1424,10 @@ html_content = '''<!DOCTYPE html>
       Object.assign(state, p);
       state.titleLine1X = 600;
       state.titleLine2X = 600;
-      state.brandX = 600;
-      state.brandY = 500;
-      state.brandSubX = 600;
-      state.brandSubY = 530;
-      state.crestX = 600;
-      state.crestY = 370;
+      state.brandBlockX = 600;
+      state.brandBlockY = p.brandBlockY || 420;
+      state.brandSpacing = p.brandSpacing || 16;
+      state.crestScale = p.crestScale || 0.95;
       state.brandNameColor = ({ red: '#C81D25', gold: '#D4AF37', white: '#FFFFFF', green: '#166534' })[state.brandColorMode] || '#C81D25';
       state.topArcX = 600;
       state.topArcY = 600;
@@ -1265,13 +1438,13 @@ html_content = '''<!DOCTYPE html>
       state.mandalaX = 600;
       state.mandalaY = 600;
 
-      ['mint', 'maroon'].forEach(k => {
+      ['mint', 'maroon', 'emerald', 'rosegold', 'purple', 'gold_luxe'].forEach(k => {
         const btn = document.getElementById(`btn-preset-${k}`);
         if (btn) {
           if (k === presetKey) {
-            btn.className = "p-3 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-left transition-all hover:scale-[1.02] flex flex-col justify-between";
+            btn.className = "p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-left transition-all hover:scale-[1.02] flex flex-col justify-between";
           } else {
-            btn.className = "p-3 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between";
+            btn.className = "p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between";
           }
         }
       });
@@ -1280,24 +1453,6 @@ html_content = '''<!DOCTYPE html>
       renderSVG();
     }
 
-    function resetPositions() {
-      state.titleLine1X = 600; state.titleLine1Y = 620;
-      state.titleLine2X = 600; state.titleLine2Y = 735;
-      state.brandX = 600; state.brandY = 500;
-      state.brandSubX = 600; state.brandSubY = 530;
-      state.crestX = 600; state.crestY = 370;
-      state.topArcX = 600; state.topArcY = 600;
-      state.bottomArcX = 600; state.bottomArcY = 600;
-      state.ribbonX = 600; state.ribbonY = 795;
-      state.plaqueX = 600; state.plaqueY = 895;
-      state.mandalaX = 600; state.mandalaY = 600;
-      syncUIFromState();
-      renderSVG();
-    }
-
-    // ==========================================
-    // ACCORDION TOGGLE (CANVA LAYERS)
-    // ==========================================
     function toggleAccordion(contentId) {
       const content = document.getElementById(contentId);
       if (!content) return;
@@ -1321,8 +1476,7 @@ html_content = '''<!DOCTYPE html>
     function openLayerAccordion(layerName) {
       const content = document.getElementById(`layer-${layerName}-content`);
       if (content && content.classList.contains('hidden')) toggleAccordion(content.id);
-      const card = document.getElementById(`card-${layerName}`);
-      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // NOTE: Removed scrollIntoView so preview never jumps on laptop/desktop!
     }
 
     // ==========================================
@@ -1515,22 +1669,38 @@ html_content = '''<!DOCTYPE html>
       if (brandSubColorInput) state.brandSubColor = brandSubColorInput.value;
       const brandSubSizeInput = document.getElementById('slider-brand-sub-size');
       if (brandSubSizeInput) {
-        state.brandSubSize = parseInt(brandSubSizeInput.value, 10) || 16;
+        state.brandSubSize = parseInt(brandSubSizeInput.value, 10) || 13;
         const value = document.getElementById('brand-sub-size-val');
         if (value) value.textContent = state.brandSubSize + ' px';
       }
       const emblemColorInput = document.getElementById('picker-emblem-color');
       if (emblemColorInput) state.emblemColor = emblemColorInput.value;
-      const tintToggle = document.getElementById('check-emblem-tint');
-      if (tintToggle) state.emblemTintEnabled = tintToggle.checked;
-
-      const monoInput = document.getElementById('input-monogram');
-      if (monoInput) state.monogram = monoInput.value || 'D';
-
-      const brandTextToggle = document.getElementById('check-logo-has-name');
-      if (brandTextToggle) state.showBrandText = !brandTextToggle.checked;
-      const extraBrandControls = document.getElementById('brand-extra-text-controls');
-      if (extraBrandControls) extraBrandControls.classList.toggle('hidden', !state.showBrandText);
+      const emblemTintToggle = document.getElementById('check-emblem-tint');
+      if (emblemTintToggle) state.emblemTintEnabled = emblemTintToggle.checked;
+      const brandSizeInput = document.getElementById('slider-brand-size');
+      if (brandSizeInput) {
+        state.brandSize = parseInt(brandSizeInput.value, 10) || 48;
+        const value = document.getElementById('brand-size-val');
+        if (value) value.textContent = `${state.brandSize} px`;
+      }
+      const crestScaleInput = document.getElementById('slider-crest-scale');
+      if (crestScaleInput) {
+        state.crestScale = (parseInt(crestScaleInput.value, 10) || 95) / 100;
+        const value = document.getElementById('crest-scale-val');
+        if (value) value.textContent = `${Math.round(state.crestScale * 100)}%`;
+      }
+      const brandBlockYInput = document.getElementById('slider-brand-block-y');
+      if (brandBlockYInput) {
+        state.brandBlockY = parseInt(brandBlockYInput.value, 10) || 420;
+        const value = document.getElementById('brand-block-y-val');
+        if (value) value.textContent = `Y: ${state.brandBlockY}`;
+      }
+      const brandSpacingInput = document.getElementById('slider-brand-spacing');
+      if (brandSpacingInput) {
+        state.brandSpacing = parseInt(brandSpacingInput.value, 10) || 16;
+        const value = document.getElementById('brand-spacing-val');
+        if (value) value.textContent = `${state.brandSpacing} px`;
+      }
 
       const topArcInput = document.getElementById('input-top-arc');
       if (topArcInput) state.topArc = topArcInput.value;
@@ -1696,21 +1866,19 @@ html_content = '''<!DOCTYPE html>
       setV('select-brand-font', state.brandFont);
       setV('picker-brand-name-color', state.brandNameColor);
       setV('picker-brand-sub-color', state.brandSubColor);
-      setV('slider-brand-sub-size', state.brandSubSize);
-      setT('brand-sub-size-val', state.brandSubSize + ' px');
+      setV('slider-brand-sub-size', state.brandSubSize || 13);
+      setT('brand-sub-size-val', (state.brandSubSize || 13) + ' px');
       setV('picker-emblem-color', state.emblemColor);
       const tintToggle = document.getElementById('check-emblem-tint');
       if (tintToggle) tintToggle.checked = state.emblemTintEnabled;
-      const brandTextToggle = document.getElementById('check-logo-has-name');
-      if (brandTextToggle) brandTextToggle.checked = !state.showBrandText;
-      const extraBrandControls = document.getElementById('brand-extra-text-controls');
-      if (extraBrandControls) extraBrandControls.classList.toggle('hidden', !state.showBrandText);
-      setV('slider-brand-size', state.brandSize);
-      setT('brand-size-val', `${state.brandSize} px`);
-      setV('slider-brand-y', state.brandY);
-      setT('brand-y-val', `Y: ${state.brandY}`);
-      setV('slider-crest-scale', Math.round(state.crestScale * 100));
-      setT('crest-scale-val', `${Math.round(state.crestScale * 100)}%`);
+      setV('slider-brand-size', state.brandSize || 48);
+      setT('brand-size-val', `${state.brandSize || 48} px`);
+      setV('slider-crest-scale', Math.round((state.crestScale || 0.95) * 100));
+      setT('crest-scale-val', `${Math.round((state.crestScale || 0.95) * 100)}%`);
+      setV('slider-brand-block-y', state.brandBlockY || 420);
+      setT('brand-block-y-val', `Y: ${state.brandBlockY || 420}`);
+      setV('slider-brand-spacing', state.brandSpacing || 16);
+      setT('brand-spacing-val', `${state.brandSpacing || 16} px`);
 
       setV('input-top-arc', state.topArc);
       setV('slider-top-arc-radius', state.topArcRadius);
@@ -1842,7 +2010,7 @@ html_content = '''<!DOCTYPE html>
     const DRAG_POSITION_CONFIG = {
       cookies1: { xKey: 'titleLine1X', yKey: 'titleLine1Y', minX: 250, maxX: 950, minY: 500, maxY: 760, sliderX: 'slider-title-x', sliderY: 'slider-title-y', fieldX: 'number-title-x', fieldY: 'number-title-y', labelX: 'title-x-val', labelY: 'title-y-val', accordion: 'cookies' },
       cookies2: { xKey: 'titleLine2X', yKey: 'titleLine2Y', minX: 250, maxX: 950, minY: 600, maxY: 870, sliderX: 'slider-title2-x', sliderY: 'slider-title2-y', fieldX: 'number-title2-x', fieldY: 'number-title2-y', labelX: 'title2-x-val', labelY: 'title2-y-val', accordion: 'cookies' },
-      brand: { xKey: 'brandX', yKey: 'brandY', minX: 200, maxX: 1000, minY: 250, maxY: 650, sliderX: 'slider-brand-x', sliderY: 'slider-brand-y', fieldX: 'number-brand-x', fieldY: 'number-brand-y', labelX: 'brand-x-val', labelY: 'brand-y-val', accordion: 'brand' },
+      'brand-block': { xKey: 'brandBlockX', yKey: 'brandBlockY', minX: 300, maxX: 900, minY: 200, maxY: 650, sliderX: null, sliderY: 'slider-brand-block-y', fieldX: null, fieldY: null, labelX: null, labelY: 'brand-block-y-val', accordion: 'brand' },
       'top-arc': { xKey: 'topArcX', yKey: 'topArcY', minX: 350, maxX: 850, minY: 350, maxY: 850, sliderX: 'slider-top-arc-x', sliderY: 'slider-top-arc-y', fieldX: 'number-top-arc-x', fieldY: 'number-top-arc-y', labelX: 'top-arc-x-val', labelY: 'top-arc-y-val', accordion: 'top-arc' },
       'bot-arc': { xKey: 'bottomArcX', yKey: 'bottomArcY', minX: 350, maxX: 850, minY: 350, maxY: 850, sliderX: 'slider-bot-arc-x', sliderY: 'slider-bot-arc-y', fieldX: 'number-bot-arc-x', fieldY: 'number-bot-arc-y', labelX: 'bot-arc-x-val', labelY: 'bot-arc-y-val', accordion: 'bot-arc' },
       ribbon: { xKey: 'ribbonX', yKey: 'ribbonY', minX: 250, maxX: 950, minY: 680, maxY: 900, sliderX: 'slider-tagline-x', sliderY: 'slider-tagline-y', fieldX: 'number-tagline-x', fieldY: 'number-tagline-y', labelX: 'tagline-x-val', labelY: 'tagline-y-val', accordion: 'ribbon' },
@@ -1881,18 +2049,12 @@ html_content = '''<!DOCTYPE html>
       const dy = (evt.clientY - dragStartY) * (1200 / (rect.height || 500));
       state[config.xKey] = Math.max(config.minX, Math.min(config.maxX, Math.round(layerStartX + dx)));
       state[config.yKey] = Math.max(config.minY, Math.min(config.maxY, Math.round(layerStartY + dy)));
-      const sx = document.getElementById(config.sliderX);
-      const sy = document.getElementById(config.sliderY);
-      const fx = config.fieldX ? document.getElementById(config.fieldX) : null;
-      const fy = config.fieldY ? document.getElementById(config.fieldY) : null;
-      const lx = document.getElementById(config.labelX);
-      const ly = document.getElementById(config.labelY);
-      if (sx) sx.value = state[config.xKey];
-      if (sy) sy.value = state[config.yKey];
-      if (fx) fx.value = state[config.xKey];
-      if (fy) fy.value = state[config.yKey];
-      if (lx) lx.textContent = 'X: ' + state[config.xKey];
-      if (ly) ly.textContent = 'Y: ' + state[config.yKey];
+      if (config.sliderX) { const sx = document.getElementById(config.sliderX); if (sx) sx.value = state[config.xKey]; }
+      if (config.sliderY) { const sy = document.getElementById(config.sliderY); if (sy) sy.value = state[config.yKey]; }
+      if (config.fieldX) { const fx = document.getElementById(config.fieldX); if (fx) fx.value = state[config.xKey]; }
+      if (config.fieldY) { const fy = document.getElementById(config.fieldY); if (fy) fy.value = state[config.yKey]; }
+      if (config.labelX) { const lx = document.getElementById(config.labelX); if (lx) lx.textContent = 'X: ' + state[config.xKey]; }
+      if (config.labelY) { const ly = document.getElementById(config.labelY); if (ly) ly.textContent = 'Y: ' + state[config.yKey]; }
       const movedLayer = svg.querySelector('[data-layer="' + activeDragLayer + '"]');
       if (movedLayer) movedLayer.setAttribute('transform', 'translate(' + state[config.xKey] + ', ' + state[config.yKey] + ')');
     });
@@ -2107,23 +2269,20 @@ html_content = '''<!DOCTYPE html>
       </textPath>
     </text>
 
-    <!-- 6. Original crest emblem: independent and optionally recolourable -->
-    <g data-layer="crest" transform="translate(${state.crestX}, ${state.crestY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'crest')">
-      <image href="https://ajaynxt.github.io/diamond-bakery-packaging-studio/diamond_crest_user.png"
-             x="${-110 * state.crestScale}" y="${-110 * state.crestScale}"
-             width="${220 * state.crestScale}" height="${220 * state.crestScale}"
-             preserveAspectRatio="xMidYMid meet"
-             filter="${state.emblemTintEnabled ? 'url(#emblemTintFilter)' : 'url(#shadowFilter)'}" />
-    </g>
-
-    <!-- 7. Editable brand name -->
-    <g data-layer="brand" transform="translate(${state.brandX}, ${state.brandY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'brand')">
-      <text x="0" y="0" text-anchor="middle" font-family="${brandFontFamily}" font-weight="700" font-size="${state.brandSize}px" letter-spacing="0.035em" fill="${state.brandNameColor || '#C81D25'}" filter="url(#titleShadow)">${escapeXmlText(state.brand)}</text>
-    </g>
-
-    <!-- 8. Editable brand subtitle -->
-    <g data-layer="brand-sub" transform="translate(${state.brandSubX}, ${state.brandSubY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'brand-sub')">
-      <text x="0" y="0" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="${state.brandSubSize}px" letter-spacing="0.08em" fill="${state.brandSubColor || '#1F2937'}">${escapeXmlText(state.brandSub)}</text>
+    <!-- 6. UNIFIED LOCKED LOGO + BRAND NAME BLOCK (UPPER NICHE, LOCKED TOGETHER 🔒) -->
+    <g data-layer="brand-block" transform="translate(${state.brandBlockX}, ${state.brandBlockY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'brand-block')">
+      <!-- Crest Emblem (Top) -->
+      <g transform="translate(0, ${-68 * state.crestScale})">
+        <image href="${(window.ASSETS && window.ASSETS.crest) ? window.ASSETS.crest : 'diamond_crest_user.png'}"
+               x="${-105 * state.crestScale}" y="${-105 * state.crestScale}"
+               width="${210 * state.crestScale}" height="${210 * state.crestScale}"
+               preserveAspectRatio="xMidYMid meet"
+               filter="${state.emblemTintEnabled ? 'url(#emblemTintFilter)' : 'url(#shadowFilter)'}" />
+      </g>
+      <!-- Brand Wordmark (Directly Below Emblem) -->
+      <text x="0" y="${55 * state.crestScale + (state.brandSpacing || 16)}" text-anchor="middle" font-family="${brandFontFamily}" font-weight="700" font-size="${state.brandSize}px" letter-spacing="0.035em" fill="${state.brandNameColor || '#C81D25'}" filter="url(#titleShadow)">${escapeXmlText(state.brand)}</text>
+      <!-- Subtitle (Directly Below Wordmark) -->
+      <text x="0" y="${55 * state.crestScale + (state.brandSpacing || 16) + (state.brandSubSize || 13) * 1.55}" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="${state.brandSubSize}px" letter-spacing="0.08em" fill="${state.brandSubColor || '#1F2937'}">${escapeXmlText(state.brandSub)}</text>
     </g>
 
     <!-- 7. PRODUCT NAME — two separate, independently draggable lines -->
@@ -2258,26 +2417,61 @@ html_content = '''<!DOCTYPE html>
       });
     }
 
-    // Clone the responsive preview into a fixed 1200×1200 SVG and embed linked artwork.
+    // Clone the responsive preview into a fixed 1200×1200 SVG and embed linked artwork & fonts!
     async function prepareSvgForExport(svgElement) {
       const clone = svgElement.cloneNode(true);
       clone.setAttribute('width', '1200');
       clone.setAttribute('height', '1200');
       clone.setAttribute('viewBox', '0 0 1200 1200');
+
+      // Inject Base64 Embedded Fonts & Google Web Fonts inside defs so downloaded file NEVER loses fonts!
+      let defs = clone.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        clone.insertBefore(defs, clone.firstChild);
+      }
+      const fontStyleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+      fontStyleEl.textContent = (window.EMBEDDED_FONTS_CSS || '') + `
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prata&display=swap');
+      `;
+      defs.appendChild(fontStyleEl);
+
       const images = Array.from(clone.querySelectorAll('image'));
       await Promise.all(images.map(async (image) => {
-        const href = image.getAttribute('href') || image.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
-        if (!href || href.startsWith('data:')) return;
-        const response = await fetch(href, { mode: 'cors', credentials: 'same-origin' });
-        if (!response.ok) throw new Error('Logo image could not be loaded for export.');
-        const dataUrl = await blobToDataURL(await response.blob());
-        image.setAttribute('href', dataUrl);
-        image.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+        let href = image.getAttribute('href') || image.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
+        if (!href) return;
+        if (href.startsWith('data:')) return;
+
+        // Use pre-embedded Base64 assets if available
+        if (href.includes('crest') && window.ASSETS && window.ASSETS.crest) {
+          image.setAttribute('href', window.ASSETS.crest);
+          image.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+          return;
+        }
+        if (href.includes('mandala') && window.ASSETS && window.ASSETS.mandala) {
+          image.setAttribute('href', window.ASSETS.mandala);
+          image.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+          return;
+        }
+
+        try {
+          const response = await fetch(href, { mode: 'cors' });
+          if (response.ok) {
+            const dataUrl = await blobToDataURL(await response.blob());
+            image.setAttribute('href', dataUrl);
+            image.removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+          }
+        } catch (e) {
+          console.warn('Image embed note:', e);
+        }
       }));
       return new XMLSerializer().serializeToString(clone);
     }
 
     async function loadExportImage(svgElement) {
+      if (document.fonts && document.fonts.ready) {
+        try { await document.fonts.ready; } catch (_) {}
+      }
       const svgStr = await prepareSvgForExport(svgElement);
       const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
       const objectUrl = URL.createObjectURL(blob);
@@ -2286,7 +2480,7 @@ html_content = '''<!DOCTYPE html>
         image.decoding = 'async';
         await new Promise((resolve, reject) => {
           image.onload = resolve;
-          image.onerror = () => reject(new Error('Sticker preview could not be prepared as an image.'));
+          image.onerror = () => reject(new Error('Sticker preview image render nahi ho payi.'));
           image.src = objectUrl;
         });
         return { image, objectUrl, svgStr };
