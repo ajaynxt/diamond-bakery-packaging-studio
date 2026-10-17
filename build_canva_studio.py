@@ -28,7 +28,7 @@ html_content = '''<!DOCTYPE html>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=EB+Garamond:wght@600;700;800&family=Great+Vibes&family=Marcellus&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prata&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Dancing+Script:wght@700&family=EB+Garamond:wght@600;700;800&family=Great+Vibes&family=Italianno&family=Marcellus&family=Montserrat:wght@600;700;800;900&family=Parisienne&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prata&display=swap" rel="stylesheet">
   <script src="embedded_assets.js"></script>
   <script src="mandalas_library.js"></script>
   <script src="fonts_base64.js"></script>
@@ -39,13 +39,20 @@ html_content = '''<!DOCTYPE html>
       color: #F3F4F6;
       overflow-x: hidden;
     }
-    .font-script { font-family: 'Alex Brush', cursive; }
     .font-great-vibes { font-family: 'Great Vibes', cursive; }
-    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+    .font-alex-brush { font-family: 'Alex Brush', cursive; }
+    .font-parisienne { font-family: 'Parisienne', cursive; }
+    .font-dancing { font-family: 'Dancing Script', cursive; }
+    .font-italianno { font-family: 'Italianno', cursive; }
     .font-cinzel { font-family: 'Cinzel', serif; }
     .font-cinzel-dec { font-family: 'Cinzel Decorative', serif; }
     .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+    .font-marcellus { font-family: 'Marcellus', serif; }
+    .font-prata { font-family: 'Prata', serif; }
+    .font-eb-garamond { font-family: 'EB Garamond', serif; }
     .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
 
     /* Custom Scrollbars */
     .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -120,8 +127,18 @@ html_content = '''<!DOCTYPE html>
       }
     }
 
+    .card-highlight-active {
+      box-shadow: 0 0 0 2px #F59E0B, 0 0 24px rgba(245, 158, 11, 0.35) !important;
+      border-color: #F59E0B !important;
+      transition: all 0.3s ease;
+    }
+
     /* Split workspace: keep editor and artwork visible together while editing */
     @media (min-width: 768px) {
+      body {
+        height: 100vh;
+        overflow: hidden;
+      }
       .studio-workspace {
         height: calc(100dvh - 4.5rem);
         min-height: 520px;
@@ -134,6 +151,7 @@ html_content = '''<!DOCTYPE html>
         overflow-y: auto;
         overscroll-behavior: contain;
         scrollbar-gutter: stable;
+        scroll-behavior: smooth;
         padding-right: .75rem;
       }
       .studio-preview {
@@ -242,47 +260,89 @@ html_content = '''<!DOCTYPE html>
         </div>
       </section>
 
-    <!-- 1-CLICK MASTER THEMES (Exact Matches to User Images) -->
+      <!-- 2 PHOTO DESIGN STYLES + MASTER (1-Click Switch between User's 2 Tin Layouts) -->
+      <div class="rounded-2xl border border-amber-500/40 bg-gradient-to-r from-amber-500/15 via-slate-900 to-amber-500/10 p-3.5 shadow-xl space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">🎯</span>
+            <span class="text-xs font-black text-amber-300 uppercase tracking-wider">Photo Ke 2 Designs (1-Click Switch)</span>
+          </div>
+          <span class="text-[9px] bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded border border-amber-500/40">100% PHOTO MATCH</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <!-- Style 1: Top Tin (Pillar & Mandala) -->
+          <button onclick="setDesignStyle('style1_pillar')" id="btn-style-style1_pillar" class="p-2.5 rounded-xl border border-slate-700 bg-slate-900 hover:border-amber-500 text-left transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-black text-amber-300 block">👑 Style 1: Top Tin</span>
+              <span class="text-[10px] text-slate-300 block mt-0.5 font-normal">Gold Ribbon Pillar + Center Mandala</span>
+            </div>
+            <span class="text-[9px] text-emerald-400 font-mono mt-1 font-semibold">Photo Upar Wala Tin</span>
+          </button>
+
+          <!-- Style 2: Bottom Tin (Assorted Cookies Script) -->
+          <button onclick="setDesignStyle('style2_script')" id="btn-style-style2_script" class="p-2.5 rounded-xl border-2 border-amber-500 bg-amber-500/20 text-left transition-all flex flex-col justify-between shadow-lg">
+            <div>
+              <span class="text-xs font-black text-amber-300 block">🍪 Style 2: Bottom Tin</span>
+              <span class="text-[10px] text-slate-300 block mt-0.5 font-normal">Big Script "Assorted cookies" + Tagline</span>
+            </div>
+            <span class="text-[9px] text-amber-300 font-mono mt-1 font-bold">Photo Neeche Wala Tin</span>
+          </button>
+
+          <!-- Style 3: Master Studio (Combined) -->
+          <button onclick="setDesignStyle('style3_combined')" id="btn-style-style3_combined" class="p-2.5 rounded-xl border border-slate-700 bg-slate-900 hover:border-amber-500 text-left transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-black text-slate-200 block">✨ Style 3: Master Studio</span>
+              <span class="text-[10px] text-slate-400 block mt-0.5 font-normal">Logo + Script + Ribbon + Mandala</span>
+            </div>
+            <span class="text-[9px] text-teal-400 font-mono mt-1 font-semibold">All Layers Combined</span>
+          </button>
+        </div>
+      </div>
+
+    <!-- 1-CLICK MASTER THEMES (Twin Matching Colors & Luxury Editions) -->
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
-            <span class="text-amber-400 font-bold text-sm">Ready-made Designs</span>
-            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">1-Click Apply</span>
+            <span class="text-amber-400 font-bold text-sm">Twin Luxury Colors</span>
+            <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded font-bold">Dono Ek Jaisi Luxury Finish</span>
           </div>
-          <span class="text-[10px] text-teal-300 font-bold">10 Luxury Colours</span>
+          <span class="text-[10px] text-teal-300 font-bold">6 High-End Colors</span>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          <!-- Preset 1: Mint Luxury -->
-          <button onclick="applyPreset('mint')" id="btn-preset-mint" class="p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
+          <!-- Preset 1: Royal Velvet Maroon (Photo Original) -->
+          <button onclick="applyPreset('maroon')" id="btn-preset-maroon" class="p-2.5 rounded-xl border-2 border-amber-500 bg-amber-500/15 text-left transition-all hover:scale-[1.02] flex flex-col justify-between shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-amber-200 flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-[#581825] border-2 border-amber-400 inline-block shadow"></span>
+                Royal Maroon
+              </span>
+            </div>
+            <p class="text-[9px] text-amber-300 mt-1 font-bold">✨ Photo Wala Original</p>
+          </button>
+
+          <!-- Preset 2: Pastel Mint (Twin Sister) -->
+          <button onclick="applyPreset('mint')" id="btn-preset-mint" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div class="flex items-center justify-between">
               <span class="text-xs font-black text-emerald-300 flex items-center gap-1.5">
-                <span class="w-3 h-3 rounded-full bg-[#AEE6D2] border border-emerald-400 inline-block"></span>
+                <span class="w-3.5 h-3.5 rounded-full bg-[#C2ECE0] border-2 border-emerald-400 inline-block shadow"></span>
                 Mint Green
               </span>
             </div>
-            <p class="text-[9px] text-slate-400 mt-1">Mint & Gold details</p>
-          </button>
-
-          <!-- Preset 2: Royal Maroon -->
-          <button onclick="applyPreset('maroon')" id="btn-preset-maroon" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black text-amber-200 flex items-center gap-1.5">
-                <span class="w-3 h-3 rounded-full bg-[#3B0A12] border border-amber-400 inline-block"></span>
-                Maroon
-              </span>
-            </div>
-            <p class="text-[9px] text-amber-300 mt-1 font-semibold">✨ Photo Wala Original</p>
+            <p class="text-[9px] text-emerald-400 mt-1 font-semibold">✨ Matching Twin Sister</p>
           </button>
 
           <!-- Preset 3: Emerald Green -->
           <button onclick="applyPreset('emerald')" id="btn-preset-emerald" class="p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between">
             <div class="flex items-center justify-between">
               <span class="text-xs font-black text-emerald-400 flex items-center gap-1.5">
-                <span class="w-3 h-3 rounded-full bg-[#0D3822] border border-emerald-300 inline-block"></span>
+                <span class="w-3.5 h-3.5 rounded-full bg-[#0D3822] border-2 border-emerald-300 inline-block"></span>
                 Emerald
               </span>
             </div>
+            <p class="text-[9px] text-slate-400 mt-1">Deep Forest & Gold</p>
+          </button>
             <p class="text-[9px] text-slate-400 mt-1">Deep Forest & Gold</p>
           </button>
 
@@ -367,36 +427,51 @@ html_content = '''<!DOCTYPE html>
               </div>
             </div>
 
-            <!-- Font Style Switcher -->
-            <div>
-              <label class="text-[11px] font-semibold text-amber-400 block mb-1">👑 Font Style (Photo Wala & Luxury Fonts):</label>
-              <div class="grid grid-cols-2 gap-1.5">
-                <button onclick="setTitleFont('great-vibes')" id="font-btn-great-vibes" class="col-span-2 px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-great-vibes text-sm border-amber-500 bg-amber-500/15 text-amber-300">
-                  ✨ Great Vibes (Photo Wala Script Font)
-                </button>
-                <button onclick="setTitleFont('cinzel-dec')" id="font-btn-cinzel-dec" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-cinzel-dec font-black border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
-                  🏛️ Cinzel Bold (Mota)
-                </button>
-                <button onclick="setTitleFont('playfair-black')" id="font-btn-playfair-black" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-playfair font-black border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
-                  👑 Playfair 900 (Thick)
-                </button>
-                <button onclick="setTitleFont('montserrat-black')" id="font-btn-montserrat-black" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-montserrat font-black border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
-                  💎 Montserrat Heavy
-                </button>
-                <button onclick="setTitleFont('alex-brush')" id="font-btn-alex-brush" class="px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-script border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
-                  ✍️ Alex Brush (Script)
-                </button>
-                <button onclick="setTitleFont('cormorant')" id="font-btn-cormorant" class="col-span-2 px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-cormorant font-bold border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">
-                  📜 Cormorant Garamond (Royal Serif)
-                </button>
+            <!-- Font Style Switcher (All 14 Luxury Packaging Fonts) -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <label for="select-title-font" class="text-[11px] font-semibold text-amber-400">👑 All 14 Luxury Packaging Fonts:</label>
+                <span class="text-[10px] text-amber-300 font-mono font-bold" id="title-font-current-name">Alex Brush (Photo Wala Script)</span>
+              </div>
+              <select id="select-title-font" onchange="setTitleFont(this.value)" class="w-full bg-slate-900 border border-amber-500/50 rounded-lg px-3 py-2 text-xs text-amber-300 font-bold focus:border-amber-400 focus:outline-none">
+                <optgroup label="✨ SIGNATURE SCRIPT & CALLIGRAPHY (Cursive)">
+                  <option value="alex-brush" selected>✍️ Alex Brush (Photo Wala 100% Match - Assorted Cookies)</option>
+                  <option value="great-vibes">✨ Great Vibes (Luxury Flowing Script)</option>
+                  <option value="parisienne">💃 Parisienne (French Romantic Flourish)</option>
+                  <option value="italianno">🍷 Italianno (Tall Luxury Italian Calligraphy)</option>
+                  <option value="dancing-script">✒️ Dancing Script (Artisan Cursive)</option>
+                </optgroup>
+                <optgroup label="🏛️ ROYAL & LUXURY SERIFS (Mota Bold / Didot)">
+                  <option value="cinzel-dec">👑 Cinzel Decorative (Imperial Bold Roman)</option>
+                  <option value="cinzel">🏛️ Cinzel Bold (Regal Clean Classic)</option>
+                  <option value="playfair-black">💎 Playfair Display 900 (Thick Luxury Serif)</option>
+                  <option value="cormorant">📜 Cormorant Garamond (Royal French Serif)</option>
+                  <option value="marcellus">⚜️ Marcellus (Trajan Roman Luxury)</option>
+                  <option value="prata">👑 Prata (Didot Haute Couture Serif)</option>
+                  <option value="eb-garamond">📖 EB Garamond (Heritage Bakery Serif)</option>
+                </optgroup>
+                <optgroup label="💎 MODERN CLEAN BOLD SANS">
+                  <option value="montserrat-black">💎 Montserrat Heavy 900 (Bold Geometric)</option>
+                  <option value="plus-jakarta">⚡ Plus Jakarta Sans (Ultra Clean Modern)</option>
+                </optgroup>
+              </select>
+
+              <!-- Quick Font Buttons Grid (Top Favorites) -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 pt-1">
+                <button onclick="setTitleFont('alex-brush')" id="font-btn-alex-brush" class="px-2 py-1.5 rounded-lg border text-left text-xs font-alex-brush transition-all border-amber-500 bg-amber-500/20 text-amber-300 font-bold shadow">✍️ Alex Brush (Photo)</button>
+                <button onclick="setTitleFont('great-vibes')" id="font-btn-great-vibes" class="px-2 py-1.5 rounded-lg border text-left text-xs font-great-vibes transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">✨ Great Vibes</button>
+                <button onclick="setTitleFont('cinzel-dec')" id="font-btn-cinzel-dec" class="px-2 py-1.5 rounded-lg border text-left text-xs font-cinzel-dec transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">🏛️ Cinzel Dec</button>
+                <button onclick="setTitleFont('playfair-black')" id="font-btn-playfair-black" class="px-2 py-1.5 rounded-lg border text-left text-xs font-playfair transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">👑 Playfair 900</button>
+                <button onclick="setTitleFont('cormorant')" id="font-btn-cormorant" class="px-2 py-1.5 rounded-lg border text-left text-xs font-cormorant transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">📜 Cormorant</button>
+                <button onclick="setTitleFont('parisienne')" id="font-btn-parisienne" class="px-2 py-1.5 rounded-lg border text-left text-xs font-parisienne transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700">💃 Parisienne</button>
               </div>
             </div>
 
             <!-- Size Slider -->
             <div class="flex items-center justify-between gap-3 pt-1">
               <span class="text-[11px] text-slate-300 font-medium">Font Size:</span>
-              <input type="range" id="slider-title-size" min="50" max="160" value="105" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
-              <span id="title-size-val" class="text-xs font-mono font-bold text-amber-400 w-12 text-right">105 px</span>
+              <input type="range" id="slider-title-size" min="50" max="160" value="135" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
+              <span id="title-size-val" class="text-xs font-mono font-bold text-amber-400 w-12 text-right">135 px</span>
             </div>
 
             <!-- Canva-style X/Y controls for both independently editable product-name lines -->
@@ -516,12 +591,25 @@ html_content = '''<!DOCTYPE html>
                 <div>
                   <label for="select-brand-font" class="text-[11px] text-slate-300 block mb-1">Font Style:</label>
                   <select id="select-brand-font" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-xs text-white">
-                    <option value="prata">Prata (Royal Serif)</option>
-                    <option value="cinzel">Cinzel Bold</option>
-                    <option value="cinzel-decorative">Cinzel Decorative</option>
-                    <option value="playfair">Playfair Display 900</option>
-                    <option value="montserrat">Montserrat Heavy</option>
-                    <option value="cormorant">Cormorant Garamond</option>
+                    <optgroup label="Royal Serifs">
+                      <option value="prata">Prata (Royal Didot)</option>
+                      <option value="cinzel">Cinzel Bold</option>
+                      <option value="cinzel-decorative">Cinzel Decorative</option>
+                      <option value="cormorant">Cormorant Garamond</option>
+                      <option value="marcellus">Marcellus Trajan</option>
+                      <option value="playfair">Playfair Display 900</option>
+                      <option value="eb-garamond">EB Garamond</option>
+                    </optgroup>
+                    <optgroup label="Modern Sans">
+                      <option value="montserrat">Montserrat Heavy</option>
+                      <option value="plus-jakarta">Plus Jakarta Sans</option>
+                    </optgroup>
+                    <optgroup label="Cursive Scripts">
+                      <option value="great-vibes">Great Vibes</option>
+                      <option value="alex-brush">Alex Brush</option>
+                      <option value="parisienne">Parisienne</option>
+                      <option value="dancing-script">Dancing Script</option>
+                    </optgroup>
                   </select>
                 </div>
                 <div>
@@ -703,9 +791,27 @@ html_content = '''<!DOCTYPE html>
 
             <!-- Quick Tagline Presets -->
             <div class="flex flex-wrap gap-1.5">
-              <button onclick="setRibbonText('« RELISHING THE RICH BUTTERY BAKES »')" class="px-2 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded text-[10px] font-bold">✨ « RELISHING THE RICH BUTTERY BAKES » (Photo Wala)</button>
-              <button onclick="setRibbonText('★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★')" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 rounded text-[10px] text-slate-300">★ 100% Pure Butter ★</button>
+              <button onclick="setRibbonText('★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★')" class="px-2 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded text-[10px] font-bold">✨ ★ BAKED WITH 100% PURE BUTTER • ZERO PALM OIL ★ (Photo)</button>
+              <button onclick="setRibbonText('« RELISHING THE RICH BUTTERY BAKES »')" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 rounded text-[10px] text-slate-300">« RELISHING THE RICH BUTTERY BAKES »</button>
               <button onclick="setRibbonText('★  FINEST ARTISAN RECIPE  •  HANDCRAFTED  ★')" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 rounded text-[10px] text-slate-300">★ Handcrafted ★</button>
+            </div>
+
+            <!-- Ribbon Font Style -->
+            <div>
+              <label for="select-ribbon-font" class="text-[11px] font-semibold text-slate-300 block mb-1">Ribbon Font Style:</label>
+              <select id="select-ribbon-font" onchange="setRibbonFont(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
+                <option value="cormorant" selected>📜 Cormorant Garamond (Photo Wala Serif)</option>
+                <option value="cinzel">🏛️ Cinzel Bold</option>
+                <option value="cinzel-dec">👑 Cinzel Decorative</option>
+                <option value="marcellus">⚜️ Marcellus Trajan</option>
+                <option value="playfair-black">💎 Playfair Display 900</option>
+                <option value="prata">👑 Prata</option>
+                <option value="eb-garamond">📖 EB Garamond</option>
+                <option value="montserrat-black">💎 Montserrat Heavy</option>
+                <option value="plus-jakarta">⚡ Plus Jakarta Sans</option>
+                <option value="great-vibes">✨ Great Vibes (Script)</option>
+                <option value="alex-brush">✍️ Alex Brush (Script)</option>
+              </select>
             </div>
 
             <div class="flex items-center justify-between gap-3">
@@ -765,9 +871,15 @@ html_content = '''<!DOCTYPE html>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
                 <label class="text-[11px] font-semibold text-slate-300 block mb-1">Net Weight Text:</label>
-                <input type="text" id="input-weight" value="500g ℮" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
+                <input type="text" id="input-weight" value="400g ℮" oninput="updateLabel()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none">
+                <div class="flex items-center gap-1.5 pt-1.5">
+                  <button type="button" onclick="setWeightPreset('400g ℮')" id="btn-weight-400" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/50 text-xs font-bold transition-all">400g ℮ (Photo)</button>
+                  <button type="button" onclick="setWeightPreset('500g ℮')" id="btn-weight-500" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:border-slate-600 border border-transparent text-xs transition-all">500g ℮</button>
+                  <button type="button" onclick="setWeightPreset('250g ℮')" id="btn-weight-250" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:border-slate-600 border border-transparent text-xs transition-all">250g ℮</button>
+                  <button type="button" onclick="setWeightPreset('1 kg ℮')" id="btn-weight-1000" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:border-slate-600 border border-transparent text-xs transition-all">1 kg ℮</button>
+                </div>
               </div>
-              <div class="flex items-center sm:pt-5">
+              <div class="flex items-center sm:pt-4">
                 <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
                   <input type="checkbox" id="check-veg-logo" checked onchange="updateLabel()" class="accent-emerald-500 rounded">
                   <span>🟢 FSSAI Green Veg Logo</span>
@@ -831,6 +943,18 @@ html_content = '''<!DOCTYPE html>
               <span class="text-[11px] text-slate-300 font-medium">Mandala Scale:</span>
               <input type="range" id="slider-mandala-scale" min="50" max="140" value="100" oninput="updateLabel()" class="w-36 accent-amber-500 cursor-pointer">
               <span id="mandala-scale-val" class="text-xs font-mono font-bold text-teal-400 w-12 text-right">100%</span>
+            </div>
+
+            <!-- Luxury Leaf Watermark Texture (Photo Match) -->
+            <div class="rounded-xl border border-amber-500/30 bg-amber-500/10 p-2.5 space-y-1.5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold text-amber-300 block">🌿 Velvet Leaf Texture (Photo Damask)</span>
+                  <span class="text-[10px] text-slate-300">Photo jaisa rich botanical watermark pattern</span>
+                </div>
+                <span id="pattern-opacity-val" class="text-xs font-mono font-bold text-teal-400">35%</span>
+              </div>
+              <input type="range" id="slider-pattern-opacity" min="0" max="90" value="35" oninput="setPatternOpacity(this.value)" class="w-full accent-amber-500 cursor-pointer">
             </div>
             <div class="rounded-lg border border-slate-800 bg-slate-950/50 p-3 space-y-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
@@ -1074,27 +1198,33 @@ html_content = '''<!DOCTYPE html>
   <!-- JAVASCRIPT ENGINE -->
   <script>
     // ==========================================
-    // STATE DEFINITION
+    // STATE DEFINITION (100% PHOTO-MATCHED)
     // ==========================================
     const state = {
-      preset: 'mint',
+      preset: 'mint', // Mint preset matches user's uploaded reference sticker!
       viewMode: '3d', // '3d', 'flat', 'a4'
+      designStyle: 'style2_script',
+      showBrandPillar: false,
+      patternOpacity: 0.25,
+      ribbonFont: 'cormorant',
+      topArcFont: 'cinzel',
+      bottomArcFont: 'cinzel',
       
-      // Background & Rims
-      bgCenter: '#C5ECE1',
+      // Background & Rims (Sampled from User Reference)
+      bgCenter: '#C2ECE0',
       bgOuter: '#97D8C4',
-      foilColor: '#D4AF37',
+      foilColor: '#E5CF88',
 
-      // Product Title ("Assorted Cookies")
+      // Product Title ("Assorted Cookies" in Alex Brush)
       titleLine1: 'Assorted',
       titleLine2: 'Cookies',
-      titleFont: 'cinzel-dec', // 'cinzel-dec', 'playfair-black', 'montserrat-black', 'alex-brush'
-      titleSize: 105,
+      titleFont: 'alex-brush', // Exact 100% match with user photo!
+      titleSize: 135,
       titleLine1X: 600,
-      titleLine1Y: 620,
+      titleLine1Y: 615,
       titleLine2X: 600,
-      titleLine2Y: 735,
-      titleColorMode: 'gold', // 'gold', 'emerald', 'white', 'custom'
+      titleLine2Y: 720,
+      titleColorMode: 'gold',
       titleCustomColor: '#D4AF37',
 
       // Brand & Monogram (LOCKED TOGETHER 🔒)
@@ -1103,16 +1233,16 @@ html_content = '''<!DOCTYPE html>
       monogram: 'D',
       brandSize: 48,
       brandBlockX: 600,
-      brandBlockY: 420,
+      brandBlockY: 410,
       brandSpacing: 16,
       brandFont: 'prata',
       brandNameColor: '#C81D25',
-      brandSubColor: '#1F2937',
+      brandSubColor: '#0B3B24',
       brandSubSize: 13,
       crestScale: 0.95,
       emblemColor: '#D4AF37',
       emblemTintEnabled: false,
-      brandColorMode: 'red', // 'red', 'gold', 'white', 'custom'
+      brandColorMode: 'red',
       brandCustomColor: '#C81D25',
 
       // Top Arc
@@ -1121,7 +1251,7 @@ html_content = '''<!DOCTYPE html>
       topArcX: 600,
       topArcY: 600,
       topArcSize: 14.5,
-      topArcColor: '#0F4C2A',
+      topArcColor: '#0B3B24',
 
       // Bottom Arc
       bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
@@ -1129,30 +1259,30 @@ html_content = '''<!DOCTYPE html>
       bottomArcX: 600,
       bottomArcY: 600,
       bottomArcSize: 14.5,
-      bottomArcColor: '#0F4C2A',
+      bottomArcColor: '#0B3B24',
 
-      // Tagline Capsule Ribbon
+      // Tagline Capsule Ribbon ("★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★")
       ribbonText: '★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★',
       ribbonWidth: 750,
       ribbonSize: 16.5,
       ribbonX: 600,
       ribbonY: 795,
       ribbonBg: '#0B3B24',
-      ribbonBorder: '#D4AF37',
+      ribbonBorder: '#E5CF88',
       ribbonTextColor: '#FFFDF0',
 
-      // Plaque
-      weight: '500g ℮',
+      // Plaque (Weight is 400g e)
+      weight: '400g e',
       showVeg: true,
       plaqueX: 600,
       plaqueY: 895,
       plaqueBg: '#FFFFFF',
-      plaqueBorder: '#D4AF37',
+      plaqueBorder: '#E5CF88',
       plaqueTextColor: '#0B3B24',
 
       // Mandala
       mandalaType: 'authentic_user',
-      mandalaOpacity: 0.38,
+      mandalaOpacity: 0.35,
       mandalaScale: 1.0,
       mandalaX: 600,
       mandalaY: 600,
@@ -1166,71 +1296,86 @@ html_content = '''<!DOCTYPE html>
     // ==========================================
     const PRESETS = {
       mint: {
-        bgCenter: '#C5ECE1',
+        bgCenter: '#C2ECE0',
         bgOuter: '#97D8C4',
+        foilColor: '#E5CF88',
         brandColorMode: 'red',
-        titleFont: 'cinzel-dec',
-        titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
-        brandSpacing: 16,
-        ribbonY: 795,
-        plaqueY: 895,
-        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
-        topArcColor: '#0F4C2A',
-        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
-        bottomArcColor: '#0F4C2A',
-        ribbonBg: '#0B3B24',
-        ribbonBorder: '#D4AF37',
-        ribbonTextColor: '#FFFDF0',
-        plaqueBg: '#FFFFFF',
-        plaqueBorder: '#D4AF37',
-        plaqueTextColor: '#0B3B24',
-        mandalaType: 'authentic_user',
-        mandalaOpacity: 0.38
-      },
-      maroon: {
-        bgCenter: '#3B0A12',
-        bgOuter: '#1A0307',
-        brandColorMode: 'gold',
-        titleFont: 'great-vibes',
+        brandNameColor: '#C81D25',
+        brandSubColor: '#0B3B24',
+        titleFont: 'alex-brush',
         titleColorMode: 'gold',
         titleSize: 135,
         titleLine1: 'Assorted',
-        titleLine2: 'cookies',
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
+        titleLine2: 'Cookies',
+        titleLine1Y: 615,
+        titleLine2Y: 720,
+        brandBlockY: 410,
         brandSpacing: 16,
-        ribbonText: '« RELISHING THE RICH BUTTERY BAKES »',
+        ribbonText: '★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★',
         ribbonY: 795,
         plaqueY: 895,
         topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
-        topArcColor: '#D4AF37',
+        topArcColor: '#0B3B24',
         bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
-        bottomArcColor: '#D4AF37',
-        ribbonBg: '#28050B',
-        ribbonBorder: '#D4AF37',
+        bottomArcColor: '#0F4C2A',
+        ribbonBg: '#0B3B24',
+        ribbonBorder: '#E5CF88',
         ribbonTextColor: '#FFFDF0',
-        plaqueBg: '#28050B',
-        plaqueBorder: '#D4AF37',
+        plaqueBg: '#FFFFFF',
+        plaqueBorder: '#E5CF88',
+        plaqueTextColor: '#0B3B24',
+        mandalaType: 'authentic_user',
+        mandalaOpacity: 0.35,
+        patternOpacity: 0.25,
+        weight: '400g e'
+      },
+      maroon: {
+        bgCenter: '#581825',
+        bgOuter: '#22040B',
+        foilColor: '#E5CF88',
+        brandColorMode: 'red',
+        brandNameColor: '#C81D25',
+        brandSubColor: '#E5CF88',
+        titleFont: 'alex-brush',
+        titleColorMode: 'gold',
+        titleSize: 135,
+        titleLine1: 'Assorted',
+        titleLine2: 'Cookies',
+        titleLine1Y: 615,
+        titleLine2Y: 720,
+        brandBlockY: 410,
+        brandSpacing: 16,
+        ribbonText: '★  BAKED WITH 100% PURE BUTTER  •  ZERO PALM OIL  ★',
+        ribbonY: 795,
+        plaqueY: 895,
+        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
+        topArcColor: '#E5CF88',
+        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
+        bottomArcColor: '#E5CF88',
+        ribbonBg: '#360912',
+        ribbonBorder: '#E5CF88',
+        ribbonTextColor: '#FFFDF0',
+        plaqueBg: '#360912',
+        plaqueBorder: '#E5CF88',
         plaqueTextColor: '#FFFFFF',
         mandalaType: 'authentic_user',
-        mandalaOpacity: 0.48
+        mandalaOpacity: 0.38,
+        patternOpacity: 0.30,
+        weight: '400g e'
       },
       emerald: {
         bgCenter: '#0D3822',
         bgOuter: '#051B10',
         foilColor: '#E5C158',
         brandColorMode: 'gold',
-        titleFont: 'cinzel-dec',
+        brandNameColor: '#E5C158',
+        brandSubColor: '#FFFFFF',
+        titleFont: 'alex-brush',
         titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
+        titleSize: 135,
+        titleLine1Y: 615,
+        titleLine2Y: 720,
+        brandBlockY: 410,
         brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
@@ -1245,19 +1390,22 @@ html_content = '''<!DOCTYPE html>
         plaqueBorder: '#E5C158',
         plaqueTextColor: '#FFFFFF',
         mandalaType: 'filigree',
-        mandalaOpacity: 0.42
+        mandalaOpacity: 0.42,
+        weight: '400g e'
       },
       rosegold: {
         bgCenter: '#4A1525',
         bgOuter: '#250711',
         foilColor: '#E8A598',
         brandColorMode: 'gold',
-        titleFont: 'playfair-black',
+        brandNameColor: '#E8A598',
+        brandSubColor: '#FFFFFF',
+        titleFont: 'alex-brush',
         titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
+        titleSize: 135,
+        titleLine1Y: 615,
+        titleLine2Y: 720,
+        brandBlockY: 410,
         brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
@@ -1272,19 +1420,22 @@ html_content = '''<!DOCTYPE html>
         plaqueBorder: '#E8A598',
         plaqueTextColor: '#4A1525',
         mandalaType: 'rose_window',
-        mandalaOpacity: 0.40
+        mandalaOpacity: 0.40,
+        weight: '400g e'
       },
       purple: {
         bgCenter: '#240B36',
         bgOuter: '#11041D',
         foilColor: '#F3D079',
         brandColorMode: 'gold',
-        titleFont: 'cinzel-dec',
+        brandNameColor: '#F3D079',
+        brandSubColor: '#FFFFFF',
+        titleFont: 'alex-brush',
         titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
+        titleSize: 135,
+        titleLine1Y: 615,
+        titleLine2Y: 720,
+        brandBlockY: 410,
         brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
@@ -1299,19 +1450,22 @@ html_content = '''<!DOCTYPE html>
         plaqueBorder: '#F3D079',
         plaqueTextColor: '#FFFFFF',
         mandalaType: 'imperial_crown',
-        mandalaOpacity: 0.45
+        mandalaOpacity: 0.45,
+        weight: '400g e'
       },
       gold_luxe: {
         bgCenter: '#3D2706',
         bgOuter: '#1C1101',
         foilColor: '#FFDF73',
         brandColorMode: 'red',
-        titleFont: 'cinzel-dec',
+        brandNameColor: '#C81D25',
+        brandSubColor: '#FFFFFF',
+        titleFont: 'alex-brush',
         titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
+        titleSize: 135,
+        titleLine1Y: 615,
+        titleLine2Y: 720,
+        brandBlockY: 410,
         brandSpacing: 16,
         ribbonY: 795,
         plaqueY: 895,
@@ -1326,113 +1480,29 @@ html_content = '''<!DOCTYPE html>
         plaqueBorder: '#FFDF73',
         plaqueTextColor: '#3D2706',
         mandalaType: 'sunburst_luxe',
-        mandalaOpacity: 0.45
-      },
-      black: {
-        bgCenter: '#18181B',
-        bgOuter: '#09090B',
-        brandColorMode: 'gold',
-        titleFont: 'cinzel-dec',
-        titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
-        brandSpacing: 16,
-        ribbonY: 795,
-        plaqueY: 895,
-        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
-        topArcColor: '#D4AF37',
-        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
-        bottomArcColor: '#D4AF37',
-        ribbonBg: '#121214',
-        ribbonBorder: '#D4AF37',
-        ribbonTextColor: '#FFFDF0',
-        plaqueBg: '#121214',
-        plaqueBorder: '#D4AF37',
-        plaqueTextColor: '#FFFFFF',
-        mandalaType: 'sunburst_luxe',
-        mandalaOpacity: 0.45
-      },
-      cream: {
-        bgCenter: '#FFFDF7',
-        bgOuter: '#F5EED9',
-        brandColorMode: 'red',
-        titleFont: 'cinzel-dec',
-        titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
-        brandSpacing: 16,
-        ribbonY: 795,
-        plaqueY: 895,
-        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
-        topArcColor: '#78350F',
-        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
-        bottomArcColor: '#78350F',
-        ribbonBg: '#78350F',
-        ribbonBorder: '#D4AF37',
-        ribbonTextColor: '#FFFDF0',
-        plaqueBg: '#FFFFFF',
-        plaqueBorder: '#D4AF37',
-        plaqueTextColor: '#78350F',
-        mandalaType: 'lotus',
-        mandalaOpacity: 0.40
-      },
-      crimson: {
-        bgCenter: '#7F1D1D',
-        bgOuter: '#450A0A',
-        brandColorMode: 'gold',
-        titleFont: 'cinzel-dec',
-        titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
-        brandSpacing: 16,
-        ribbonY: 795,
-        plaqueY: 895,
-        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
-        topArcColor: '#FDE047',
-        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
-        bottomArcColor: '#FDE047',
-        ribbonBg: '#3B0A12',
-        ribbonBorder: '#D4AF37',
-        ribbonTextColor: '#FFFDF0',
-        plaqueBg: '#3B0A12',
-        plaqueBorder: '#D4AF37',
-        plaqueTextColor: '#FFFFFF',
-        mandalaType: 'taj',
-        mandalaOpacity: 0.45
-      },
-      sapphire: {
-        bgCenter: '#0F2C59',
-        bgOuter: '#051329',
-        foilColor: '#D4AF37',
-        brandColorMode: 'gold',
-        titleFont: 'cinzel-dec',
-        titleColorMode: 'gold',
-        titleSize: 105,
-        titleLine1Y: 620,
-        titleLine2Y: 735,
-        brandBlockY: 420,
-        brandSpacing: 16,
-        ribbonY: 795,
-        plaqueY: 895,
-        topArc: '★  SERVING SHIMLA SINCE 2002  •  FINEST ARTISAN BAKES  ★',
-        topArcColor: '#D4AF37',
-        bottomArc: '★  PREPARED IN PURE BUTTER & DESI GHEE  •  ZERO PALM OIL  ★',
-        bottomArcColor: '#D4AF37',
-        ribbonBg: '#091E3E',
-        ribbonBorder: '#D4AF37',
-        ribbonTextColor: '#FFFDF0',
-        plaqueBg: '#091E3E',
-        plaqueBorder: '#D4AF37',
-        plaqueTextColor: '#FFFFFF',
-        mandalaType: 'starburst',
-        mandalaOpacity: 0.45
+        mandalaOpacity: 0.45,
+        weight: '400g e'
       }
+    };
+
+    // ==========================================
+    // ALL 14 PACKAGING FONTS EMBEDDED MAP
+    // ==========================================
+    const FONT_MAP = {
+      'alex-brush': { family: "'Alex Brush', cursive", weight: "normal", letterSpacing: "0.02em", name: 'Alex Brush (Photo Wala Script)' },
+      'great-vibes': { family: "'Great Vibes', cursive", weight: "normal", letterSpacing: "0.02em", name: 'Great Vibes (Flowing Script)' },
+      'parisienne': { family: "'Parisienne', cursive", weight: "normal", letterSpacing: "0.02em", name: 'Parisienne (French Script)' },
+      'dancing-script': { family: "'Dancing Script', cursive", weight: "700", letterSpacing: "0.02em", name: 'Dancing Script' },
+      'italianno': { family: "'Italianno', cursive", weight: "normal", letterSpacing: "0.03em", name: 'Italianno (Fine Italic)' },
+      'cinzel-dec': { family: "'Cinzel Decorative', serif", weight: "900", letterSpacing: "0.04em", name: 'Cinzel Decorative' },
+      'cinzel': { family: "'Cinzel', serif", weight: "800", letterSpacing: "0.05em", name: 'Cinzel Trajan' },
+      'playfair-black': { family: "'Playfair Display', serif", weight: "900", letterSpacing: "0.02em", name: 'Playfair Display 900' },
+      'cormorant': { family: "'Cormorant Garamond', serif", weight: "700", letterSpacing: "0.04em", name: 'Cormorant Garamond' },
+      'marcellus': { family: "'Marcellus', serif", weight: "normal", letterSpacing: "0.05em", name: 'Marcellus Trajan' },
+      'prata': { family: "'Prata', serif", weight: "normal", letterSpacing: "0.04em", name: 'Prata (Didot Serif)' },
+      'eb-garamond': { family: "'EB Garamond', serif", weight: "700", letterSpacing: "0.04em", name: 'EB Garamond' },
+      'montserrat-black': { family: "'Montserrat', sans-serif", weight: "900", letterSpacing: "0.06em", name: 'Montserrat Heavy' },
+      'plus-jakarta': { family: "'Plus Jakarta Sans', sans-serif", weight: "800", letterSpacing: "0.04em", name: 'Plus Jakarta Sans' }
     };
 
     function applyPreset(presetKey) {
@@ -1443,10 +1513,9 @@ html_content = '''<!DOCTYPE html>
       state.titleLine1X = 600;
       state.titleLine2X = 600;
       state.brandBlockX = 600;
-      state.brandBlockY = p.brandBlockY || 420;
+      state.brandBlockY = p.brandBlockY || 410;
       state.brandSpacing = p.brandSpacing || 16;
       state.crestScale = p.crestScale || 0.95;
-      state.brandNameColor = ({ red: '#C81D25', gold: '#D4AF37', white: '#FFFFFF', green: '#166534' })[state.brandColorMode] || '#C81D25';
       state.topArcX = 600;
       state.topArcY = 600;
       state.bottomArcX = 600;
@@ -1460,7 +1529,7 @@ html_content = '''<!DOCTYPE html>
         const btn = document.getElementById(`btn-preset-${k}`);
         if (btn) {
           if (k === presetKey) {
-            btn.className = "p-2.5 rounded-xl border-2 border-emerald-500 bg-emerald-500/10 text-left transition-all hover:scale-[1.02] flex flex-col justify-between";
+            btn.className = "p-2.5 rounded-xl border-2 border-amber-500 bg-amber-500/15 text-left transition-all hover:scale-[1.02] flex flex-col justify-between shadow-lg";
           } else {
             btn.className = "p-2.5 rounded-xl border border-slate-800 bg-slate-950/60 text-left transition-all hover:scale-[1.02] flex flex-col justify-between";
           }
@@ -1493,21 +1562,37 @@ html_content = '''<!DOCTYPE html>
 
     function openLayerAccordion(layerName) {
       const content = document.getElementById(`layer-${layerName}-content`);
-      if (content && content.classList.contains('hidden')) toggleAccordion(content.id);
-      // NOTE: Removed scrollIntoView so preview never jumps on laptop/desktop!
+      if (!content) return;
+      if (content.classList.contains('hidden')) {
+        toggleAccordion(content.id);
+      }
+      const controls = document.querySelector('.studio-controls');
+      const card = document.getElementById(`card-${layerName}`) || content.closest('.border') || content.parentElement;
+      if (controls && card) {
+        const target = Math.max(0, card.offsetTop - controls.offsetTop - 12);
+        controls.scrollTo({ top: target, behavior: 'smooth' });
+      }
+      if (card) {
+        card.classList.add('card-highlight-active');
+        setTimeout(() => {
+          card.classList.remove('card-highlight-active');
+        }, 1200);
+      }
     }
 
     // ==========================================
     // TITLE FONT & COLOR CONTROLS
     // ==========================================
     function setTitleFont(fontKey) {
+      if (!FONT_MAP[fontKey]) fontKey = 'alex-brush';
       state.titleFont = fontKey;
       
-      // Auto-adjust default size if appropriate
-      if (fontKey === 'great-vibes') {
+      if (fontKey === 'alex-brush' || fontKey === 'great-vibes') {
         state.titleSize = 135;
-      } else if (fontKey === 'alex-brush') {
+      } else if (fontKey === 'parisienne') {
         state.titleSize = 130;
+      } else if (fontKey === 'italianno') {
+        state.titleSize = 150;
       } else if (fontKey === 'cinzel-dec') {
         state.titleSize = 105;
       } else if (fontKey === 'montserrat-black') {
@@ -1518,16 +1603,20 @@ html_content = '''<!DOCTYPE html>
         state.titleSize = 110;
       }
 
-      const fontKeys = ['great-vibes', 'cinzel-dec', 'playfair-black', 'montserrat-black', 'alex-brush', 'cormorant'];
-      fontKeys.forEach(fk => {
+      const fontSelect = document.getElementById('select-title-font');
+      if (fontSelect) fontSelect.value = fontKey;
+
+      const badge = document.getElementById('title-font-current-name');
+      if (badge && FONT_MAP[fontKey]) badge.textContent = FONT_MAP[fontKey].name;
+
+      const favoriteKeys = ['alex-brush', 'great-vibes', 'cinzel-dec', 'playfair-black', 'cormorant', 'parisienne'];
+      favoriteKeys.forEach(fk => {
         const btn = document.getElementById(`font-btn-${fk}`);
         if (btn) {
-          const isWide = (fk === 'great-vibes' || fk === 'cormorant');
-          const prefix = isWide ? "col-span-2 " : "";
           if (fk === fontKey) {
-            btn.className = `${prefix}px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all font-black border-amber-500 bg-amber-500/15 text-amber-300`;
+            btn.className = "px-2 py-1.5 rounded-lg border text-left text-xs font-bold transition-all border-amber-500 bg-amber-500/20 text-amber-300 shadow";
           } else {
-            btn.className = `${prefix}px-2.5 py-1.5 rounded-lg border text-left text-xs transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700`;
+            btn.className = "px-2 py-1.5 rounded-lg border text-left text-xs transition-all border-slate-800 bg-slate-900 text-slate-300 hover:border-slate-700";
           }
         }
       });
@@ -1537,6 +1626,77 @@ html_content = '''<!DOCTYPE html>
       const v = document.getElementById('title-size-val');
       if (v) v.textContent = `${state.titleSize} px`;
 
+      renderSVG();
+    }
+
+    function setRibbonFont(fontKey) {
+      if (!FONT_MAP[fontKey]) fontKey = 'cormorant';
+      state.ribbonFont = fontKey;
+      const sel = document.getElementById('select-ribbon-font');
+      if (sel) sel.value = fontKey;
+      renderSVG();
+    }
+
+    function setPatternOpacity(val) {
+      const num = parseInt(val, 10);
+      state.patternOpacity = isNaN(num) ? 0.25 : num / 100;
+      const v = document.getElementById('pattern-opacity-val');
+      if (v) v.textContent = `${num}%`;
+      const slider = document.getElementById('slider-pattern-opacity');
+      if (slider) slider.value = num;
+      renderSVG();
+    }
+
+    function setWeightPreset(w) {
+      state.weight = w;
+      const inp = document.getElementById('input-weight');
+      if (inp) inp.value = w;
+      ['400', '500', '250', '1000'].forEach(k => {
+        const btn = document.getElementById(`btn-weight-${k}`);
+        if (btn) {
+          const match = (k === '1000' && w.includes('1 kg')) || (k !== '1000' && w.includes(k));
+          if (match) {
+            btn.className = "px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/50 text-xs font-bold transition-all";
+          } else {
+            btn.className = "px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:border-slate-600 border border-transparent text-xs transition-all";
+          }
+        }
+      });
+      renderSVG();
+    }
+
+    function setDesignStyle(styleKey) {
+      state.designStyle = styleKey;
+
+      if (styleKey === 'style1_pillar') {
+        state.showBrandPillar = true;
+        state.titleFont = 'cinzel-dec';
+        state.titleSize = 105;
+        state.mandalaOpacity = 0.42;
+      } else if (styleKey === 'style2_script') {
+        state.showBrandPillar = false;
+        state.titleFont = 'alex-brush';
+        state.titleSize = 135;
+        state.mandalaOpacity = 0.35;
+      } else if (styleKey === 'style3_combined') {
+        state.showBrandPillar = true;
+        state.titleFont = 'alex-brush';
+        state.titleSize = 130;
+        state.mandalaOpacity = 0.38;
+      }
+
+      ['style1_pillar', 'style2_script', 'style3_combined'].forEach(k => {
+        const btn = document.getElementById(`btn-style-${k}`);
+        if (btn) {
+          if (k === styleKey) {
+            btn.className = "p-2.5 rounded-xl border-2 border-amber-500 bg-amber-500/20 text-left transition-all flex flex-col justify-between shadow-lg";
+          } else {
+            btn.className = "p-2.5 rounded-xl border border-slate-700 bg-slate-900 hover:border-amber-500 text-left transition-all flex flex-col justify-between";
+          }
+        }
+      });
+
+      syncUIFromState();
       renderSVG();
     }
 
@@ -1955,6 +2115,22 @@ html_content = '''<!DOCTYPE html>
       setV('picker-bg-outer', state.bgOuter);
       setT('bg-outer-hex', state.bgOuter.toUpperCase());
 
+      setV('select-ribbon-font', state.ribbonFont || 'cormorant');
+      setV('slider-pattern-opacity', Math.round((state.patternOpacity ?? 0.25) * 100));
+      setT('pattern-opacity-val', `${Math.round((state.patternOpacity ?? 0.25) * 100)}%`);
+
+      ['400', '500', '250', '1000'].forEach(k => {
+        const btn = document.getElementById(`btn-weight-${k}`);
+        if (btn) {
+          const match = (k === '1000' && (state.weight || '').includes('1 kg')) || (k !== '1000' && (state.weight || '').includes(k));
+          if (match) {
+            btn.className = "px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/50 text-xs font-bold transition-all";
+          } else {
+            btn.className = "px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:border-slate-600 border border-transparent text-xs transition-all";
+          }
+        }
+      });
+
       syncPositionControlsToUI();
       setTitleFont(state.titleFont);
     }
@@ -2122,32 +2298,15 @@ html_content = '''<!DOCTYPE html>
       const botY2 = botR * 0.5;
       const botArcPathD = `M ${botX1},${botY1} A ${botR},${botR} 0 0,0 ${botX2},${botY2}`;
 
-      // Font Family Mapping for Assorted Cookies
-      let titleFontFamily = "'Cinzel Decorative', serif";
-      let titleFontWeight = "900";
-      let titleLetterSpacing = "0.04em";
+      // Font Family Mapping from FONT_MAP (Supports all 14 fonts)
+      const titleFontDef = FONT_MAP[state.titleFont] || FONT_MAP['alex-brush'];
+      const titleFontFamily = titleFontDef.family;
+      const titleFontWeight = titleFontDef.weight;
+      const titleLetterSpacing = titleFontDef.letterSpacing;
 
-      if (state.titleFont === 'great-vibes') {
-        titleFontFamily = "'Great Vibes', cursive";
-        titleFontWeight = "normal";
-        titleLetterSpacing = "0.02em";
-      } else if (state.titleFont === 'playfair-black') {
-        titleFontFamily = "'Playfair Display', serif";
-        titleFontWeight = "900";
-        titleLetterSpacing = "0.02em";
-      } else if (state.titleFont === 'montserrat-black') {
-        titleFontFamily = "'Montserrat', sans-serif";
-        titleFontWeight = "900";
-        titleLetterSpacing = "0.06em";
-      } else if (state.titleFont === 'alex-brush') {
-        titleFontFamily = "'Alex Brush', cursive";
-        titleFontWeight = "normal";
-        titleLetterSpacing = "0.02em";
-      } else if (state.titleFont === 'cormorant') {
-        titleFontFamily = "'Cormorant Garamond', serif";
-        titleFontWeight = "700";
-        titleLetterSpacing = "0.04em";
-      }
+      const ribbonFontDef = FONT_MAP[state.ribbonFont] || FONT_MAP['cormorant'];
+      const ribbonFontFamily = ribbonFontDef.family;
+      const ribbonFontWeight = ribbonFontDef.weight;
 
       // Title Color
       let titleFill = "url(#foilGoldGrad)";
@@ -2273,6 +2432,21 @@ html_content = '''<!DOCTYPE html>
       <circle cx="600" cy="600" r="592"/>
     </clipPath>
 
+    <!-- Botanical Leaf Damask Pattern (Sampled from Real Tin Photo) -->
+    <pattern id="luxuryLeafPattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="url(#foilGoldGrad)" stroke-width="0.75" opacity="0.45">
+        <path d="M40 10 C30 25, 20 28, 15 40 C28 35, 35 25, 40 10 Z"/>
+        <path d="M40 10 C50 25, 60 28, 65 40 C52 35, 45 25, 40 10 Z"/>
+        <path d="M40 70 C30 55, 20 52, 15 40 C28 45, 35 55, 40 70 Z"/>
+        <path d="M40 70 C50 55, 60 52, 65 40 C52 45, 45 55, 40 70 Z"/>
+        <circle cx="40" cy="40" r="3.5" fill="url(#foilGoldGrad)"/>
+        <circle cx="0" cy="0" r="2" fill="url(#foilGoldGrad)"/>
+        <circle cx="80" cy="0" r="2" fill="url(#foilGoldGrad)"/>
+        <circle cx="0" cy="80" r="2" fill="url(#foilGoldGrad)"/>
+        <circle cx="80" cy="80" r="2" fill="url(#foilGoldGrad)"/>
+      </g>
+    </pattern>
+
     <!-- Top Arched Path (Curved Header along Upper Rim) -->
     <path id="topArcPath" d="${topArcPathD}" fill="none"/>
 
@@ -2282,12 +2456,13 @@ html_content = '''<!DOCTYPE html>
 
   <g clip-path="url(#lidClip)">
     
-    <!-- 1. CIRCULAR BASE BACKGROUND -->
-    <circle cx="600" cy="600" r="592" fill="url(#tinBgGrad)"/>
+    <!-- 1. CIRCULAR BASE BACKGROUND (Clickable to open color palette) -->
+    <circle cx="600" cy="600" r="592" fill="url(#tinBgGrad)" style="cursor: pointer;" onclick="openLayerAccordion('palette')"/>
+    <circle cx="600" cy="600" r="592" fill="url(#luxuryLeafPattern)" opacity="${state.patternOpacity ?? 0.25}" style="pointer-events: none;"/>
 
     <!-- 2. LUXURY CONCENTRIC DUAL GOLD RIMS -->
-    <circle cx="600" cy="600" r="586" fill="none" stroke="url(#foilGoldGrad)" stroke-width="4.5"/>
-    <circle cx="600" cy="600" r="578" fill="none" stroke="url(#foilGoldGrad)" stroke-width="1.8"/>
+    <circle cx="600" cy="600" r="586" fill="none" stroke="url(#foilGoldGrad)" stroke-width="4.5" style="cursor: pointer;" onclick="openLayerAccordion('palette')"/>
+    <circle cx="600" cy="600" r="578" fill="none" stroke="url(#foilGoldGrad)" stroke-width="1.8" style="cursor: pointer;" onclick="openLayerAccordion('palette')"/>
     <circle cx="600" cy="600" r="570" fill="none" stroke="url(#foilGoldGrad)" stroke-width="0.8" opacity="0.6"/>
 
     <!-- 3. MANDALA IN EXACT DEAD CENTER (cx=600, cy=600) -->
@@ -2309,6 +2484,18 @@ html_content = '''<!DOCTYPE html>
       </textPath>
     </text>
 
+    ${state.showBrandPillar ? `
+    <!-- Vertical Gold Pillar Banner (Photo Top Tin Style) -->
+    <g data-layer="brand-pillar" transform="translate(${state.brandBlockX}, ${state.brandBlockY - 12})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'brand-block')">
+      <!-- Ornate Vertical Gold Pillar Frame (Photo Top Tin Style) -->
+      <path d="M -135,-155 L 135,-155 A 12,12 0 0,1 147,-143 L 147,155 A 12,12 0 0,1 135,167 L -135,167 A 12,12 0 0,1 -147,155 L -147,-143 A 12,12 0 0,1 -135,-155 Z" fill="${state.preset === 'mint' ? '#0B3B24' : '#2A060C'}" stroke="url(#foilGoldGrad)" stroke-width="2.5" filter="url(#shadowFilter)" opacity="0.95"/>
+      <path d="M -127,-147 L 127,-147 A 6,6 0 0,1 133,-141 L 133,147 A 6,6 0 0,1 127,153 L -127,153 A 6,6 0 0,1 -133,147 L -133,-141 A 6,6 0 0,1 -127,-147 Z" fill="none" stroke="url(#foilGoldGrad)" stroke-width="0.8" opacity="0.85"/>
+      <!-- Corner Ornamental Diamonds -->
+      <path d="M 0,-155 L 6,-147 L 0,-139 L -6,-147 Z" fill="url(#foilGoldGrad)"/>
+      <path d="M 0,155 L 6,147 L 0,139 L -6,147 Z" fill="url(#foilGoldGrad)"/>
+    </g>
+    ` : ''}
+
     <!-- 6. UNIFIED LOCKED LOGO + BRAND NAME BLOCK (UPPER NICHE, LOCKED TOGETHER 🔒) -->
     <g data-layer="brand-block" transform="translate(${state.brandBlockX}, ${state.brandBlockY})" class="canva-draggable" onpointerdown="startCanvasDrag(event, 'brand-block')">
       <!-- Crest Emblem (Top) -->
@@ -2322,7 +2509,7 @@ html_content = '''<!DOCTYPE html>
       <!-- Brand Wordmark (Directly Below Emblem) -->
       <text x="0" y="${55 * state.crestScale + (state.brandSpacing || 16)}" text-anchor="middle" font-family="${brandFontFamily}" font-weight="700" font-size="${state.brandSize}px" letter-spacing="0.035em" fill="${state.brandNameColor || '#C81D25'}" filter="url(#titleShadow)">${escapeXmlText(state.brand)}</text>
       <!-- Subtitle (Directly Below Wordmark) -->
-      <text x="0" y="${55 * state.crestScale + (state.brandSpacing || 16) + (state.brandSubSize || 13) * 1.55}" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="${state.brandSubSize}px" letter-spacing="0.08em" fill="${state.brandSubColor || '#1F2937'}">${escapeXmlText(state.brandSub)}</text>
+      <text x="0" y="${55 * state.crestScale + (state.brandSpacing || 16) + (state.brandSubSize || 13) * 1.55}" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="${state.brandSubSize}px" letter-spacing="0.08em" fill="${state.brandSubColor || '#0B3B24'}">${escapeXmlText(state.brandSub)}</text>
     </g>
 
     <!-- 7. PRODUCT NAME — two separate, independently draggable lines -->
@@ -2340,7 +2527,7 @@ html_content = '''<!DOCTYPE html>
       <line x1="${-state.ribbonWidth / 2 + 12}" y1="-14" x2="${state.ribbonWidth / 2 - 12}" y2="-14" stroke="${state.ribbonBorder}" stroke-width="0.6" opacity="0.6"/>
       
       <!-- Tagline Text -->
-      <text x="0" y="5.5" text-anchor="middle" font-family="'Cinzel', 'Montserrat', serif" font-weight="800" font-size="${state.ribbonSize}px" letter-spacing="0.20em" fill="${state.ribbonTextColor}">
+      <text x="0" y="5.5" text-anchor="middle" font-family="${ribbonFontFamily}" font-weight="${ribbonFontWeight}" font-size="${state.ribbonSize}px" letter-spacing="0.20em" fill="${state.ribbonTextColor}">
         ${escapeXmlText(state.ribbonText)}
       </text>
     </g>
